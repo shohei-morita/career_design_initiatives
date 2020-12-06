@@ -36,6 +36,7 @@ group :development do
   gem 'faker'
   gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'parser'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
