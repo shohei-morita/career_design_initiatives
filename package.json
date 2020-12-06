@@ -1,5 +1,8 @@
 {
   "name": "career_design_initiatives",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "4",
+    "jquery": "^3.5.1"
+  }
 }
