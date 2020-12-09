@@ -35,6 +35,7 @@ group :development do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'letter_opener_web'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'parser'
   gem 'rspec-rails'
