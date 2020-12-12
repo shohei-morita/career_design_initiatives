@@ -9,16 +9,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :"卒業(予定)年度" %>
+    <%= f.select :graduation_year, Student.which_years.keys, {} %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"卒業(予定)年度" %>
-    <%= f.select :graduation_year, Student.which_years.keys, {} %>
   </div>
 
   <div class="field">
