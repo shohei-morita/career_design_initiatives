@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_134955) do
+ActiveRecord::Schema.define(version: 2020_12_12_084035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_134955) do
     t.string "nickname"
     t.string "tel"
     t.boolean "suspended", default: false, null: false
-    t.date "graduation_year", null: false
     t.integer "gender"
     t.date "birth_year"
     t.date "birth_month"
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_134955) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "graduation_year", null: false
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
