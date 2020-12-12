@@ -17,13 +17,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :"卒業(予定)年度" %>
+    <%= f.select :graduation_year, Student.which_years.keys, {} %>
   </div>
 
   <div class="field">
-    <%= f.label :"卒業年度" %><br />
-    <%= f.graduation_year : %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

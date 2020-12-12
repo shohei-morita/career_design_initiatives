@@ -4,19 +4,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    student_attribute = %i[
-      family_name
-      given_name
-      family_name_kana
-      given_name_kana
-      nickname
-      tel
-      gender
-      birth_year
-      birth_month
-      birth_day
-    ]
-    devise_parameter_sanitizer.permit(:sign_up, keys: student_attribute)
-    devise_parameter_sanitizer.permit(:update, keys: student_attribute)
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[graduation_year])
+    devise_parameter_sanitizer.permit(:update, keys: %i[graduation_year])
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_student
+      student_path(current_student.id)
+    else
+      flash[:notice] = "新規登録が完了しました！"
+      student_path(current_student.id)
+    end
   end
 end

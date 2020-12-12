@@ -11,6 +11,8 @@ class Student < ApplicationRecord
                     uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }
 
+  enum which_year: { "2021": 0, "2022": 1, other: 2 }
+
   private
 
   def downcase_email
