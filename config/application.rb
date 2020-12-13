@@ -8,6 +8,7 @@ module CareerDesignInitiatives
   class Application < Rails::Application
     config.load_defaults 5.2
     config.time_zone = 'Tokyo'
+    config.i18n.default_locale = :ja
     config.generators do |g|
       g.assets false
       g.test_framework :rspec,
@@ -17,6 +18,7 @@ module CareerDesignInitiatives
         routing_specs: false,
         controller_specs: false,
         request_specs: false
+        g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
   end
 end

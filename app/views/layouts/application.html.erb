@@ -10,6 +10,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if student_signed_in? %>
+      <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete, class: "log_out" %></li>
+    <% else %>
+      <li><%= link_to "ログイン", new_student_session_path, class: "log_in" %></li>
+      <li><%= link_to "新規登録", new_student_registration_path, class: "sign_in" %></li>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -32,9 +32,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '5.2.0'
   gem 'faker'
   gem 'launchy'
+  gem 'letter_opener_web'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'parser'
   gem 'rspec-rails'
