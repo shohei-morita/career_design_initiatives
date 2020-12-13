@@ -109,11 +109,11 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
-    factory_bot (6.1.0)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.1.0)
-      factory_bot (~> 6.1.0)
-      railties (>= 5.0.0)
+    factory_bot (5.2.0)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.2.0)
+      factory_bot (~> 5.2.0)
+      railties (>= 4.2.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
@@ -360,7 +360,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
-  factory_bot_rails
+  factory_bot_rails (= 5.2.0)
   faker
   jbuilder (~> 2.5)
   jp_prefecture

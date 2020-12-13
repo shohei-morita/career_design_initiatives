@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    卒業年度<br />
+    <%= f.select :graduation_year, Student.which_years.keys.to_a, {prompt: "選択してください"} %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>

@@ -32,7 +32,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '5.2.0'
   gem 'faker'
   gem 'launchy'
   gem 'letter_opener_web'
