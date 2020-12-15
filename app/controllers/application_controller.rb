@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[graduation_year])
-    devise_parameter_sanitizer.permit(:update, keys: %i[graduation_year])
+    student_attributes = %i(family_name given_name family_name_kana given_name_kana nickname tel gender birth_year birth_month birth_day graduation_year)
+    devise_parameter_sanitizer.permit(:sign_up, keys: student_attributes)
+    devise_parameter_sanitizer.permit(:account_update, keys: student_attributes)
   end
 
   def after_sign_in_path_for(resource)

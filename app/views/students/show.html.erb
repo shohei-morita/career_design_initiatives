@@ -4,4 +4,7 @@
 <h1><%= current_student.id %>さん、ようこそ</h1>
 <% end %>
 
-<p>Find me in app/views/students/show.html.erb</p>
+<ul>
+  <li><%= link_to 'HOME', student_path(current_student.id) %></li>
+  <li><%= link_to 'PROFILE', edit_student_registration_path(current_student.id) %></li>
+</ul>

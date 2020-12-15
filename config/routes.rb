@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'top#top'
-  devise_for :students
+  devise_for :students, controllers: { registrations: 'students/registrations'}
 
   resources :students, only: %i(show)
 
