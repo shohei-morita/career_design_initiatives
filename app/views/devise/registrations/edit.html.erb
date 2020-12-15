@@ -33,8 +33,8 @@
     <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
   </div>
   <div>
-    <%= f.label :birth_year %><br />
-    <%= raw sprintf(f.date_select(:birth_year, use_month_numbers: true, start_year: (Time.now.year - 20), end_year: (Time.now.year - 15), date_separator:'%s'),'年','月')+'日' %>
+    <%= f.label :birth_date %><br />
+    <%= raw sprintf(f.date_select(:birth_date, use_month_numbers: true, start_year: (Time.now.year - 20), end_year: (Time.now.year - 15), date_separator:'%s'),'年','月')+'日' %>
   </div>
 
   <div class="actions">
