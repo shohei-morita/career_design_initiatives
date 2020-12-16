@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_student
-      student_path(current_student.id)
+      students_path
     else
       flash[:notice] = "新規登録が完了しました！"
-      student_path(current_student.id)
+      student_path
     end
   end
 end

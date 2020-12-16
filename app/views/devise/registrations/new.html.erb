@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label :graduation_year %><br />
-    <%= f.select :graduation_year, Student.which_years.keys.to_a, {prompt: "選択してください"} %>
+    <%= f.select :graduation_year, Student.graduation_years.keys.to_a, {prompt: "選択してください"} %>
   </div>
 
   <div class="field">

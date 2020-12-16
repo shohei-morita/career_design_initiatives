@@ -1,2 +1,10 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<% if current_student.nickname.present? %>
+<h1><%= current_student.nickname %>さん、ようこそ</h1>
+  <% else %>
+<h1>ID<%= current_student.id %>さん、ようこそ</h1>
+<% end %>
+
+<ul>
+  <li><%= link_to 'HOME', students_path %></li>
+  <li><%= link_to 'PROFILE', profile_index_path %></li>
+</ul>

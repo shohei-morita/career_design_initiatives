@@ -1,10 +1,10 @@
-<% if current_student.nickname.present? %>
-<h1>ID<%= current_student.nickname %>さん、ようこそ</h1>
-  <% else %>
-<h1><%= current_student.id %>さん、ようこそ</h1>
-<% end %>
+<h2>基本情報</h2>
+  <p>email<br><%= current_student.email %></p>
+  <p>姓  名<br><%= current_student.family_name %>  <%= current_student.given_name %></p>
+  <p>カナ姓名<br><%= current_student.family_name_kana %>  <%= current_student.given_name_kana %></p>
+  <p>ニックネーム<br><%= current_student.nickname %></p>
+  <p>生年月日<br><%= current_student.birth_date %></p>
+  <p>email<br><%= current_student.email %></p>
+  <p>性別<br><%= current_student.gender %></p>
 
-<ul>
-  <li><%= link_to 'HOME', student_path(current_student.id) %></li>
-  <li><%= link_to 'PROFILE', edit_student_registration_path(current_student.id) %></li>
-</ul>
+  <%= link_to '編集', edit_student_registration_url %>

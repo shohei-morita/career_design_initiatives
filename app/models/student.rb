@@ -12,7 +12,8 @@ class Student < ApplicationRecord
   # validates :graduation_year, presence: true
   # validates :password, presence: true, length: { minimum: 6 }
 
-  enum which_year: { "2021": 0, "2022": 1, other: 2 }
+  enum graduation_year: { '2021': 0, '2022': 1, other: 2 }
+  enum gender: { 男性: 0, 女性: 1, その他: 2 }
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)

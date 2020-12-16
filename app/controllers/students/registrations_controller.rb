@@ -8,6 +8,6 @@ class Students::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    edit_student_registration_path(resource)
+    student_path(current_student.id)
   end
 end

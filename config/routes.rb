@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
-  resources :students, only: %i(show)
+  resources :students, only: %i(index show)
+  resources :profile, only: %i(index)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
