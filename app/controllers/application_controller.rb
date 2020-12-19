@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    student_attributes = %i(family_name given_name family_name_kana given_name_kana nickname tel gender graduation_year birth_date)
+    student_attributes = %i(family_name given_name family_name_kana given_name_kana
+                            nickname tel gender graduation_year birth_date avatar)
     devise_parameter_sanitizer.permit(:sign_up, keys: student_attributes)
     devise_parameter_sanitizer.permit(:account_update, keys: student_attributes)
   end

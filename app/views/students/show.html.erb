@@ -1,4 +1,9 @@
 <h2>基本情報</h2>
+  <p>icon<br>
+    <% if current_student.avatar.attached? %>
+      <%= image_tag current_student.avatar %>
+    <% end %>
+  </p>
   <p>email<br><%= current_student.email %></p>
   <p>姓  名<br><%= current_student.family_name %>  <%= current_student.given_name %></p>
   <p>カナ姓名<br><%= current_student.family_name_kana %>  <%= current_student.given_name_kana %></p>
