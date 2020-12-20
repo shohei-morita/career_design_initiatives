@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_params, only: %i[profile show]
+  before_action :set_params, only: %i[show]
 
   def home; end
 

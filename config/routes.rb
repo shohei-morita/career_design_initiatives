@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
   resources :students, only: %i(show) do
-    get :home, on: :collection
-    get :profile, on: :member
+    collection do
+      get :home
+      get :profile
+    end
   end
 
   if Rails.env.development?
