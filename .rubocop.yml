@@ -75,6 +75,7 @@ AllCops:
     - 'Rakefile'
     - 'app/channels/**/*'
     - 'app/controllers/application_controller.rb'
+    - 'app/controllers/students/*'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
   # Cop names are displayed in offense messages by default. Change behavior
