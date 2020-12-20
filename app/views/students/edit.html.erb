@@ -35,6 +35,10 @@
     <%= f.label :'電話番号' %>
     <%= f.text_field :tel %>
   </div>
+  <div>
+    <%= f.label :'email' %>
+    <%= f.text_field :email %>
+  </div>
   <div class="field">
     <%= f.label :'性別' %><br />
     <%= f.select :gender, Student.which_genders.keys.to_a, {prompt: "選択してください"} %>

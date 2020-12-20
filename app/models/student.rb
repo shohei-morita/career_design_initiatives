@@ -12,9 +12,14 @@ class Student < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :family_name_kana, presence: true,
-                               format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }
+                               format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' },
+                               allow_blank: true
   validates :given_name_kana, presence: true,
-                              format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }
+                              format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' },
+                              allow_blank: true
+
+  validates :graduation_year, presence: true, on: :create
+
   enum graduation_year: { '2021': 0, '2022': 1, other: 2 }
   enum gender: { 男性: 0, 女性: 1, その他: 2 }
 
