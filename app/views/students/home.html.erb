@@ -5,6 +5,6 @@
 <% end %>
 
 <ul>
-  <li><%= link_to 'HOME', students_path %></li>
-  <li><%= link_to 'PROFILE', profile_index_path %></li>
+  <li><%= link_to 'HOME', home_students_path %></li>
+  <li><%= link_to 'PROFILE', profile_student_path(current_student.id) %></li>
 </ul>

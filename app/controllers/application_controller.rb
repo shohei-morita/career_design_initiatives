@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_student!
 
   protected
 
@@ -12,10 +13,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_student
-      students_path
+      home_students_path
     else
       flash[:notice] = "新規登録が完了しました！"
-      student_path
+      home_students_path
     end
   end
 end
