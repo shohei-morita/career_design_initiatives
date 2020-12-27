@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   has_one_attached :avatar
+  has_one :address
   include StringNormalizer
 
   before_validation do

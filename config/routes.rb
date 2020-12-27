@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'addresses/new'
-  get 'addresses/create'
-  get 'addresses/show'
-  get 'addresses/edit'
-  get 'addresses/update'
+
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
@@ -12,6 +8,7 @@ Rails.application.routes.draw do
       get :home
       get :profile
     end
+    resource :address
   end
 
   if Rails.env.development?
