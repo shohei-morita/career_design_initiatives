@@ -1,2 +1,9 @@
-<h1>Addresses#show</h1>
-<p>Find me in app/views/addresses/show.html.erb</p>
+<h1>登録住所</h1>
+
+<%= current_student.address.postcode %>
+<%= current_student.address.prefecture_code %>
+<%= current_student.address.address_city %>
+<%= current_student.address.address_street %>
+<%= current_student.address.address_building %>
+
+<%= link_to '編集', edit_student_address_path(current_student.address.id) %>

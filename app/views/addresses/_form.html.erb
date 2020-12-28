@@ -1,0 +1,22 @@
+<h1>入力</h1>
+
+<%= form_with(model: [@student, @address], url: student_address_path, local: true) do |f| %>
+  <%= f.label '郵便番号' %>
+  <%= f.text_field :postcode %>
+
+  <%= f.label '都道府県' %>
+  <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: '都道府県' %>
+
+  <%= f.label '市区町村' %>
+  <%= f.text_field :address_city %>
+
+  <%= f.label 'ストリート' %>
+  <%= f.text_field :address_street %>
+
+  <%= f.label '建物' %>
+  <%= f.text_field :address_building %>
+
+  <% f.hidden_field :student_id, value: current_student.id %>
+
+  <%= f.submit '登録' %>
+<% end %>
