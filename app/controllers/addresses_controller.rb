@@ -10,7 +10,7 @@ class AddressesController < ApplicationController
     @address = @student.build_address(address_params)
 
     if @address.save
-      redirect_to student_address_path(current_student.address.id)
+      redirect_to student_address_path(current_student.id)
     else
       render :new
     end
@@ -19,12 +19,16 @@ class AddressesController < ApplicationController
   def show; end
 
   def edit
-    @address = Address.find(params[:student_id])
+    @address = @student.address
   end
 
   def update
     @address = @student.address
-    redirect_to student_address_path(current_student.address.id) if @address.update(address_params)
+    if @address.update(address_params)
+      redirect_to student_address_path(current_student.id)
+    else
+      render :edit
+    end
   end
 
   private
