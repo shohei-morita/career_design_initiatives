@@ -2,7 +2,7 @@
 <h1>登録住所</h1>
 
 <%= current_student.address.postcode %>
-<%= current_student.address.prefecture_code %>
+<%= JpPrefecture::Prefecture.find(current_student.address.prefecture_code).name %>
 <%= current_student.address.address_city %>
 <%= current_student.address.address_street %>
 <%= current_student.address.address_building %>
