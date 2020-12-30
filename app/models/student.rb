@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   has_one_attached :avatar
   has_one :address
+  has_many :self_introductions
 
   include StringNormalizer
 

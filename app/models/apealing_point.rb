@@ -1,0 +1,2 @@
+class ApealingPoint < SelfIntroduction
+end
