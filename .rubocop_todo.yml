@@ -43,3 +43,8 @@ Style/FrozenStringLiteralComment:
 Style/StringLiterals:
   Exclude:
     - 'test/application_system_test_case.rb'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'spec/factories/addresses.rb'
+    - 'spec/models/address_spec.rb'
