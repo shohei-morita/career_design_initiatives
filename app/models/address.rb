@@ -1,7 +1,6 @@
 class Address < ApplicationRecord
   belongs_to :student
 
-  # validates :postcode, numericality: { only_integer: true }, length: { is: 7 }
   validates :postcode, postcode_format: true
   validates :prefecture_code, presence: { message: :selection }
   validates :address_city, presence: true

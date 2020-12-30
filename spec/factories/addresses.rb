@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :address do
     postcode { 9300017 }
-    prefecture_code { 1 }
-    address_city { '富山県' }
-    address_street { '富山市' }
+    prefecture_code { 16 }
+    address_city { '富山市' }
+    address_street { '東田地方町' }
     address_building { 'どこか' }
-    association :student, factory: :student
+    association :student
   end
 end
