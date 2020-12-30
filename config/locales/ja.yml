@@ -1,7 +1,12 @@
 ja:
   activerecord:
+    attributes:
+      address:
+        postcode: '郵便番号'
+        prefecture_code: '都道府県'
+        address_city: '市区町村'
+        address_street: '番地'
     errors:
-      messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
@@ -108,6 +113,8 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
+      selection: を選択してください
+      postcode_format: は７桁の数値で入力してください
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません

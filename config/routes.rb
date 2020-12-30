@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
   resources :students, only: %i(show) do
-    collection do
-      get :home
-      get :profile
-    end
+    get :home, on: :collection
+    get :profile, on: :collection
+    resource :address
   end
 
   if Rails.env.development?

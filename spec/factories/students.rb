@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :student do
-    id { 0o1 }
     email { 'test01@test.email' }
     graduation_year { 0 }
     password { 'password' }

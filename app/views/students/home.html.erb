@@ -1,10 +1,7 @@
+<%= render partial: 'partials/global_nav' %>
+
 <% if current_student.nickname.present? %>
 <h1><%= current_student.nickname %>さん、ようこそ</h1>
   <% else %>
 <h1>ID<%= current_student.id %>さん、ようこそ</h1>
 <% end %>
-
-<ul>
-  <li><%= link_to 'HOME', home_students_path %></li>
-  <li><%= link_to 'PROFILE', profile_students_path %></li>
-</ul>
