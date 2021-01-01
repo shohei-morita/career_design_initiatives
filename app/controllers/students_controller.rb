@@ -5,6 +5,8 @@ class StudentsController < ApplicationController
 
   def profile; end
 
+  def pr; end
+
   def show; end
 
   private

@@ -1,0 +1,33 @@
+<%= render partial: 'partials/global_nav' %>
+
+<% if request.path_info == student_apealing_point_path(current_student.id) %>
+  <h1>自己PR詳細</h1>
+<% elsif request.path_info == student_apealing_image_path(current_student.id) %>
+  <h1>自己PR画像詳細</h1>
+<% else %>
+  <h1>自己PR動画紹介</h1>
+<% end %>
+
+<%= @self_introduction.title %>
+
+<% if @self_introduction.type == "ApealingImage" %>
+  <% if @self_introduction.image.attached? %>
+    <%= image_tag @self_introduction.image %>
+  <% end %>
+<% end %>
+
+<% if @self_introduction.type == "ApealingVideo" %>
+  <% if @self_introduction.video.attached? %>
+    <video src="<%= rails_blob_path(@self_introduction.video) %>" type="video/mp4" controls></video>
+  <% end %>
+<% end %>
+
+<%= @self_introduction.content %>
+
+<% if request.path_info == student_apealing_point_path(current_student.id) %>
+  <%= link_to '自己PR編集', edit_student_apealing_point_path(current_student.id) %>
+<% elsif request.path_info == student_apealing_image_path(current_student.id) %>
+  <%= link_to '自己PR画像編集', edit_student_apealing_image_path(current_student.id) %>
+<% else %>
+  <%= link_to '自己PR動画編集', edit_student_apealing_video_path(current_student.id) %>
+<% end %>

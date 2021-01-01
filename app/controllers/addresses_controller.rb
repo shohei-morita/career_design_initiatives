@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_student!
-  before_action :set_student, only: %i[create show edit update]
+  before_action :set_student, only: %i[new create show edit update]
 
   def new
     @address = Address.new

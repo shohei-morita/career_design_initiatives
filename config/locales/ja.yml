@@ -6,6 +6,17 @@ ja:
         prefecture_code: '都道府県'
         address_city: '市区町村'
         address_street: '番地'
+      apealing_point:
+        title: '自己PRタイトル'
+        content: '自己PR内容'
+      apealing_image:
+        title: '画像タイトル'
+        content: '画像撮影のタイトル'
+        image: 'アピール画像'
+      apealing_video:
+        title: '動画タイトル'
+        content: '動画作成の背景'
+        video: 'アピール動画'
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
@@ -115,6 +126,11 @@ ja:
     messages:
       selection: を選択してください
       postcode_format: は７桁の数値で入力してください
+      file_less: を添付してください
+      image_too_large: ファイルサイズは10MB未満にしてください
+      video_too_large: ファイルサイズは300MB未満にしてください
+      file_type_not_image: の形式は（jpg jpeg gif png）です
+      file_type_not_video: の形式はMP4です
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません

@@ -4,9 +4,17 @@ Rails.application.routes.draw do
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
   resources :students, only: %i(show) do
-    get :home, on: :collection
-    get :profile, on: :collection
+    collection do
+      get :home
+      get :profile
+      get :pr
+    end
+
     resource :address
+
+    resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint', except: %i(index)
+    resource :apealing_image, controller: :self_introductions, type: 'ApealingImage', except: %i(index)
+    resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo', except: %i(index)
   end
 
   if Rails.env.development?
