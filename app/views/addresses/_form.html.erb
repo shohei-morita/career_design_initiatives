@@ -1,4 +1,4 @@
-<%= form_with(model: [@student, @address], url: student_address_path, local: true) do |f| %>
+<%= form_with(model: [student, address], url: student_address_path, local: true) do |f| %>
 <% if @address.errors.any? %>
   <h2><%= @address.errors.count %>件のエラーがあります。</h2>
   <ul>
