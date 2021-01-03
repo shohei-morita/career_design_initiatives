@@ -34,13 +34,13 @@ class EducationalBackgroundsController < ApplicationController
   end
 
   private
-    def set_student
-      @student = Student.find(params[:student_id])
-    end
 
-    def educational_background_params
-      params.require(:educational_background).permit(:student_id, :location, :division, :school_name,
-                                                     :entrance_date, :graduation_date, :note)
-    end
+  def set_student
+    @student = Student.find(params[:student_id])
+  end
 
+  def educational_background_params
+    params.require(:educational_background).permit(:student_id, :location, :division, :school_name,
+                                                   :entrance_date, :graduation_date, :note)
+  end
 end
