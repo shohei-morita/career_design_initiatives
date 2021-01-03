@@ -4,6 +4,7 @@ class Student < ApplicationRecord
   has_one :apealing_point, dependent: :destroy
   has_one :apealing_image, dependent: :destroy
   has_one :apealing_video, dependent: :destroy
+  has_one :educational_background, dependent: :destroy
 
   include StringNormalizer
 
