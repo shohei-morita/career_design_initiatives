@@ -17,6 +17,13 @@ ja:
         title: '動画タイトル'
         content: '動画作成の背景'
         video: 'アピール動画'
+      educational_background:
+        location: '高校所在地'
+        division: '高校設置区分'
+        school_name: '高校名'
+        entrance_date: '入学年月'
+        graduation_date: '卒業(予定)年月'
+        note: '備考'
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:

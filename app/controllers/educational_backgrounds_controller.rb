@@ -39,7 +39,7 @@ class EducationalBackgroundsController < ApplicationController
     end
 
     def educational_background_params
-      params.require(:educational_background).permit(:student_id, :location, :division, :school_name, 
+      params.require(:educational_background).permit(:student_id, :location, :division, :school_name,
                                                      :entrance_date, :graduation_date, :note)
     end
 

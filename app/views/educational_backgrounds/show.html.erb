@@ -1,7 +1,11 @@
-<h2>学歴情報</h2>
+<%= render partial: 'partials/global_nav' %>
 
-<p>学校所在地<br><%= current_student.educational_background.location %></p>
+<h2>高校情報</h2>
+
+<p>学校所在地<br><%= JpPrefecture::Prefecture.find(current_student.educational_background.location).name %></p>
 <p>学校区分<br><%= current_student.educational_background.division %></p>
 <p>学校名<br><%= current_student.educational_background.school_name %></p>
 <p>入学年月〜卒業（予定）年月<br><%= current_student.educational_background.entrance_date %>〜<%= current_student.educational_background.graduation_date %></p>
-<p>備考<br><%= current_student.educational_background.note %> %></p>
+<p>備考<br><%= current_student.educational_background.note %> </p>
+
+<%= link_to '編集', edit_student_educational_background_path(current_student.id) %>
