@@ -1,2 +1,7 @@
-<h1>EducationalBackgrounds#show</h1>
-<p>Find me in app/views/educational_backgrounds/show.html.erb</p>
+<h2>学歴情報</h2>
+
+<p>学校所在地<br><%= current_student.educational_background.location %></p>
+<p>学校区分<br><%= current_student.educational_background.division %></p>
+<p>学校名<br><%= current_student.educational_background.school_name %></p>
+<p>入学年月〜卒業（予定）年月<br><%= current_student.educational_background.entrance_date %>〜<%= current_student.educational_background.graduation_date %></p>
+<p>備考<br><%= current_student.educational_background.note %> %></p>

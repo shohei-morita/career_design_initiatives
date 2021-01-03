@@ -7,7 +7,7 @@ class EducationalBackgroundsController < ApplicationController
   end
 
   def create
-    @educational_background = EducationalBackground.build_educational_background(educational_background_params)
+    @educational_background = @student.build_educational_background(educational_background_params)
 
     if @educational_background.save
       redirect_to student_educational_background_path(current_student.id)
@@ -26,7 +26,7 @@ class EducationalBackgroundsController < ApplicationController
 
   def update
     @educational_background = @student.educational_background
-    if @educational_background.update(address_params)
+    if @educational_background.update(educational_background_params)
       redirect_to student_educational_background_path(current_student.id)
     else
       render :edit
@@ -37,4 +37,10 @@ class EducationalBackgroundsController < ApplicationController
     def set_student
       @student = Student.find(params[:student_id])
     end
+
+    def educational_background_params
+      params.require(:educational_background).permit(:student_id, :location, :division, :school_name, 
+                                                     :entrance_date, :graduation_date, :note)
+    end
+
 end
