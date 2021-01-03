@@ -1,8 +1,8 @@
 <%= form_with(model: [student, self_introduction], url: self_introduction_path, local: true) do |f| %>
-<% if @self_introduction.errors.any? %>
-  <h2><%= @self_introduction.errors.count %>件のエラーがあります。</h2>
+<% if self_introduction.errors.any? %>
+  <h2><%= self_introduction.errors.count %>件のエラーがあります。</h2>
   <ul>
-    <% @self_introduction.errors.full_messages.each do |message| %>
+    <% self_introduction.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
@@ -11,13 +11,13 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <% if @self_introduction.type == 'ApealingImage' %>
-    <%= f.label :image%>
+  <% if self_introduction.type == 'ApealingImage' %>
+    <%= f.label :image %>
     <%= f.file_field :image %>
   <% end %>
 
-  <% if @self_introduction.type == 'ApealingVideo' %>
-    <%= f.label :video%>
+  <% if self_introduction.type == 'ApealingVideo' %>
+    <%= f.label :video %>
     <%= f.file_field :video %>
   <% end %>
 
@@ -25,5 +25,9 @@
   <%= f.text_area :content %>
   <% f.hidden_field :student_id, value: current_student.id %>
 
-  <%= f.submit '登録' %>
+  <% if request.path_info.include?('edit') %>
+    <%= f.submit '更新' %>
+  <% else %>
+    <%= f.submit '登録' %>
+  <% end %>
 <% end %>
