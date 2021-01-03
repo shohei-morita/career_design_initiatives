@@ -5,6 +5,7 @@ ruby '2.6.5'
 gem 'rails', '~> 5.2.4'
 
 gem 'activeadmin'
+gem 'activestorage-validator'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'cancancan'
 gem 'coffee-rails', '~> 4.2'

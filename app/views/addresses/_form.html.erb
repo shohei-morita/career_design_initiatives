@@ -1,8 +1,8 @@
-<%= form_with(model: [@student, @address], url: student_address_path, local: true) do |f| %>
-<% if @address.errors.any? %>
-  <h2><%= @address.errors.count %>件のエラーがあります。</h2>
+<%= form_with(model: [student, address], url: student_address_path, local: true) do |f| %>
+<% if address.errors.any? %>
+  <h2><%= address.errors.count %>件のエラーがあります。</h2>
   <ul>
-    <% @address.errors.full_messages.each do |message| %>
+    <% address.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
@@ -25,7 +25,7 @@
 
   <% f.hidden_field :student_id, value: current_student.id %>
 
-  <% if request.path_info == edit_student_address_path(current_student.id) %>
+  <% if request.path_info.include?('edit') %>
     <%= f.submit '更新' %>
   <% else %>
     <%= f.submit '登録' %>

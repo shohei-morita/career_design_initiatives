@@ -1,0 +1,11 @@
+<%= render partial: 'partials/global_nav' %>
+
+<% if request.path_info.include?('apealing_point')%>
+  <h1>自己PR編集</h1>
+<% elsif request.path_info.include?('apealing_image')%>
+  <h1>自己PR画像編集</h1>
+<% else %>
+  <h1>自己PR動画編集</h1>
+<% end %>
+
+<%= render partial: 'form', locals: { student: @student, self_introduction: @self_introduction } %>

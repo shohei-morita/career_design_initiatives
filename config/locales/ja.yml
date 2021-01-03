@@ -6,6 +6,17 @@ ja:
         prefecture_code: '都道府県'
         address_city: '市区町村'
         address_street: '番地'
+      apealing_point:
+        title: '自己PRタイトル'
+        content: '自己PR内容'
+      apealing_image:
+        title: '画像タイトル'
+        content: '画像撮影の背景'
+        image: 'アピール画像'
+      apealing_video:
+        title: '動画タイトル'
+        content: '動画作成の背景'
+        video: 'アピール動画'
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
@@ -115,6 +126,7 @@ ja:
     messages:
       selection: を選択してください
       postcode_format: は７桁の数値で入力してください
+      file_unattached: を添付してください
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
