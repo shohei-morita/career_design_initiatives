@@ -1,0 +1,35 @@
+<%= form_with(model: [student, educational_background], url: student_educational_background_path, local: true) do |f| %>
+<% if educational_background.errors.any? %>
+  <h2><%= educational_background.errors.count %>件のエラーがあります。</h2>
+  <ul>
+    <% educational_background.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= f.label :location %><br />
+  <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, include_blank: '都道府県' %><br />
+
+  <%= f.label :division %><br />
+  <%= f.select :division, EducationalBackground.divisions.keys, include_blank: '選択してください' %><br />
+
+  <%= f.label :school_name %><br />
+  <%= f.text_field :school_name %><br />
+
+  <%= f.label :entrance_date %><br />
+  <%= raw sprintf(f.date_select(:entrance_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %><br />
+
+  <%= f.label :graduation_date %><br />
+  <%= raw sprintf(f.date_select(:graduation_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %><br />
+
+  <%= f.label :note %><br />
+  <%= f.text_area :note %><br />
+  <% f.hidden_field :student_id, value: current_student.id %>
+
+  <% if request.path_info.include?('edit') %>
+    <%= f.submit '更新' %>
+  <% else %>
+    <%= f.submit '登録' %>
+  <% end %>
+<% end %>

@@ -2,9 +2,18 @@
 <h2>PROFILE</h2>
   <ul>
     <li><%= link_to '基本情報', student_path(current_student.id) %></li>
+
     <% if current_student.address.nil? %>
       <li><%= link_to '住所登録', new_student_address_path(current_student.id) %></li>
     <% else %>
       <li><%= link_to '住所情報', student_address_path(current_student.id) %></li>
     <% end %>
+
+    <% if current_student.educational_background.nil? %>
+      <li><%= link_to '所属高校登録', new_student_educational_background_path(current_student.id) %></li>
+    <% else %>
+      <li><%= link_to '所属高校情報', student_educational_background_path(current_student.id) %></li>
+    <% end %>
+
+
   </ul>

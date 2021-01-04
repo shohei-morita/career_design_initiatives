@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
@@ -11,10 +10,11 @@ Rails.application.routes.draw do
     end
 
     resource :address
+    resource :educational_background
 
-    resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint', except: %i(index)
-    resource :apealing_image, controller: :self_introductions, type: 'ApealingImage', except: %i(index)
-    resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo', except: %i(index)
+    resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint'
+    resource :apealing_image, controller: :self_introductions, type: 'ApealingImage'
+    resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo'
   end
 
   if Rails.env.development?
