@@ -12,7 +12,7 @@
   <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, include_blank: '都道府県' %><br />
 
   <%= f.label :division %><br />
-  <%= f.select :division, EducationalBackground.divisions.keys, {prompt: "選択してください"} %><br />
+  <%= f.select :division, EducationalBackground.divisions.keys, include_blank: '選択してください' %><br />
 
   <%= f.label :school_name %><br />
   <%= f.text_field :school_name %><br />
