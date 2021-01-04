@@ -1,0 +1,2 @@
+class ExtracurricularActivity < ApplicationRecord
+end

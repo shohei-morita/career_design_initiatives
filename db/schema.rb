@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_134459) do
+ActiveRecord::Schema.define(version: 2021_01_04_135535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 2021_01_03_134459) do
     t.index ["student_id"], name: "index_educational_backgrounds_on_student_id"
   end
 
+  create_table "extracurricular_activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "beginning_year", null: false
+    t.date "ending_year"
+    t.text "summary"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_extracurricular_activities_on_student_id"
+  end
+
   create_table "self_introductions", force: :cascade do |t|
     t.string "type"
     t.string "title"
@@ -96,5 +107,6 @@ ActiveRecord::Schema.define(version: 2021_01_03_134459) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "students"
   add_foreign_key "educational_backgrounds", "students"
+  add_foreign_key "extracurricular_activities", "students"
   add_foreign_key "self_introductions", "students"
 end
