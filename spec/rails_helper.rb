@@ -22,4 +22,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include LoginMacro
   config.include SelectDate
+  config.include SelectYearMonth
 end

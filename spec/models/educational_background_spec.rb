@@ -31,7 +31,7 @@ RSpec.describe EducationalBackground, type: :model do
   end
 
   it 'school_nameが50文字を超える場合、無効である' do
-    @educational_background.school_name = "a" * 51
+    @educational_background.school_name = 'a' * 51
     @educational_background.valid?
 
     expect(@educational_background.errors[:school_name]).to include('は50文字以内で入力してください')
@@ -52,10 +52,9 @@ RSpec.describe EducationalBackground, type: :model do
   end
 
   it 'noteが500文字を超えた場合、無効である' do
-    @educational_background.note = "a" * 501
+    @educational_background.note = 'a' * 501
     @educational_background.valid?
 
     expect(@educational_background.errors[:note]).to include('は500文字以内で入力してください')
   end
-
 end
