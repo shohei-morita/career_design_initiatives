@@ -15,5 +15,11 @@
       <li><%= link_to '所属高校情報', student_educational_background_path(current_student.id) %></li>
     <% end %>
 
+    <% if current_student.extracurricular_activities.nil? %>
+      <li><%= link_to '部活・課外活動登録', new_student_extracurricular_activity_path(current_student.id) %></li>
+    <% else %>
+      <li><%= link_to '部活・課外活動登録一覧', student_extracurricular_activities_path(current_student.id) %></li>
+    <% end %>
+
 
   </ul>

@@ -1,2 +1,27 @@
-<h1>ExtracurricularActivities#index</h1>
-<p>Find me in app/views/extracurricular_activities/index.html.erb</p>
+<h1>登録活動一覧</h1>
+
+<%= link_to '活動の登録', new_student_extracurricular_activity_path %>
+
+
+<table>
+<tr>
+  <th>活動期間</th>
+  <th>活動名</th>
+  <th colspan="2"></th>
+</tr>
+<% @extracurricular_activities.each do |extracurricular_activity| %>
+<tr>
+  <td>
+  <%= l(extracurricular_activity.beginning_year, format: :very_short)%>〜
+  <% if extracurricular_activity.ending_year.nil? %>
+    現在
+  <% else %>
+    <%= l(extracurricular_activity.ending_year, format: :very_short) %>
+  <% end %>
+  </td>
+  <td><%= extracurricular_activity.name %></td>
+  <td><%= link_to '詳細', student_extracurricular_activity_path(current_student.id, extracurricular_activity.id) %></td>
+  <td><%= link_to '活動削除', student_extracurricular_activity_path(current_student.id, extracurricular_activity.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+</tr>
+<% end %>
+</table>
