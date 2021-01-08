@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'awards/index'
-  get 'awards/new'
-  get 'awards/edit'
-  get 'awards/show'
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
@@ -16,6 +12,7 @@ Rails.application.routes.draw do
     resource :address
     resource :educational_background
     resources :extracurricular_activities
+    resources :awars
 
     resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint'
     resource :apealing_image, controller: :self_introductions, type: 'ApealingImage'
