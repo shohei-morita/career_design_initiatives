@@ -2,7 +2,7 @@ class Address < ApplicationRecord
   belongs_to :student
 
   validates :postcode, postcode_format: true
-  validates :prefecture_code, presence: { message: :selection }
+  validates :prefecture_code, presence: true
   validates :address_city, presence: true
   validates :address_street, presence: true
 

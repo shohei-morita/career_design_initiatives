@@ -4,9 +4,11 @@ RSpec.describe 'Educational_Background機能', type: :system do
   let!(:student) { create(:student) }
 
   describe '学歴情報の登録・編集' do
+    before do
+      login_as student
+    end
     context 'PROFILE画面から高校情報登録を選択した場合' do
       it '高校情報を登録できるテスト' do
-        login_as student
         visit profile_students_path
 
         click_link '所属高校登録'
@@ -32,7 +34,6 @@ RSpec.describe 'Educational_Background機能', type: :system do
     context 'PROFILE画面から所属高校情報を選択した場合' do
       let!(:educational_background) { create(:educational_background, student_id: student.id) }
       it '所属高校情報が確認できるテスト' do
-        login_as student
         visit profile_students_path
 
         click_link '所属高校情報'
@@ -46,7 +47,6 @@ RSpec.describe 'Educational_Background機能', type: :system do
       end
 
       it '所属高校情報が編集できるテスト' do
-        login_as student
         visit student_educational_background_path(student.id)
 
         click_link '編集'

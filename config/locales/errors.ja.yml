@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        apealing_image:
+          attributes:
+            image:
+              blank: 'を添付してください'
+        apealing_video:
+          attributes:
+            video:
+              blank: 'を添付してください'
+        address:
+          attributes:
+            prefecture_code:
+              blank: 'を選択してください'
+        educational_background:
+          attributes:
+            location:
+              blank: 'を選択してください'
+            division:
+              blank: 'を選択してください'
+            entrance_date:
+              blank: 'を選択してください'
+            graduation_date:
+              blank: 'を選択してください'
+        extracurricular_activity:
+          attributes:
+            beginning_year:
+              blank: 'を選択してください'

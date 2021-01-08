@@ -1,0 +1,13 @@
+<h1>課外活動詳細</h1>
+
+<p>課外活動名<br><%= @extracurricular_activity.name %></p>
+<p>活動期間<br><%= l(@extracurricular_activity.beginning_year, format: :very_short) %>
+              〜
+              <% if @extracurricular_activity.ending_year.nil? %>
+                現在
+              <% else %>
+                <%= l(@extracurricular_activity.ending_year, format: :very_short) %>
+              <% end %></p>
+<p>活動概要<br><%= @extracurricular_activity.summary %></p>
+
+<%= link_to '編集', edit_student_extracurricular_activity_path(current_student.id, @extracurricular_activity.id) %>
