@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'awards/index'
+  get 'awards/new'
+  get 'awards/edit'
+  get 'awards/show'
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
