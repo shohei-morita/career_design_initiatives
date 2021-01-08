@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resource :address
     resource :educational_background
     resources :extracurricular_activities
-    resources :awars
+    resources :awards
 
     resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint'
     resource :apealing_image, controller: :self_introductions, type: 'ApealingImage'

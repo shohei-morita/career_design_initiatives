@@ -39,7 +39,7 @@ class AwardsController < ApplicationController
   def destroy
     @award = @student.awards.find(params[:id])
     @award.destroy
-    flash[:danger] = '課外活動を削除しました'
+    flash[:danger] = '表彰情報を削除しました'
     redirect_to student_awards_path
   end
 
