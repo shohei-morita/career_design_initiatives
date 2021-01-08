@@ -29,6 +29,10 @@ ja:
         beginning_year: '開始年'
         ending_year: '終了年'
         summary: '活動概要'
+      award:
+        title: 表彰名
+        year: 受賞年
+        summary: 表彰概要
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:

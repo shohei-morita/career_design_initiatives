@@ -1,0 +1,26 @@
+<%= form_with(model: [student, award], local: true) do |f| %>
+<% if award.errors.any? %>
+  <h2><%= award.errors.count %>件のエラーがあります。</h2>
+  <ul>
+    <% award.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= f.label :title %><br />
+  <%= f.text_field :title %><br />
+
+  <%= f.label :year %><br />
+  <%= raw sprintf(f.date_select(:year, prompt:"--", start_year:Time.now.year, end_year:2000, discard_month:true, discard_day:true, date_separator:'%s'),'年') %><br />
+
+  <%= f.label :summary %><br />
+  <%= f.text_area :summary %><br />
+  <% f.hidden_field :student_id, value: current_student.id %>
+
+  <% if request.path_info.include?('edit') %>
+    <%= f.submit '更新' %>
+  <% else %>
+    <%= f.submit '登録' %>
+  <% end %>
+<% end %>
