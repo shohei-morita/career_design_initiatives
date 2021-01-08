@@ -29,7 +29,8 @@ FactoryBot.define do
     gender { 0 }
 
     after(:create) do |student_2nd|
-      @activities = create_list(:extracurricular_activity, 5, student: student_2nd)
+      create_list(:extracurricular_activity, 5, student: student_2nd)
+      create_list(:award, 5, student: student_2nd)
     end
   end
 end

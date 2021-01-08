@@ -24,7 +24,7 @@
     <% unless current_student.awards.any? %>
       <li><%= link_to '表彰情報登録', new_student_award_path(current_student.id) %></li>
     <% else %>
-      <li><%= link_to '表彰情報一覧', student_award_path(current_student.id) %></li>
+      <li><%= link_to '表彰情報一覧', student_awards_path(current_student.id) %></li>
     <% end %>
 
 
