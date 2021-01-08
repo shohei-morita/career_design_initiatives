@@ -1,11 +1,11 @@
 class EducationalBackground < ApplicationRecord
   belongs_to :student
 
-  validates :location, presence: { message: 'を選択してください' }
-  validates :division, presence: { message: 'を選択してください' }
+  validates :location, presence: true
+  validates :division, presence: true
   validates :school_name, presence: true, length: { maximum: 50 }
-  validates :entrance_date, presence: { message: 'を選択してください' }
-  validates :graduation_date, presence: { message: 'を選択してください' }
+  validates :entrance_date, presence: true
+  validates :graduation_date, presence: true
   validates :note, length: { maximum: 500 }
 
   enum division: { 公立: 0, 私立: 1, その他: 2 }

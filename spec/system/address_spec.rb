@@ -4,9 +4,11 @@ RSpec.describe 'address機能', type: :system do
   let!(:student) { create(:student) }
 
   describe 'address登録・編集機能' do
+    before do
+      login_as student
+    end
     context 'PROFILE画面から住所登録を選択した場合' do
       it '住所登録の文字列を確認するテスト' do
-        login_as student
         visit profile_students_path
 
         click_link '住所登録'
@@ -17,7 +19,6 @@ RSpec.describe 'address機能', type: :system do
 
     context '住所登録画面からフォームを入力して登録した場合' do
       it '入力した住所が登録されていることを確認するテスト' do
-        login_as student
         visit new_student_address_path(student.id)
 
         fill_in 'address[postcode]', with: '9300017'
@@ -39,7 +40,6 @@ RSpec.describe 'address機能', type: :system do
       let!(:address) { create(:address, student_id: student.id) }
 
       it '登録情報を編集して更新できるテスト' do
-        login_as student
         visit student_address_path(student.id)
 
         click_link '編集'

@@ -23,4 +23,5 @@ RSpec.configure do |config|
   config.include LoginMacro
   config.include SelectDate
   config.include SelectYearMonth
+  config.include SelectYear
 end

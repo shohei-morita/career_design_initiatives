@@ -26,9 +26,9 @@ ja:
         note: '備考'
       extracurricular_activity:
         name: '活動名'
-        beginning_year: 開始年
-        ending_year: 終了年
-        summary: 活動概要
+        beginning_year: '開始年'
+        ending_year: '終了年'
+        summary: '活動概要'
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
@@ -137,9 +137,7 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      selection: を選択してください
       postcode_format: は７桁の数値で入力してください
-      file_unattached: を添付してください
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
@@ -235,4 +233,5 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      very_short: "%Y年"
     pm: 午後

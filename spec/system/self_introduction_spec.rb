@@ -4,9 +4,11 @@ RSpec.describe 'PR機能', type: :system do
   let!(:student) { create(:student) }
 
   describe '自己PR登録・編集機能' do
+    before do
+      login_as student
+    end
     context 'PR画面から自己PR登録を選択した場合' do
       it '自己PR情報を登録できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR登録'
@@ -24,7 +26,6 @@ RSpec.describe 'PR機能', type: :system do
     context 'PR画面から自己PRを選択した場合' do
       let!(:apealing_point) { create(:apealing_point, student_id: student.id) }
       it '自己PR情報が確認できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR'
@@ -35,7 +36,6 @@ RSpec.describe 'PR機能', type: :system do
       end
 
       it '自己PR情報が編集できるテスト' do
-        login_as student
         visit edit_student_apealing_point_path(student.id)
 
         fill_in 'apealing_point[title]', with: 'アピールポイントではない'
@@ -49,9 +49,11 @@ RSpec.describe 'PR機能', type: :system do
   end
 
   describe '自己PR画像登録・編集機能' do
+    before do
+      login_as student
+    end
     context 'PR画面から自己PR画像登録を選択した場合' do
       it '自己PR画像情報を登録できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR画像登録'
@@ -72,7 +74,6 @@ RSpec.describe 'PR機能', type: :system do
       let!(:apealing_image) { create(:apealing_image, student_id: student.id) }
 
       it '自己PR画像情報が確認できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR画像'
@@ -84,7 +85,6 @@ RSpec.describe 'PR機能', type: :system do
       end
 
       it '自己PR画像情報が編集できるテスト' do
-        login_as student
         visit edit_student_apealing_image_path(student.id)
 
         fill_in 'apealing_image[title]', with: 'アピール画像ではない'
@@ -98,9 +98,11 @@ RSpec.describe 'PR機能', type: :system do
   end
 
   describe '自己PR動画登録・編集機能' do
+    before do
+      login_as student
+    end
     context 'PR画面から自己PR動画登録を選択した場合' do
       it '自己PR動画情報を登録できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR動画登録'
@@ -120,7 +122,6 @@ RSpec.describe 'PR機能', type: :system do
       let!(:apealing_video) { create(:apealing_video, student_id: student.id) }
 
       it '自己PR動画情報が確認できるテスト' do
-        login_as student
         visit pr_students_path
 
         click_link '自己PR動画'
@@ -132,7 +133,6 @@ RSpec.describe 'PR機能', type: :system do
       end
 
       it '自己PR動画情報が編集できるテスト' do
-        login_as student
         visit edit_student_apealing_video_path(student.id)
 
         fill_in 'apealing_video[title]', with: 'アピール動画ではない'

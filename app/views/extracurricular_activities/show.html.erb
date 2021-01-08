@@ -1,6 +1,6 @@
-<h1>活動詳細</h1>
+<h1>課外活動詳細</h1>
 
-<p>部活名<br><%= @extracurricular_activity.name %></p>
+<p>課外活動名<br><%= @extracurricular_activity.name %></p>
 <p>活動期間<br><%= l(@extracurricular_activity.beginning_year, format: :very_short) %>
               〜
               <% if @extracurricular_activity.ending_year.nil? %>

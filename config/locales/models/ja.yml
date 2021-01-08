@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        extracurricular_activity:
+          attributes:
+           beginning_year:
+            format: '%{message}'
+            blank: '%{attribute}を選択してください'

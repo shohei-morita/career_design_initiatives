@@ -1,13 +1,13 @@
-<h1>登録活動一覧</h1>
+<h1>登録課外活動一覧</h1>
 
-<%= link_to '活動の登録', new_student_extracurricular_activity_path %>
+<%= link_to '課外活動の登録', new_student_extracurricular_activity_path %>
 
 
 <table>
 <tr>
   <th>活動期間</th>
-  <th>活動名</th>
-  <th colspan="2"></th>
+  <th>課外活動名</th>
+  <th colspan="3"></th>
 </tr>
 <% @extracurricular_activities.each do |extracurricular_activity| %>
 <tr>
@@ -21,7 +21,8 @@
   </td>
   <td><%= extracurricular_activity.name %></td>
   <td><%= link_to '詳細', student_extracurricular_activity_path(current_student.id, extracurricular_activity.id) %></td>
-  <td><%= link_to '活動削除', student_extracurricular_activity_path(current_student.id, extracurricular_activity.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+  <td><%= link_to '編集', edit_student_extracurricular_activity_path(current_student.id, extracurricular_activity.id) %></td>
+  <td><%= link_to '削除', student_extracurricular_activity_path(current_student.id, extracurricular_activity.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
 </tr>
 <% end %>
 </table>
