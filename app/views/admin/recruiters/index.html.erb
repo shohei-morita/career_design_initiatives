@@ -1,0 +1,14 @@
+<table>
+      <tr>
+        <th>email</th>
+        <th>承認状況</th>
+        <th>承認</th>
+      </tr>
+    <% @recruiters.each do |recruiter| %>
+      <tr>
+        <td><%= recruiter.email %>
+        <td><%= recruiter.approved %>
+        <td><%= link_to "Edit", edit_admin_recruiter_path(recruiter) %>
+      </tr>
+    <% end %>
+  </table>

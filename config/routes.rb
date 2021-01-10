@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :recruiters
+
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
+  devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
+
+  resources :recruiters do
+    collection do
+      get :home
+    end
+  end
+
+  namespace :admin do
+    resources :recruiters
+  end
 
   resources :students, only: %i(show) do
     collection do
