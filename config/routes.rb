@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :recruiters
   root 'top#top'
   devise_for :students, controllers: { registrations: 'students/registrations'}
 
