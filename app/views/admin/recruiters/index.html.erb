@@ -2,13 +2,15 @@
       <tr>
         <th>email</th>
         <th>承認状況</th>
-        <th>承認</th>
+        <th>アカウント確認</th>
+        <th>アカウント削除</th>
       </tr>
     <% @recruiters.each do |recruiter| %>
       <tr>
-        <td><%= recruiter.email %>
-        <td><%= recruiter.approved %>
-        <td><%= link_to "Edit", edit_admin_recruiter_path(recruiter) %>
+        <td><%= recruiter.email %></td>
+        <td><%= recruiter.approved %></td>
+        <td><%= link_to "Edit", edit_admin_recruiter_path(recruiter) %></td>
+        <td><%= link_to "destroy", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </table>
