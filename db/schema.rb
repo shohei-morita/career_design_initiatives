@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_082156) do
+ActiveRecord::Schema.define(version: 2021_01_11_120106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,20 @@ ActiveRecord::Schema.define(version: 2021_01_10_082156) do
     t.index ["student_id"], name: "index_awards_on_student_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "foundation_year", null: false
+    t.string "capital", null: false
+    t.string "president_name", null: false
+    t.text "url", null: false
+    t.integer "number_of_employees", null: false
+    t.text "business_outline"
+    t.bigint "recruiter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recruiter_id"], name: "index_companies_on_recruiter_id"
+  end
+
   create_table "educational_backgrounds", force: :cascade do |t|
     t.integer "location", null: false
     t.integer "division", null: false
@@ -101,6 +115,10 @@ ActiveRecord::Schema.define(version: 2021_01_10_082156) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_recruiters_on_email", unique: true
     t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
   end
@@ -140,6 +158,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_082156) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "students"
   add_foreign_key "awards", "students"
+  add_foreign_key "companies", "recruiters"
   add_foreign_key "educational_backgrounds", "students"
   add_foreign_key "extracurricular_activities", "students"
   add_foreign_key "self_introductions", "students"

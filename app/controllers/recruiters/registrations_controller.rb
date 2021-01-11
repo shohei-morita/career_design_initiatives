@@ -10,6 +10,11 @@ module Recruiters
     #   super
     # end
 
+    def new
+      @recruiter = Recruiter.new
+      @company = @recruiter.build_company
+    end
+
     # POST /resource
     def create
       build_resource(sign_up_params)

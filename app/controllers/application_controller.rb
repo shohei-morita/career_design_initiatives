@@ -11,11 +11,17 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: student_attributes)
       devise_parameter_sanitizer.permit(:account_update, keys: student_attributes)
 
-    elsif resource_class == Recruiter
+    elsif resource_class == Recruiter && Company
       recruiter_attributes = %i(family_name given_name family_name_kana given_name_kana
-                               fax tel department title avatar)
-      devise_parameter_sanitizer.permit(:sign_up, keys: recruiter_attributes)
-      devise_parameter_sanitizer.permit(:account_update, keys: recruiter_attributes)
+                               fax tel department title avatar name foundation_year capital
+                               president_name url number_of_employees business_outline)
+
+      company_attributes = %i(name foundation_year capital president_name url
+                              number_of_employees business_outline)
+      devise_parameter_sanitizer.permit(:sign_up, keys: [recruiter_attributes, company_attributes: [company_attributes]])
+      devise_parameter_sanitizer.permit(:account_update, keys: [recruiter_attributes, company_attributes: [company_attributes]])
+
+
 
     else
       super

@@ -3,6 +3,38 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "recruiters/shared/error_messages", resource: resource %>
 
+  <%= f.fields_for :company do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :foundation_year %>
+    <%= raw sprintf(f.date_select(:foundation_year, prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s'),'年') %><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :capital %>
+    <%= f.text_field :capital %>
+  </div>
+
+  <div class="field">
+    <%= f.label :president_name %>
+    <%= f.text_field :president_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number_of_employees %>
+    <%= f.text_field :number_of_employees %>
+  </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :department %><br />
     <%= f.text_field :department, autofocus: true, autocomplete: "department" %>

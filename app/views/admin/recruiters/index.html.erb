@@ -1,5 +1,6 @@
 <table>
       <tr>
+        <th>企業名</th>
         <th>email</th>
         <th>承認状況</th>
         <th>アカウント確認</th>
@@ -7,10 +8,13 @@
       </tr>
     <% @recruiters.each do |recruiter| %>
       <tr>
+        <% unless recruiter.admin? %>
+        <td><%= recruiter.company.name %></td>
         <td><%= recruiter.email %></td>
         <td><%= recruiter.approved %></td>
         <td><%= link_to "Edit", edit_admin_recruiter_path(recruiter) %></td>
         <td><%= link_to "destroy", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
