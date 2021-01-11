@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root 'top#top'
+  get 'top/applicaiton_completion', to: 'top#application_completion'
+
   devise_for :students, controllers: { registrations: 'students/registrations'}
   devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
 
