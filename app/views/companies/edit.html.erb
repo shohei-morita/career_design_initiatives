@@ -1,6 +1,6 @@
 <%= form_with(model: [@recruiter, @company], local: true) do |f| %>
 <% if @company.errors.any? %>
-  <h2><%= c@ompany.errors.count %>件のエラーがあります。</h2>
+  <h2><%= @company.errors.count %>件のエラーがあります。</h2>
   <ul>
     <% @company.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -16,11 +16,16 @@
   <%= f.label :number_of_employees %><br />
   <%= f.text_field :number_of_employees %><br />
 
+  <%= f.label :revenue %><br />
+  <%= f.text_area :revenue %><br />
+
   <%= f.label :url %><br />
   <%= f.text_field :url %><br />
 
   <%= f.label :business_outline %><br />
   <%= f.text_area :business_outline %><br />
+
+
   <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
 
   <%= f.submit '更新' %>

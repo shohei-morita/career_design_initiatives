@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
                                president_name url number_of_employees business_outline)
 
       company_attributes = %i(name foundation_year capital president_name url
-                              number_of_employees business_outline)
+                              number_of_employees business_outline revenue)
       devise_parameter_sanitizer.permit(:sign_up, keys: [recruiter_attributes, company_attributes: [company_attributes]])
       devise_parameter_sanitizer.permit(:account_update, keys: [recruiter_attributes, company_attributes: [company_attributes]])
 
