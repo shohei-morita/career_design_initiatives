@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'top#top'
   get 'top/applicaiton_completion', to: 'top#application_completion'
 
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :home
     end
+    resource :company, only: %i(show edit update)
   end
 
   namespace :admin do

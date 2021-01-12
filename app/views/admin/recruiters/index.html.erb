@@ -1,8 +1,11 @@
 <table>
       <tr>
         <th>企業名</th>
+        <th>所属</th>
+        <th>役職</th>
+        <th>氏名</th>
         <th>email</th>
-        <th>承認状況</th>
+        <th>アカウント状況</th>
         <th>アカウント確認</th>
         <th>アカウント削除</th>
       </tr>
@@ -10,10 +13,19 @@
       <tr>
         <% unless recruiter.admin? %>
         <td><%= recruiter.company.name %></td>
+        <td><%= recruiter.department %></td>
+        <td><%= recruiter.title %></td>
+        <td><%= recruiter.family_name %> <%= recruiter.given_name %></td>
         <td><%= recruiter.email %></td>
-        <td><%= recruiter.approved %></td>
-        <td><%= link_to "Edit", edit_admin_recruiter_path(recruiter) %></td>
-        <td><%= link_to "destroy", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <td>
+          <% if recruiter.approved? %>
+            承認
+          <% else %>
+            未承認
+          <% end %>
+        </td>
+        <td><%= link_to "確認", edit_admin_recruiter_path(recruiter) %></td>
+        <td><%= link_to "アカウント削除", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
         <% end %>
       </tr>
     <% end %>

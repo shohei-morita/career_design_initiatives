@@ -9,20 +9,18 @@
     </ul>
   </div>
 <% end %>
+<p>企業名：<%= @recruiter.company.name %><p>
+<p>資本金：<%= @recruiter.company.capital %></p>
+<p>創立年：<%= @recruiter.company.foundation_year %><p>
+<p>代表者名：<%= @recruiter.company.president_name %><p>
+<p>従業員数：<%= @recruiter.company.number_of_employees %><p>
+<p>URL：<%= @recruiter.company.url %><p>
+<p>事業概要：<%= @recruiter.company.business_outline %><p>
+<p>所属：<%= @recruiter.department %><p>
+<p>役職：<%= @recruiter.title %><p>
+<p>担当者名：<%= @recruiter.family_name %> <%= @recruiter.given_name %><p>
 
 <%= form_with(model: [ :admin, @recruiter], local: true) do |f| %>
-  <div class="form-group">
-    <%= f.label :family_name %>
-    <%= f.text_field :family_name, class: "form-control", id: "new-recruiter-name"  %>
-  </div>
-  <div class="form-group">
-    <%= f.label :given_name %>
-    <%= f.text_field :given_name, class: "form-control", id: "new-recruiter-name"  %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control" , id: "new-recruiter-email" %>
-  </div>
   <% if @recruiter.approved == false %>
   <div class="form-group">
     <p>承認状況<%= @recruiter.approved %><p>
