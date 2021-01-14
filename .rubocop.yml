@@ -2154,7 +2154,7 @@ Metrics/AbcSize:
   # a Float.
   IgnoredMethods: []
   CountRepeatedAttributes: true
-  Max: 30
+  Max: 35
 
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'

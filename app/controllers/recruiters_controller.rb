@@ -3,6 +3,8 @@ class RecruitersController < ApplicationController
 
   def home; end
 
+  def recruiter_settings; end
+
   private
 
   def set_params

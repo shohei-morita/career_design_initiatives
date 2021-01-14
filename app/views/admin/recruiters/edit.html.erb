@@ -21,7 +21,7 @@
 <p>役職：<%= @recruiter.title %><p>
 <p>担当者名：<%= @recruiter.family_name %> <%= @recruiter.given_name %><p>
 
-<%= form_with(model: [ :admin, @recruiter], local: true) do |f| %>
+<%= form_with(model: [ :admin, @recruiter ], local: true) do |f| %>
   <% if @recruiter.approved == false %>
   <div class="form-group">
     <p>承認状況<%= @recruiter.approved %><p>

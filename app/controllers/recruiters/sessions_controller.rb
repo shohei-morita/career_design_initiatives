@@ -4,9 +4,7 @@ module Recruiters
   class SessionsController < Devise::SessionsController
     def update
       super
-      if account_update_params[:avatar].present?
-        resource.avatar.attach(account_update_params[:avatar])
-      end
+      resource.avatar.attach(account_update_params[:avatar]) if account_update_params[:avatar].present?
     end
 
     protected
@@ -15,7 +13,7 @@ module Recruiters
       resource.update_without_current_password(params)
     end
 
-    def after_update_path_for(resource)
+    def after_update_path_for(_resource)
       recruiter_path(current_recruiter.id)
     end
   end

@@ -18,8 +18,11 @@ class ApplicationController < ActionController::Base
 
       company_attributes = %i(name foundation_year capital president_name url
                               number_of_employees business_outline revenue)
+
+      password_attributes = %i(password password_confirmation current_password)
+
       devise_parameter_sanitizer.permit(:sign_up, keys: [recruiter_attributes, company_attributes: [company_attributes]])
-      devise_parameter_sanitizer.permit(:account_update, keys: [recruiter_attributes, company_attributes: [company_attributes]])
+      devise_parameter_sanitizer.permit(:account_update, keys: [recruiter_attributes, company_attributes: [company_attributes], password_attributes: [password_attributes]])
 
 
 

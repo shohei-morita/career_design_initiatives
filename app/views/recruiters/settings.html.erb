@@ -1,0 +1,7 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<ul>
+  <li><%= link_to 'パスワード変更', edit_password_path(current_recruiter.id) %></li>
+  <li><%= link_to '担当者情報', show_profile_path(current_recruiter.id) %></li>
+  <li><%= link_to '企業情報', recruiter_company_path(current_recruiter.id) %></li>
+</ul>

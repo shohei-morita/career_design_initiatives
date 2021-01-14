@@ -1,48 +1,26 @@
-<h2>Sign up</h2>
+<%= render partial: 'partials/company_global_nav' %>
+<h2>担当者情報更新</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: update_profile_path, html: { method: :put }) do |f| %>
   <%= render "recruiters/shared/error_messages", resource: resource %>
 
-  <%= f.fields_for :company do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :foundation_year %>
-    <%= raw sprintf(f.date_select(:foundation_year, prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s'),'年') %><br />
-  </div>
-
-  <div class="field">
-    <%= f.label :capital %>
-    <%= f.text_field :capital %>
-  </div>
-
-  <div class="field">
-    <%= f.label :president_name %>
-    <%= f.text_field :president_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :number_of_employees %>
-    <%= f.text_field :number_of_employees %>
-  </div>
-
-  <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-  </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
     <%= f.label :department %><br />
-    <%= f.text_field :department, autofocus: true, autocomplete: "department" %>
+    <%= f.text_field :department, autofocus: true, autocomplete: "family_name" %>
   </div>
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    <%= f.text_field :title, autofocus: true, autocomplete: "family_name" %>
   </div>
 
   <div class="field">
@@ -80,10 +58,10 @@
     <%= f.text_field :fax, autofocus: true, autocomplete: "tel" %>
   </div>
 
-
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "変更" %>
   </div>
 <% end %>
 
-<%= render "recruiters/shared/links" %>
+
+<%= link_to "Back", :back %>

@@ -1,7 +1,7 @@
 module Admin
   class RecruitersController < ApplicationController
     before_action :if_not_admin
-    before_action :set_recruiter, only: %i[approval show edit update destroy]
+    before_action :set_recruiter, only: %i[show edit update destroy]
     before_action :authenticate_recruiter!
 
     def index
@@ -24,7 +24,7 @@ module Admin
         @password = Devise.friendly_token.first(8)
         @recruiter.password = @password
         RegistrationMailer.approval(@recruiter, @password).deliver
-        @recruiter.update(recruiter_params)
+        @recruiter.save
         redirect_to edit_admin_recruiter_path(@recruiter.id)
       elsif @recruiter.update(recruiter_params)
         redirect_to admin_recruiters_path
