@@ -47,6 +47,19 @@ ja:
         admin: 管理者権限
         approved: アカウント承認状況
         suspended: アカウント停止状況
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現行のパスワード
+        avatar: 担当者画像
+      company:
+        name: 企業名
+        foundation_year: 設立年
+        capital: 資本金
+        president_name: 代表者名
+        number_of_employees: 従業員数
+        revenue: 業績
+        url: 企業ホームページ
+        business_outline: 事業概要
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
