@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
 
   devise_scope :recruiter do
+    post 'recruiters/registrations/confirm', to: 'recruiters/registrations#confirm', as: :confirm_application
     get 'recruiters/registrations/:id/edit_password', to: 'recruiters/registrations#edit_password', as: :edit_password
     put 'recruiters/registrations/:id/update_password', to: 'recruiters/registrations#update_password', as: :update_password
     get 'recruiters/registrations/:id/show_profile', to: 'recruiters/registrations#show_profile', as: :show_profile

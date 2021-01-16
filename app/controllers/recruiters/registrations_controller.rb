@@ -16,6 +16,11 @@ module Recruiters
       @company = @recruiter.build_company
     end
 
+    def confirm
+      build_resource(sign_up_params)
+      render :new if resource.invalid?
+    end
+
     # POST /resource
     def create
       build_resource(sign_up_params)
