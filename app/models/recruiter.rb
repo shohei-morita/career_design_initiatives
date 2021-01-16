@@ -19,15 +19,17 @@ class Recruiter < ApplicationRecord
     self.given_name_kana = normalize_as_furigana(given_name_kana)
   end
 
-  validates :family_name, presence: true, length: { maximum: 50 }
-  validates :given_name, presence: true, length: { maximum: 50 }
-  validates :department, presence: true, length: { maximum: 50 }
-  validates :tel, presence: true
+  VALID_TEL_NUMBER_REGEX = /\A(((0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1}|[5789]0[-(]?\d{4})[-)]?)|\d{1,4}-?)\d{4}|0120[-(]?\d{3}[-)]?\d{3})\z/.freeze
 
+  validates :family_name, presence: true
+  validates :given_name, presence: true
+  validates :department, presence: true
+  validates :tel, presence: true, format: { with: VALID_TEL_NUMBER_REGEX,
+                                            message: '電話番号は数字のみもしくはハイフン（ー）を含んだ形式で入力してください' }
   validates :family_name_kana, presence: true,
-                               format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' }
+                               format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
   validates :given_name_kana, presence: true,
-                              format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' }
+                              format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
 
   def active_for_authentication?
     super && approved?
