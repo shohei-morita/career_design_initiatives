@@ -44,18 +44,11 @@ RSpec.describe Company, type: :model do
     expect(@company.errors[:number_of_employees]).to include('を入力してください')
   end
 
-  it 'number_of_employeesが8桁以上の場合、無効である' do
-    @company.number_of_employees = 10_000_000
+  it 'number_of_employeesが501文字以上の場合、無効である' do
+    @company.number_of_employees = 'a' * 501
     @company.valid?
 
-    expect(@company.errors[:number_of_employees]).to include('は7桁以下で入力してください')
-  end
-
-  it 'number_of_employeesが正の整数以外で入力された場合、無効である' do
-    @company.number_of_employees = 'あ'
-    @company.valid?
-
-    expect(@company.errors[:number_of_employees]).to include('は正の整数で入力してください')
+    expect(@company.errors[:number_of_employees]).to include('は500文字以内で入力してください')
   end
 
   it 'business_outlineが1001文字以上で入力された場合、無効である' do
