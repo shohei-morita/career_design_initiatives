@@ -32,3 +32,9 @@ ja:
           attributes:
             year:
               blank: 'を選択してください'
+        company:
+          attributes:
+            foundation_year:
+              blank: 'を選択してください'
+            number_of_employees:
+              too_long: 'は%{count}桁以下で入力してください'
