@@ -5,8 +5,9 @@ FactoryBot.define do
     president_name { '山田太郎' }
     capital { '500万円' }
     revenue { '5億円（2020年度）' }
-    number_of_employees { 10_000 }
+    number_of_employees { '500人' }
     business_outline { '人材紹介サービス' }
+    url { 'www.url.com' }
 
     association :recruiter
   end
