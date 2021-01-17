@@ -10,6 +10,7 @@ class CreateJobInfromations < ActiveRecord::Migration[5.2]
       t.text :benefit, null: false
       t.text :day_off, null: false
       t.text :selection, null: false
+      t.boolean :status, null: false
       t.references :company, foreign_key: true
 
       t.timestamps

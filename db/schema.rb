@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_081222) do
     t.text "benefit", null: false
     t.text "day_off", null: false
     t.text "selection", null: false
+    t.boolean "status", null: false
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
