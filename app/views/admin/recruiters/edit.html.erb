@@ -1,0 +1,36 @@
+<div class="wrapper">
+<% if @recruiter.errors.any? %>
+  <div>
+    <h2><%= pluralize(@recruiter.errors.count, "error") %> prohibited this <%= @recruiter.name %> form being saved:</h2>
+    <ul>
+    <% @recruiter.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<p>企業名：<%= @recruiter.company.name %><p>
+<p>資本金：<%= @recruiter.company.capital %></p>
+<p>創立年：<%= @recruiter.company.foundation_year %><p>
+<p>代表者名：<%= @recruiter.company.president_name %><p>
+<p>従業員数：<%= @recruiter.company.number_of_employees %><p>
+<p>業績：<%= @recruiter.company.revenue %><p>
+<p>URL：<%= @recruiter.company.url %><p>
+<p>事業概要：<%= @recruiter.company.business_outline %><p>
+<p>所属：<%= @recruiter.department %><p>
+<p>役職：<%= @recruiter.title %><p>
+<p>担当者名：<%= @recruiter.family_name %> <%= @recruiter.given_name %><p>
+
+<%= form_with(model: [ :admin, @recruiter ], local: true) do |f| %>
+  <% if @recruiter.approved == false %>
+  <div class="form-group">
+    <p>承認状況<%= @recruiter.approved %><p>
+    <%= f.submit "承認", name: "approved",  Class: "btn btn-info"%>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.submit "更新", class: "btn btn-primary", id: "new-recruiter-create" %>
+    <%= f.submit "Back", name: "back",  Class: "btn btn-info"%>
+  </div>
+<% end %>
+</div>

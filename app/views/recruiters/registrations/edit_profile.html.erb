@@ -1,0 +1,67 @@
+<%= render partial: 'partials/company_global_nav' %>
+<h2>担当者情報更新</h2>
+
+<%= form_for(resource, as: resource_name, url: update_profile_path, html: { method: :put }) do |f| %>
+  <%= render "recruiters/shared/error_messages", resource: resource %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.text_field :department, autofocus: true, autocomplete: "family_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true, autocomplete: "family_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :family_name %><br />
+    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :given_name %><br />
+    <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :family_name_kana %><br />
+    <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :given_name_kana %><br />
+    <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel %><br />
+    <%= f.text_field :tel, autofocus: true, autocomplete: "tel" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax, autofocus: true, autocomplete: "tel" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更" %>
+  </div>
+<% end %>
+
+
+<%= link_to "Back", :back %>

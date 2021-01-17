@@ -1,0 +1,44 @@
+<h1>この内容でアカウントを申請しますか？</h1>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "recruiters/shared/error_messages", resource: resource %>
+
+  <%= f.fields_for :company do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :foundation_year %>
+    <%= f.hidden_field :capital %>
+    <%= f.hidden_field :president_name %>
+    <%= f.hidden_field :number_of_employees %>
+    <%= f.hidden_field :url %>
+
+    <p><%= resource.company.name %></p>
+    <p><%= l(resource.company.foundation_year, format: :very_short) %></p>
+    <p><%= resource.company.capital %></p>
+    <p><%= resource.company.president_name %></p>
+    <p><%= resource.company.number_of_employees %></p>
+    <p><%= resource.company.url %></p>
+  <% end %>
+
+  <%= f.hidden_field :department %>
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :family_name %>
+  <%= f.hidden_field :given_name %>
+  <%= f.hidden_field :family_name_kana %>
+  <%= f.hidden_field :given_name_kana %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :tel %>
+  <%= f.hidden_field :fax %>
+
+  <p><%= resource.department %></p>
+  <p><%= resource.title %></p>
+  <p><%= resource.family_name %> <%= resource.given_name %></p>
+  <p><%= resource.family_name_kana %> <%= resource.given_name_kana %></p>
+  <p><%= resource.email %></p>
+  <p><%= resource.tel %></p>
+  <p><%= resource.fax %></p>
+
+<div class="actions">
+  <%= f.submit "申請" %>
+</div>
+<% end %>
+
+<%= link_to "Back", :back %>

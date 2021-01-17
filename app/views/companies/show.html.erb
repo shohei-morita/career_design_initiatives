@@ -1,0 +1,13 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<h1>登録企業情報</h1>
+<p>企業名：<%= current_recruiter.company.name %></p>
+<p>設立年：<%= current_recruiter.company.foundation_year %></p>
+<p>資本金：<%= current_recruiter.company.capital %></p>
+<p>代表者名：<%= current_recruiter.company.president_name %></p>
+<p>従業員数：<%= current_recruiter.company.number_of_employees %><p>
+<p>売り上げ：<%= current_recruiter.company.revenue %></p>
+<p>企業HP：<%= current_recruiter.company.url %></p>
+<p>事業内容：<%= current_recruiter.company.business_outline %></p>
+
+<%= link_to '企業情報編集', edit_recruiter_company_path(current_recruiter.id) %>

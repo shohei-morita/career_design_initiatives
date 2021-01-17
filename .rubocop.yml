@@ -76,6 +76,7 @@ AllCops:
     - 'app/channels/**/*'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/students/*'
+    - 'app/models/recruiter.rb'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
   # Cop names are displayed in offense messages by default. Change behavior
@@ -2154,7 +2155,7 @@ Metrics/AbcSize:
   # a Float.
   IgnoredMethods: []
   CountRepeatedAttributes: true
-  Max: 25
+  Max: 35
 
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
@@ -2209,7 +2210,7 @@ Metrics/MethodLength:
   VersionAdded: '0.25'
   VersionChanged: '1.5'
   CountComments: false  # count full line comments?
-  Max: 10
+  Max: 20
   CountAsOne: []
   ExcludedMethods: [] # deprecated, retained for backwards compatibility
   IgnoredMethods: []

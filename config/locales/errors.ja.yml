@@ -32,3 +32,7 @@ ja:
           attributes:
             year:
               blank: 'を選択してください'
+        company:
+          attributes:
+            foundation_year:
+              blank: 'を選択してください'

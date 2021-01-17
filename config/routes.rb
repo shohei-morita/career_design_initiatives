@@ -1,6 +1,30 @@
 Rails.application.routes.draw do
   root 'top#top'
+  get 'top/applicaiton_completion', to: 'top#application_completion'
+
   devise_for :students, controllers: { registrations: 'students/registrations'}
+  devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
+
+  devise_scope :recruiter do
+    post 'recruiters/registrations/confirm', to: 'recruiters/registrations#confirm', as: :confirm_application
+    get 'recruiters/registrations/:id/edit_password', to: 'recruiters/registrations#edit_password', as: :edit_password
+    put 'recruiters/registrations/:id/update_password', to: 'recruiters/registrations#update_password', as: :update_password
+    get 'recruiters/registrations/:id/show_profile', to: 'recruiters/registrations#show_profile', as: :show_profile
+    get 'recruiters/registrations/:id/edit_profile', to: 'recruiters/registrations#edit_profile', as: :edit_profile
+    put 'recruiters/registrations/:id/update_profile', to: 'recruiters/registrations#update_profile', as: :update_profile
+  end
+
+  resources :recruiters do
+    collection do
+      get :home
+      get :settings
+    end
+    resource :company, only: %i(show edit update)
+  end
+
+  namespace :admin do
+    resources :recruiters
+  end
 
   resources :students, only: %i(show) do
     collection do

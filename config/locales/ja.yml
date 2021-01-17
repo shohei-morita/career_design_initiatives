@@ -1,6 +1,18 @@
 ja:
   activerecord:
     attributes:
+      student:
+        email: メールアドレス
+        family_name: 姓
+        given_name: 名
+        family_name_kana: カナ姓
+        given_name_kana: カナ名
+        nickname: ニックネーム
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現行のパスワード
+        avatar: プロフィール画像
+        tel: 電話番号
       address:
         postcode: '郵便番号'
         prefecture_code: '都道府県'
@@ -33,6 +45,32 @@ ja:
         title: 表彰名
         year: 受賞年
         summary: 表彰概要
+      recruiter:
+        email: メールアドレス
+        department: 所属
+        title: 役職
+        family_name: 姓
+        given_name: 名
+        family_name_kana: カナ姓
+        given_name_kana: カナ名
+        tel: 電話番号
+        fax: FAX番号
+        admin: 管理者権限
+        approved: アカウント承認状況
+        suspended: アカウント停止状況
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現行のパスワード
+        avatar: 担当者画像
+      company:
+        name: 企業名
+        foundation_year: 設立年
+        capital: 資本金
+        president_name: 代表者名
+        number_of_employees: 従業員数
+        revenue: 業績
+        url: 企業ホームページ
+        business_outline: 事業概要
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
