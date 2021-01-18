@@ -1,0 +1,12 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<h1>求人情報の登録・管理</h1>
+
+<%= link_to '新規求人登録', new_recruiter_job_information_path %>
+<br><br>
+
+<%= render partial: 'index_table', locals: { job_informations: @open_job_informations } %>
+<br><br>
+
+<%= render partial: 'index_table', locals: { job_informations: @draft_job_informations } %>
+<br><br>

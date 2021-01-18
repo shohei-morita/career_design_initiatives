@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_081222) do
     t.index ["student_id"], name: "index_extracurricular_activities_on_student_id"
   end
 
-  create_table "job_infromations", force: :cascade do |t|
+  create_table "job_informations", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
     t.text "appealing_point", null: false
@@ -107,11 +107,11 @@ ActiveRecord::Schema.define(version: 2021_01_17_081222) do
     t.text "benefit", null: false
     t.text "day_off", null: false
     t.text "selection", null: false
-    t.boolean "status", null: false
+    t.integer "status", default: 0, null: false
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_job_infromations_on_company_id"
+    t.index ["company_id"], name: "index_job_informations_on_company_id"
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -179,6 +179,6 @@ ActiveRecord::Schema.define(version: 2021_01_17_081222) do
   add_foreign_key "companies", "recruiters"
   add_foreign_key "educational_backgrounds", "students"
   add_foreign_key "extracurricular_activities", "students"
-  add_foreign_key "job_infromations", "companies"
+  add_foreign_key "job_informations", "companies"
   add_foreign_key "self_introductions", "students"
 end

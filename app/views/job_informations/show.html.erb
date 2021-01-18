@@ -1,0 +1,18 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<h1>JobInformations#show</h1>
+<p>Find me in app/views/job_informations/show.html.erb</p>
+
+<h1>求人情報詳細</h1>
+
+<p>件名<br><%= @job_information.title %></p>
+<p>求人詳細<br><%= @job_information.content %></p>
+<p>仕事の魅力<br><%= @job_information.appealing_point %></p>
+<p>給与詳細<br><%= @job_information.pay %></p>
+<p>仕事の魅力<br><%= @job_information.appealing_point %></p>
+<p>勤務時間<br><%= @job_information.working_hour %></p>
+<p>休日・休暇<br><%= @job_information.day_off %></p>
+<p>福利厚生<br><%= @job_information.benefit %></p>
+<p>選考プロセス<br><%= @job_information.selection %></p>
+
+<%= link_to '求人情報編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id) %>

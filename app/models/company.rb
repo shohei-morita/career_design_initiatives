@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   belongs_to :recruiter
-  has_many :job_infromations
+  has_many :job_informations
   validates :name, presence: true
   validates :foundation_year, presence: true
   validates :president_name, presence: true

@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       get :settings
     end
     resource :company, only: %i(show edit update)
+    resources :job_informations do
+      collection do
+        post :confirm
+      end
+    end
   end
 
   namespace :admin do
