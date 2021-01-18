@@ -36,3 +36,7 @@ ja:
           attributes:
             foundation_year:
               blank: 'を選択してください'
+        job_information:
+          attributes:
+            status:
+              blank: 'を選択してください'

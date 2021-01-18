@@ -12,5 +12,4 @@ class JobInformation < ApplicationRecord
   validates :day_off, presence: true, length: { maximum: 150 }
   validates :selection, presence: true, length: { maximum: 500 }
   validates :status, presence: true
-
 end
