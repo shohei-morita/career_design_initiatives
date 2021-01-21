@@ -1,0 +1,44 @@
+<%= form_with(model: [recruiter, job_information], local: true) do |f| %>
+<% if job_information.errors.any? %>
+  <h2><%= job_information.errors.count %>件のエラーがあります。</h2>
+  <ul>
+    <% job_information.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= f.label :title %><br />
+  <%= f.text_field :title %><br />
+
+  <%= f.label :content %><br />
+  <%= f.text_area :content %><br />
+
+  <%= f.label :appealing_point %><br />
+  <%= f.text_area :appealing_point %><br />
+
+  <%= f.label :pay %><br />
+  <%= f.text_area :pay %><br />
+
+  <%= f.label :working_status %><br />
+  <%= f.text_area :working_status %><br />
+
+  <%= f.label :working_hour %><br />
+  <%= f.text_area :working_hour %><br />
+
+  <%= f.label :benefit%><br />
+  <%= f.text_area :benefit %><br />
+
+  <%= f.label :day_off %><br />
+  <%= f.text_area :day_off %><br />
+
+  <%= f.label :selection %><br />
+  <%= f.text_area :selection %><br />
+
+  <%= f.label :status %><br />
+  <%= f.select :status, JobInformation.statuses.keys.to_a, {prompt: "ステータスを選択してください"} %><br />
+
+  <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
+
+  <%= f.submit '保存' %>
+<% end %>

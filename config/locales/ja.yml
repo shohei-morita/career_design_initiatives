@@ -71,6 +71,17 @@ ja:
         revenue: 業績
         url: 企業ホームページ
         business_outline: 事業概要
+      job_information:
+        title: 求人タイトル
+        content: 仕事内容
+        appealing_point: 仕事の魅力
+        pay: 給与・待遇詳細
+        working_status: 雇用形態
+        working_hour: 就業時間
+        benefit: 福利厚生
+        day_off: 休暇・休日
+        selection: 選考プロセス
+        status: ステータス
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:

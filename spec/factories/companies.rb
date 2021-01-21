@@ -9,6 +9,10 @@ FactoryBot.define do
     business_outline { '人材紹介サービス' }
     url { 'www.url.com' }
 
+    after(:create) do |company|
+      create_list(:job_information, 5, company: company)
+    end
+
     association :recruiter
   end
 end
