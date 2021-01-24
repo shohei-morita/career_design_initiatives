@@ -1,0 +1,14 @@
+<%= render 'search_form' %>
+
+<% @result_students.each do |student| %>
+  <tr>
+    <td>
+      ニックネーム:<%= student.nickname %><br>
+      高校:<%= student.educational_background.school_name %><br>
+      所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name %><br>
+    </td>
+    <td>
+      自己PR:<%= student.apealing_point.content %>
+    </td>
+  </tr><br><br>
+<% end %>

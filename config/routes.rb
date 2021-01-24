@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :recruiters
   end
 
-  resources :students, only: %i(show) do
+  resources :students, only: %i(index show) do
     collection do
       get :home
       get :profile
@@ -46,6 +46,10 @@ Rails.application.routes.draw do
     resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint'
     resource :apealing_image, controller: :self_introductions, type: 'ApealingImage'
     resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo'
+  end
+
+  resources :scouts do
+    resources :scout_messages
   end
 
   if Rails.env.development?
