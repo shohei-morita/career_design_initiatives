@@ -1,0 +1,27 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<%= "企業:#{@scout.recruiter.company.name}" if current_student %>
+<%= "生徒:#{@scout.student.nickname}さん" if current_recruiter %>
+<%= "件名:#{@scout.title}" %>
+
+<% if @over_ten %>
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<%= render 'message_form'%><br><br>
+
+<div>
+  公開中求人一覧
+  <table>
+    <% current_recruiter.company.job_informations.each do |job_information| %>
+      <tr><td><%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: current_recruiter.id, id: job_information.id) if job_information.status == '公開中' %></td></tr>
+    <% end %>
+  </table>
+</div><br><br>
+
+<%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+  <%= f.hidden_field :student_id, value: current_student.id if student_signed_in? %>
+<%= f.submit '送信' %>
+<% end %>

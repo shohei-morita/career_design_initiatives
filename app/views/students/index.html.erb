@@ -1,14 +1,45 @@
+<%= render partial: 'partials/company_global_nav' %><br>
+
 <%= render 'search_form' %>
 
 <% @result_students.each do |student| %>
+<table>
   <tr>
+    <td><%= image_tag student.thumbnail if student.avatar.present? %></td>
     <td>
-      ニックネーム:<%= student.nickname %><br>
-      高校:<%= student.educational_background.school_name %><br>
-      所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name %><br>
+      <% if student.nickname.nil? %>
+        ID:<%= student.id %><br>
+      <% else %>
+        ニックネーム:<%= student.nickname %><br>
+      <% end %>
+
+      <% if student.educational_background.nil? %>
+        高校情報はありません<br>
+      <% else %>
+        高校:<%= student.educational_background.school_name %><br>
+      <% end %>
+
+      <% if student.educational_background.nil? %>
+        高校の所在地情報はありません。<br>
+      <% else %>
+        所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name if student.educational_background.present?  %><br>
+      <% end %>
+
+      <% if student.apealing_point.nil? %>
+        自己PR情報はありません。<br>
+      <% else %>
+        自己PR:<%= student.apealing_point.content if student.apealing_point.present? %><br>
+      <% end %>
     </td>
+
     <td>
-      自己PR:<%= student.apealing_point.content %>
+      <%= link_to '詳細確認', company_show_student_path(student.id) %>
+      <% if @scout_ids.include?(student.id) %>
+        <%= link_to 'スカウト確認', scout_scout_messages_path(student.scouts.ids) %>
+      <% else %>
+        <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: student.id) %>
+      <% end %>
     </td>
   </tr><br><br>
+</table>
 <% end %>

@@ -10,14 +10,12 @@ SelfIntroduction.seed do |s|
   s.title = 'チャーミングな前髪'
   s.content = '動画ではこんな感じです'
   s.student = Student.find_by(family_name: '田中')
-  #s.video = SelfIntroduction.apealing_video.attach(io: File.open('tmp/test_video.mp4'), filename: 'test_video.mp')
 end
 
 SelfIntroduction.seed do |s|
   s.type = "ApealingImage"
   s.title = 'チャーミングな前髪'
   s.content = '写真ではこんな感じです'
-  #s.video = Rails.root.join('tmp/test_image.png').open
   s.student = Student.find_by(family_name: '田中')
 end
 

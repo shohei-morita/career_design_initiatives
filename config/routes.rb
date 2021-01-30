@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       get :pr
     end
 
+    member do
+      get :company_show
+    end
+
     resource :address
     resource :educational_background
     resources :extracurricular_activities

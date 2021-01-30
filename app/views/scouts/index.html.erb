@@ -1,0 +1,34 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<% if student_signed_in? %>
+  <th>件名</th>
+  <th>企業名</th>
+  <th>送信日時</th>
+<% elsif recruiter_signed_in? %>
+  <th>件名</th>
+  <th>ニックネーム</th>
+  <th>送信日時</th>
+<% end %>
+<table>
+  <tbody>
+  <% if @scouts.present? %>
+    <% @scouts.each do |scout| %>
+    <tr>
+      <% if student_signed_in? %>
+        <td><%= scout.title %></td>
+        <td><%= scout.recruiter.company.name %></td>
+        <td><%= scout.message_time %></td>
+      <% elsif recruiter_signed_in? %>
+        <td><%= scout.title %></td>
+        <td><%= scout.student.nickname %>さん</td>
+        <td><%= scout.message_time %></td>
+      <% end %>
+      <td>
+        <%= link_to '確認', scout_scout_messages_path(scout.id) %>
+        <%= recruiter_signed_in? ? scout.scout_messages.where(read_unread: false, student_id: scout.student.id).count : scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter_id).count %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
