@@ -1,0 +1,2 @@
+class Workstyle < Condition
+end

@@ -1,0 +1,2 @@
+class Workplace < Condition
+end
