@@ -14,7 +14,7 @@ class ScoutsController < ApplicationController
 
   def create
     @scout = Scout.new(scout_params)
-    if @scout.save!
+    if @scout.save
       redirect_to scout_scout_messages_path(@scout.id), notice: 'スカウトを送信しました'
     else
       render :new, notice: 'スカウトを送信できませんでした'

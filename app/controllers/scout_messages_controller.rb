@@ -5,6 +5,7 @@ class ScoutMessagesController < ApplicationController
 
   def index
     @scout_messages = @scout.scout_messages.order(created_at: 'ASC')
+    @recruiter = @scout.recruiter
 
     if @scout_messages.length > 10
       @over_ten = true
@@ -26,6 +27,9 @@ class ScoutMessagesController < ApplicationController
   end
 
   def create
+    @scout_messages = @scout.scout_messages.order(created_at: 'ASC')
+    @recruiter = @scout.recruiter
+    
     @scout_message = @scout.scout_messages.build(scout_message_params)
     if @scout_message.save
       redirect_to scout_scout_messages_path(@scout.id)
