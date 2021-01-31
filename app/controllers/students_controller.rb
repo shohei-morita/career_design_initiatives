@@ -15,7 +15,9 @@ class StudentsController < ApplicationController
 
   def show; end
 
-  def company_show; end
+  def company_show
+    @target_list = current_recruiter.target_lists.find_by(student_id: @student.id)
+  end
 
   private
 

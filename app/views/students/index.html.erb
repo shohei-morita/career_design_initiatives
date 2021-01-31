@@ -1,11 +1,16 @@
 <%= render partial: 'partials/company_global_nav' %><br>
 
+<h3>生徒検索</h3>
+
 <%= render 'search_form' %>
 
 <% @result_students.each do |student| %>
 <table>
   <tr>
-    <td><%= image_tag student.thumbnail if student.avatar.present? %></td>
+    <td>
+      <%= image_tag student.thumbnail if student.avatar.present? %>
+    </td>
+
     <td>
       <% if student.nickname.nil? %>
         ID:<%= student.id %><br>
@@ -35,11 +40,19 @@
     <td>
       <%= link_to '詳細確認', company_show_student_path(student.id) %>
       <% if @scout_ids.include?(student.id) %>
-        <%= link_to 'スカウト確認', scout_scout_messages_path(student.scouts.ids) %>
+        <%= link_to 'スカウト確認', scout_scout_messages_path(student.scouts.ids, key: 'index') %>
       <% else %>
-        <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: student.id) %>
+        <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: student.id, key: 'index') %>
       <% end %>
     </td>
-  </tr><br><br>
-</table>
+
+    <td>
+      <% if current_recruiter.target_lists.find_by(student_id: student.id).present? %>
+        <%= link_to 'Listを解除する', target_list_path(id: student.target_lists.ids, key: 'index'), method: :delete %>
+      <% else %>
+        <%= link_to 'Listに登録する', target_lists_path(student_id: student.id, key: 'index'), method: :post %>
+      <% end %>
+    </td>
+  </tr>
+</table><br><br>
 <% end %>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :target_lists, only: %i(index create destroy)
+
   namespace :admin do
     resources :recruiters
   end

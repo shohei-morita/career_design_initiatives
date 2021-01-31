@@ -8,6 +8,8 @@ class Student < ApplicationRecord
   has_many :extracurricular_activities, dependent: :destroy
   has_many :awards, dependent: :destroy
   has_many :scouts, dependent: :destroy
+  has_many :target_lists, dependent: :destroy
+  has_many :student, through: :target_lists
 
   include StringNormalizer
 
