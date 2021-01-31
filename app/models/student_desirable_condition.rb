@@ -1,0 +1,2 @@
+class StudentDesirableCondition < ApplicationRecord
+end

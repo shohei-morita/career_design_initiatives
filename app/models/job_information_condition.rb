@@ -1,0 +1,2 @@
+class JobInformationCondition < ApplicationRecord
+end

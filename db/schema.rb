@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_073948) do
+ActiveRecord::Schema.define(version: 2021_01_31_075849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2021_01_31_073948) do
     t.index ["recruiter_id"], name: "index_companies_on_recruiter_id"
   end
 
+  create_table "company_industry_conditions", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "condition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_industry_conditions_on_company_id"
+    t.index ["condition_id"], name: "index_company_industry_conditions_on_condition_id"
+  end
+
   create_table "conditions", force: :cascade do |t|
     t.string "type"
     t.integer "name"
@@ -102,6 +111,15 @@ ActiveRecord::Schema.define(version: 2021_01_31_073948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_extracurricular_activities_on_student_id"
+  end
+
+  create_table "job_information_conditions", force: :cascade do |t|
+    t.bigint "job_information_id"
+    t.bigint "condition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["condition_id"], name: "index_job_information_conditions_on_condition_id"
+    t.index ["job_information_id"], name: "index_job_information_conditions_on_job_information_id"
   end
 
   create_table "job_informations", force: :cascade do |t|
@@ -181,6 +199,15 @@ ActiveRecord::Schema.define(version: 2021_01_31_073948) do
     t.index ["student_id"], name: "index_self_introductions_on_student_id"
   end
 
+  create_table "student_desirable_conditions", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "condition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["condition_id"], name: "index_student_desirable_conditions_on_condition_id"
+    t.index ["student_id"], name: "index_student_desirable_conditions_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "family_name"
     t.string "given_name"
@@ -216,8 +243,12 @@ ActiveRecord::Schema.define(version: 2021_01_31_073948) do
   add_foreign_key "addresses", "students"
   add_foreign_key "awards", "students"
   add_foreign_key "companies", "recruiters"
+  add_foreign_key "company_industry_conditions", "companies"
+  add_foreign_key "company_industry_conditions", "conditions"
   add_foreign_key "educational_backgrounds", "students"
   add_foreign_key "extracurricular_activities", "students"
+  add_foreign_key "job_information_conditions", "conditions"
+  add_foreign_key "job_information_conditions", "job_informations"
   add_foreign_key "job_informations", "companies"
   add_foreign_key "scout_messages", "recruiters"
   add_foreign_key "scout_messages", "scouts"
@@ -225,6 +256,8 @@ ActiveRecord::Schema.define(version: 2021_01_31_073948) do
   add_foreign_key "scouts", "recruiters"
   add_foreign_key "scouts", "students"
   add_foreign_key "self_introductions", "students"
+  add_foreign_key "student_desirable_conditions", "conditions"
+  add_foreign_key "student_desirable_conditions", "students"
   add_foreign_key "target_lists", "recruiters"
   add_foreign_key "target_lists", "students"
 end
