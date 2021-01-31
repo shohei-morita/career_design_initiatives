@@ -1,5 +1,4 @@
 class JobInformationsController < ApplicationController
-  before_action :authenticate_recruiter!
   before_action :set_recruiter
 
   def index

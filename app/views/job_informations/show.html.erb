@@ -1,4 +1,5 @@
-<%= render partial: 'partials/company_global_nav' %>
+<%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
+<%= render partial: 'partials/global_nav' if student_signed_in? %>
 
 <h1>JobInformations#show</h1>
 <p>Find me in app/views/job_informations/show.html.erb</p>
@@ -15,4 +16,5 @@
 <p>福利厚生<br><%= @job_information.benefit %></p>
 <p>選考プロセス<br><%= @job_information.selection %></p>
 
-<%= link_to '求人情報編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id) %>
+<%= link_to '求人情報編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id) if recruiter_signed_in? %>
+<%= link_to '戻る', :back %>

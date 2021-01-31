@@ -7,8 +7,11 @@ class Student < ApplicationRecord
   has_one :educational_background, dependent: :destroy
   has_many :extracurricular_activities, dependent: :destroy
   has_many :awards, dependent: :destroy
+  has_many :scouts, dependent: :destroy
 
   include StringNormalizer
+
+  before_create :default_image
 
   before_validation do
     self.family_name_kana = normalize_as_furigana(family_name_kana)
@@ -30,6 +33,23 @@ class Student < ApplicationRecord
 
   enum graduation_year: { '2021': 0, '2022': 1, other: 2 }
   enum gender: { 男性: 0, 女性: 1, その他: 2 }
+
+  def default_image
+    return if avatar.attached?
+
+    avatar.attach(
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image.png')),
+      filename: 'no_image.png', content_type: 'image/png'
+    )
+  end
+
+  def thumbnail
+    avatar.variant(resize: '150x150').processed
+  end
+
+  def profile_image
+    avatar.variant(resize: '300x300').processed
+  end
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)

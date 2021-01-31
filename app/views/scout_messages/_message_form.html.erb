@@ -1,0 +1,23 @@
+<% @scout_messages.each do |message| %>
+
+  <% if message.content.present? && message.student_id.present? %>
+  <div>
+    <%= message.scout.student.nickname %>
+    <%= message.content %>
+    <%= message.message_time %>
+  </div>
+ <% end %>
+
+ <% if message.content.present? && message.recruiter_id.present? %>
+ <div>
+   <%= message.scout.recruiter.company.name %>
+   <%= message.content %>
+   <%= message.message_time %>
+ </div>
+ <% end %>
+
+ <% if current_recruiter.present? %>
+  <%= message.read_unread ? '既読' : '未読' %>
+ <% end %>
+
+<% end %>

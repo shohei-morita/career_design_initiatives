@@ -1,0 +1,86 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<h3>自己PR情報</h3>
+<%= image_tag @student.profile_image  %>
+
+<% if @student.apealing_point.nil? %>
+  <div>
+    <p>自己PRは登録されていません</p>
+  </div>
+<% else %>
+  <div>
+    <p>
+       タイトル:<%= @student.apealing_point.title %><br>
+       内容:<%= @student.apealing_point.content %>
+    </p>
+  </div>
+<% end %>
+
+<h3>学歴</h3>
+<% if @student.educational_background.nil? %>
+  <div>
+    <p>学歴情報は登録されていません</p>
+  </div>
+<% else %>
+  <div>
+    <p>
+      所在地:<%= JpPrefecture::Prefecture.find(@student.educational_background.location).name %><br>
+      学校:<%= @student.educational_background.division %><%= @student.educational_background.school_name %><br>
+      入学年月〜卒業（予定）年月:<%= l(@student.educational_background.entrance_date, format: :short) %>〜<%= l(@student.educational_background.graduation_date, format: :short) %><br>
+      備考:<%= @student.educational_background.note %>
+    </p>
+  </div>
+<% end %>
+
+<h3>課外活動</h3>
+<% if @student.extracurricular_activities.nil? %>
+  <p>課外活動情報は登録されていません</p>
+<% else %>
+  <% @student.extracurricular_activities.each do |activity| %>
+    <p>
+      活動:<%= activity.name %>
+      活動期間:<%= l(activity.beginning_year, format: :very_short) %>
+        〜
+      <% if activity.ending_year.nil? %>
+        現在<br>
+      <% else %>
+        <%= l(activity.ending_year, format: :very_short) %><br>
+      <% end %>
+      概要:<%= activity.summary %>
+    </p>
+  <% end %>
+<% end %>
+
+<h3>PR画像</h3>
+<% if @student.apealing_image.nil? %>
+  <p>PR画像は登録されていません</p>
+<% else %>
+  <div>
+    <%= image_tag @student.apealing_image.profile_image_size if @student.apealing_image.image.present? %>
+    <p>
+      タイトル：<%= @student.apealing_image.title %><br>
+      内容：<%= @student.apealing_image.content %>
+    </p>
+  </div>
+<% end %>
+
+<h3>PR動画</h3>
+<% if @student.apealing_video.nil? %>
+  <p>PR画像は登録されていません</p>
+<% else %>
+  <div>
+    <% if @student.apealing_video.video.present? %>
+      <video src="<%= rails_blob_path(@student.apealing_video.video) %>" type="video/mp4" controls width="500" height="auto"></video>
+    <% end %>
+    <p>
+      タイトル：<%= @student.apealing_video.title %><br>
+      内容：<%= @student.apealing_video.content %>
+    </p>
+  </div>
+<% end %>
+
+<% if @scout_ids.include?(@student.id) %>
+  <%= link_to 'スカウト確認', scout_scout_messages_path(@student.scouts.ids) %>
+<% else %>
+  <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: @student.id) %>
+<% end %>

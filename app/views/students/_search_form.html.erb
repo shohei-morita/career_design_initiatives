@@ -1,0 +1,5 @@
+<%= search_form_for @search, url: students_path do |f| %>
+  <%= f.label :student, '生徒検索（フリーワード）' %>
+  <%= f.text_field :educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_cont, placeholder: '○○高校' %>
+  <%= f.submit '検索' %>
+<% end %>

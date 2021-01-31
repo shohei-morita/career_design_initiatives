@@ -1,0 +1,22 @@
+<%= render partial: 'partials/company_global_nav' %>
+
+<%= form_with(model: @scout, local: true) do |f| %>
+  <% if @scout.errors.any? %>
+    <h2><%= @scout.errors.count %>件のエラーがあります。</h2>
+    <ul>
+      <% @scout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.fields_for :scout_messages do |message| %>
+    <%= message.label :content %>
+    <%= message.text_area :content %>
+    <%= message.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+  <% end %>
+  <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+  <%= f.hidden_field :student_id, value: params[:student_id] %>
+  <%= f.submit '送信' %>
+<% end %>

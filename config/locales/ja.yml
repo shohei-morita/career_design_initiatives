@@ -82,6 +82,10 @@ ja:
         day_off: 休暇・休日
         selection: 選考プロセス
         status: ステータス
+      scout:
+        title: 件名
+      scout_message:
+        content: 本文
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
