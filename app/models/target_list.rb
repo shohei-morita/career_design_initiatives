@@ -1,0 +1,2 @@
+class TargetList < ApplicationRecord
+end

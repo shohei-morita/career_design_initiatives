@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_062855) do
+ActiveRecord::Schema.define(version: 2021_01_31_025501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,6 +196,15 @@ ActiveRecord::Schema.define(version: 2021_01_24_062855) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  create_table "target_lists", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "recruiter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recruiter_id"], name: "index_target_lists_on_recruiter_id"
+    t.index ["student_id"], name: "index_target_lists_on_student_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "students"
   add_foreign_key "awards", "students"
@@ -209,4 +218,6 @@ ActiveRecord::Schema.define(version: 2021_01_24_062855) do
   add_foreign_key "scouts", "recruiters"
   add_foreign_key "scouts", "students"
   add_foreign_key "self_introductions", "students"
+  add_foreign_key "target_lists", "recruiters"
+  add_foreign_key "target_lists", "students"
 end
