@@ -27,6 +27,8 @@
   <%= f.label :business_outline %><br />
   <%= f.text_area :business_outline %><br />
 
+  <%= f.label :industry %><br />
+  <%= f.collection_select(:condition_ids, Industry.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
 
   <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
 

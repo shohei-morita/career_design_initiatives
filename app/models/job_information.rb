@@ -1,5 +1,12 @@
 class JobInformation < ApplicationRecord
   belongs_to :company
+
+  has_many :job_information_conditions, dependent: :destroy
+  has_many :conditions, through: :job_information_conditions
+  has_many :occupations, through: :job_information_conditions, source: :condition
+  has_many :workstyles, through: :job_information_conditions, source: :condition
+  has_many :workplaces, through: :job_information_conditions, source: :condition
+
   enum status: { 準備中: 0, 公開中: 1 }
 
   validates :title, presence: true, length: { maximum: 50 }

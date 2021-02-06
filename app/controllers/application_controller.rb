@@ -1,20 +1,23 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :authenticate_student!
 
   protected
+  def authenticate_student_and_recruiter
+    if not student_signed_in? || recruiter_signed_in?
+      redirect_to root_path, 'アカウントを作成してください'
+    end
+  end
 
   def configure_permitted_parameters
     if resource_class == Student
       student_attributes = %i(family_name given_name family_name_kana given_name_kana
                               nickname tel gender graduation_year birth_date avatar)
       devise_parameter_sanitizer.permit(:sign_up, keys: student_attributes)
-      devise_parameter_sanitizer.permit(:account_update, keys: student_attributes)
+      devise_parameter_sanitizer.permit(:account_update, keys: [student_attributes, condition_ids:[]])
 
     elsif resource_class == Recruiter && Company
       recruiter_attributes = %i(family_name given_name family_name_kana given_name_kana
-                               fax tel department title avatar name foundation_year capital
-                               president_name url number_of_employees business_outline)
+                               fax tel department title avatar)
 
       company_attributes = %i(name foundation_year capital president_name url
                               number_of_employees business_outline revenue)
@@ -23,9 +26,6 @@ class ApplicationController < ActionController::Base
 
       devise_parameter_sanitizer.permit(:sign_up, keys: [recruiter_attributes, company_attributes: [company_attributes]])
       devise_parameter_sanitizer.permit(:account_update, keys: [recruiter_attributes, company_attributes: [company_attributes], password_attributes: [password_attributes]])
-
-
-
     else
       super
     end

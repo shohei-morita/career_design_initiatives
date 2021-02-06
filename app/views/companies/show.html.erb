@@ -1,13 +1,21 @@
-<%= render partial: 'partials/company_global_nav' %>
+<%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
+<%= render partial: 'partials/global_nav' if student_signed_in? %>
 
-<h1>登録企業情報</h1>
-<p>企業名：<%= current_recruiter.company.name %></p>
-<p>設立年：<%= current_recruiter.company.foundation_year %></p>
-<p>資本金：<%= current_recruiter.company.capital %></p>
-<p>代表者名：<%= current_recruiter.company.president_name %></p>
-<p>従業員数：<%= current_recruiter.company.number_of_employees %><p>
-<p>売り上げ：<%= current_recruiter.company.revenue %></p>
-<p>企業HP：<%= current_recruiter.company.url %></p>
-<p>事業内容：<%= current_recruiter.company.business_outline %></p>
+<h1>企業情報</h1>
+<p>企業名：<%= @company.name %></p>
+<p>設立年：<%= @company.foundation_year %></p>
+<p>資本金：<%= @company.capital %></p>
+<p>代表者名：<%= @company.president_name %></p>
+<p>従業員数：<%= @company.number_of_employees %><p>
+<p>売り上げ：<%= @company.revenue %></p>
+<p>企業HP：<%= @company.url %></p>
+<p>事業内容：<%= @company.business_outline %></p>
 
-<%= link_to '企業情報編集', edit_recruiter_company_path(current_recruiter.id) %>
+<p>業界<br>
+  <% @company.conditions.where(type: 'Industry').each do |industry| %>
+    <%=  industry.name %> /
+  <% end %>
+</p>
+
+
+<%= link_to '企業情報編集', edit_recruiter_company_path(current_recruiter.id) if recruiter_signed_in? %>

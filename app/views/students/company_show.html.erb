@@ -79,8 +79,14 @@
   </div>
 <% end %>
 
-<% if @scout_ids.include?(@student.id) %>
-  <%= link_to 'スカウト確認', scout_scout_messages_path(@student.scouts.ids) %>
+<% if @target_list.present? %>
+  <%= link_to 'Listを解除する', target_list_path(id: @target_list.id, key: 'company_show'), method: :delete %>
 <% else %>
-  <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: @student.id) %>
+  <%= link_to 'Listに登録する', target_lists_path(student_id: @student.id, key: 'company_show'), method: :post %>
+<% end %>
+
+<% if @scout_ids.include?(@student.id) %>
+  <%= link_to 'スカウト確認', scout_scout_messages_path(@student.scouts.ids, key: 'company_show') %>
+<% else %>
+  <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: @student.id, key: 'company_show') %>
 <% end %>

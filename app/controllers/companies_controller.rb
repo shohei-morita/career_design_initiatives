@@ -1,12 +1,11 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_recruiter!
-  before_action :set_recruiter
+  before_action :authenticate_recruiter!, only: %i[edit update]
+  before_action :authenticate_student_and_recruiter, only: %i[show]
+  before_action :set_company
 
   def show; end
 
-  def edit
-    @company = @recruiter.company
-  end
+  def edit; end
 
   def update
     if @recruiter.company.update(company_params)
@@ -18,12 +17,15 @@ class CompaniesController < ApplicationController
 
   private
 
-  def set_recruiter
+  def set_company
     @recruiter = Recruiter.find(params[:recruiter_id])
+    @company = @recruiter.company
   end
 
   def company_params
-    params.require(:company).permit(:recruiter_id, :name, :foundation_year, :capital, :president_name,
-                                    :number_of_employees, :url, :business_outline, :revenue)
+    params.require(:company).permit(
+      :recruiter_id, :name, :foundation_year, :capital, :president_name,
+      :number_of_employees, :url, :business_outline, :revenue, condition_ids:[]
+    )
   end
 end

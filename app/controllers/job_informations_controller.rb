@@ -1,5 +1,7 @@
 class JobInformationsController < ApplicationController
   before_action :set_recruiter
+  before_action :authenticate_student_and_recruiter, only: %i[show]
+  before_action :authenticate_recruiter!, only: %i[index new create edit update destroy]
 
   def index
     @draft_job_informations = current_recruiter.company.job_informations.where(status: 0)
@@ -50,7 +52,10 @@ class JobInformationsController < ApplicationController
   end
 
   def job_information_params
-    params.require(:job_information).permit(:recruiter_id, :title, :content, :appealing_point, :pay,
-                                            :working_hour, :working_status, :benefit, :day_off, :selection, :status)
+    params.require(:job_information).permit(
+      :recruiter_id, :title, :content, :appealing_point, :pay,
+      :working_hour, :working_status, :benefit, :day_off, :selection, :status,
+      condition_ids:[]
+      )
   end
 end

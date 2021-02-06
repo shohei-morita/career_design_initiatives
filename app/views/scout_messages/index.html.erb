@@ -1,8 +1,8 @@
 <%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
 <%= render partial: 'partials/global_nav' if student_signed_in? %>
 
-<%= "企業:#{@scout.recruiter.company.name}" if student_signed_in? %>
-<%= "生徒:#{@scout.student.nickname}さん" if recruiter_signed_in?%>
+送信企業：<%= link_to "#{@scout.recruiter.company.name}", recruiter_company_path(@scout.recruiter.id) if student_signed_in? %><br>
+<%= "生徒:#{@scout.student.nickname}さん" if recruiter_signed_in?%><br>
 <%= "件名:#{@scout.title}" %>
 
 <% if @over_ten %>

@@ -1,6 +1,8 @@
 class Recruiter < ApplicationRecord
   has_one :company
   has_many :scouts, dependent: :destroy
+  has_many :target_lists, dependent: :destroy
+  has_many :students, through: :target_lists
   accepts_nested_attributes_for :company
   has_one_attached :avatar, dependent: :destroy
   # Include default devise modules. Others available are:
