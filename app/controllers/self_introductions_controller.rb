@@ -1,5 +1,6 @@
 class SelfIntroductionsController < ApplicationController
   before_action :set_student, only: %i[show edit update]
+  before_action :authenticate_student!
   before_action :self_introduction_path
 
   def new

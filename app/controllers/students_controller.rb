@@ -1,6 +1,8 @@
 class StudentsController < ApplicationController
   before_action :set_params, only: %i[show company_show]
   before_action :scout_info, only: %i[index company_show]
+  before_action :authenticate_recruiter!, only: %i[index company_show]
+  before_action :authenticate_student!, only: %i[hom profile pr show]
 
   def index
     @search = Student.ransack(params[:q])

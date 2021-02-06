@@ -1,4 +1,6 @@
 class TargetListsController < ApplicationController
+  before_action :authenticate_recruiter!
+
   def index
     @targets = TargetList.all
     scouts = current_recruiter.scouts
@@ -29,7 +31,7 @@ class TargetListsController < ApplicationController
       when 'index'
         redirect_to students_path
       when 'company_show'
-        redirect_to comapny_show_student_path(target.student.id)
+        redirect_to company_show_student_path(target.student.id)
       else
         redirect_to target_lists_path
       end

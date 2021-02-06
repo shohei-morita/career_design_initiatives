@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_075849) do
 
   create_table "conditions", force: :cascade do |t|
     t.string "type"
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

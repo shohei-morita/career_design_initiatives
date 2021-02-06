@@ -1,17 +1,58 @@
 <%= render partial: 'partials/global_nav' %>
+
 <h2>基本情報</h2>
   <p>icon<br>
-    <% if current_student.avatar.attached? %>
-      <%= image_tag current_student.avatar %>
+    <% if @student.avatar.attached? %>
+      <%= image_tag @student.profile_image %>
     <% end %>
   </p>
-  <p>email<br><%= current_student.email %></p>
-  <p>姓  名<br><%= current_student.family_name %>  <%= current_student.given_name %></p>
-  <p>カナ姓名<br><%= current_student.family_name_kana %>  <%= current_student.given_name_kana %></p>
-  <p>ニックネーム<br><%= current_student.nickname %></p>
-  <p>生年月日<br><%= current_student.birth_date %></p>
-  <p>email<br><%= current_student.email %></p>
-  <p>tel<br><%= current_student.tel %></p>
-  <p>性別<br><%= current_student.gender %></p>
+  <p>email<br><%= @student.email %></p>
+  <p>姓  名<br><%= @student.family_name %>  <%= @student.given_name %></p>
+  <p>カナ姓名<br><%= @student.family_name_kana %>  <%= @student.given_name_kana %></p>
+  <p>ニックネーム<br><%= @student.nickname %></p>
+  <p>生年月日<br><%= @student.birth_date %></p>
+  <p>email<br><%= @student.email %></p>
+  <p>tel<br><%= @student.tel %></p>
+  <p>性別<br><%= @student.gender %></p>
 
-  <%= link_to '編集', edit_student_registration_url %>
+  <p>希望業界<br>
+    <% if @student.conditions.where(type: 'Industry').count == 0 %>
+     希望業界は登録されていません
+    <% else %>
+      <% @student.conditions.where(type: 'Industry').each do |industry| %>
+        <%=  industry.name %> /
+      <% end %>
+    <% end %>
+  </p>
+
+  <p>希望職種<br>
+    <% if @student.conditions.where(type: 'Occupation').count == 0  %>
+      希望職種は登録されていません
+    <% else %>
+      <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
+        <%=  occupation.name %> /
+      <% end %>
+    <% end %>
+  </p>
+
+  <p>希望する働き方<br>
+    <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
+      希望する働き方は登録されていません
+    <% else %>
+      <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
+        <%=  workstyle.name %> /
+      <% end %>
+    <% end %>
+  </p>
+
+  <p>希望勤務地<br>
+    <% if @student.conditions.where(type: 'Workplace').count == 0  %>
+      希望勤務地の登録はありません
+    <% else %>
+      <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
+        <%=  workplace.name %> /
+      <% end %>
+    <% end %>
+  </p>
+
+  <%= link_to '編集', edit_student_registration_url if student_signed_in? %>

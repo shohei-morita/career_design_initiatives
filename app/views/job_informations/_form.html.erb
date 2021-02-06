@@ -35,10 +35,18 @@
   <%= f.label :selection %><br />
   <%= f.text_area :selection %><br />
 
+  <%= f.label :occupation %><br />
+  <%= f.collection_select(:condition_ids, Occupation.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+
+  <%= f.label :workplace %><br />
+  <%= f.collection_select(:condition_ids, Workplace.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+
+  <%= f.label :workstyle %><br />
+  <%= f.collection_select(:condition_ids, Workstyle.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+
   <%= f.label :status %><br />
   <%= f.select :status, JobInformation.statuses.keys.to_a, {prompt: "ステータスを選択してください"} %><br />
 
   <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
-
   <%= f.submit '保存' %>
 <% end %>

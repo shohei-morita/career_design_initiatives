@@ -58,6 +58,11 @@ Rails.application.routes.draw do
     resources :scout_messages
   end
 
+  resources :industries, controller: :conditions, type: 'Industry'
+  resources :occupations, controller: :conditions, type: 'Occupation'
+  resources :workstles, controller: :conditions, type: 'Workstyle'
+  resources :workplaces, controller: :conditions, type: 'Workplace'
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

@@ -1,6 +1,10 @@
 class Company < ApplicationRecord
   belongs_to :recruiter
-  has_many :job_informations
+  has_many :job_informations, dependent: :destroy
+  has_many :company_industry_conditions, dependent: :destroy
+  has_many :conditions, through: :company_industry_conditions
+  has_many :industries, through: :company_industry_conditions, source: :condition
+
   validates :name, presence: true
   validates :foundation_year, presence: true
   validates :president_name, presence: true

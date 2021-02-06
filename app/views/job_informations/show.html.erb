@@ -1,9 +1,6 @@
 <%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
 <%= render partial: 'partials/global_nav' if student_signed_in? %>
 
-<h1>JobInformations#show</h1>
-<p>Find me in app/views/job_informations/show.html.erb</p>
-
 <h1>求人情報詳細</h1>
 
 <p>件名<br><%= @job_information.title %></p>
@@ -15,6 +12,23 @@
 <p>休日・休暇<br><%= @job_information.day_off %></p>
 <p>福利厚生<br><%= @job_information.benefit %></p>
 <p>選考プロセス<br><%= @job_information.selection %></p>
+<p>職種<br>
+  <% @job_information.conditions.where(type: 'Occupation').each do |occupation| %>
+    <%=  occupation.name %> /
+  <% end %>
+</p>
+
+<p>働き方<br>
+  <% @job_information.conditions.where(type: 'Workstyle').each do |workstyle| %>
+    <%=  workstyle.name %> /
+  <% end %>
+</p>
+
+<p>勤務地<br>
+  <% @job_information.conditions.where(type: 'Workplace').each do |workplace| %>
+    <%=  workplace.name %> /
+  <% end %>
+</p>
 
 <%= link_to '求人情報編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id) if recruiter_signed_in? %>
 <%= link_to '戻る', :back %>

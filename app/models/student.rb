@@ -9,7 +9,12 @@ class Student < ApplicationRecord
   has_many :awards, dependent: :destroy
   has_many :scouts, dependent: :destroy
   has_many :target_lists, dependent: :destroy
-  has_many :student, through: :target_lists
+  has_many :student_desirable_conditions, dependent: :destroy
+  has_many :conditions, through: :student_desirable_conditions
+  has_many :industries, through: :student_desirable_conditions, source: :condition
+  has_many :occupations, through: :student_desirable_conditions, source: :condition
+  has_many :workstyles, through: :student_desirable_conditions, source: :condition
+  has_many :workplaces, through: :student_desirable_conditions, source: :condition
 
   include StringNormalizer
 

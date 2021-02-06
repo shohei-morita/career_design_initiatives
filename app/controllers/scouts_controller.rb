@@ -1,4 +1,7 @@
 class ScoutsController < ApplicationController
+  before_action :authenticate_student_and_recruiter, only: %i[index]
+  before_action :authenticate_recruiter!, only: %i[new create]
+
   def index
     if recruiter_signed_in?
       @scouts = current_recruiter.scouts.all

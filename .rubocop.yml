@@ -2165,7 +2165,7 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   CountAsOne: []
-  ExcludedMethods: [] # deprecated, retained for backwards compatibility
+  #IgnoredMethods: [] # deprecated, retained for backwards compatibility
   IgnoredMethods:
     # By default, exclude the `#refine` method, as it tends to have larger
     # associated blocks.
@@ -2212,8 +2212,8 @@ Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 20
   CountAsOne: []
-  ExcludedMethods: [] # deprecated, retained for backwards compatibility
-  IgnoredMethods: []
+  IgnoredMethods: [] # deprecated, retained for backwards compatibility
+  #IgnoredMethods: []
 
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
@@ -3205,7 +3205,7 @@ Style/ExplicitBlockArgument:
   StyleGuide: '#block-argument'
   Enabled: true
   # May change the yielding arity.
-  Safe: false
+  #Safe: false
   VersionAdded: '0.89'
 
 Style/ExponentialNotation:
@@ -3444,7 +3444,7 @@ Style/InfiniteLoop:
 
 Style/InlineComment:
   Description: 'Avoid trailing inline comments.'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.23'
 
 Style/InverseMethods:
@@ -4684,5 +4684,5 @@ Style/ZeroLengthPredicate:
 Documentation:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
+#Style/FrozenStringLiteralComment:
+#  Enabled: false
