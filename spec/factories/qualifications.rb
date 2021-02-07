@@ -5,7 +5,7 @@ FactoryBot.define do
     qualification_3rd { '世界遺産検定３級' }
     qualification_4th { '日商簿記検定３級' }
     qualification_5th { 'ビジネス実務法務検定３級' }
-    note { '学校の勉強の傍にがんばりました' }
+    note { '学校の勉強の傍でがんばりました' }
 
     association :student
   end

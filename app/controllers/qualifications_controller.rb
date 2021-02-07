@@ -40,7 +40,9 @@ class QualificationsController < ApplicationController
   end
 
   def qualification_params
-    params.require(:qualification).permit(:student_id, :location, :division, :school_name,
-                                                   :entrance_date, :graduation_date, :note)
+    params.require(:qualification).permit(
+      :student_id, :qualification_1st, :qualification_2nd, :qualification_3rd,
+      :qualification_4th, :qualification_5th, :note
+    )
   end
 end
