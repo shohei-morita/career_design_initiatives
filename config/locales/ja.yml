@@ -13,38 +13,39 @@ ja:
         current_password: 現行のパスワード
         avatar: プロフィール画像
         tel: 電話番号
+        birth_date: 生年月日
       address:
-        postcode: '郵便番号'
-        prefecture_code: '都道府県'
-        address_city: '市区町村'
-        address_street: '番地'
+        postcode: 郵便番号
+        prefecture_code: 都道府県
+        address_city: 市区町村
+        address_street: 番地
       apealing_point:
-        title: '自己PRタイトル'
-        content: '自己PR内容'
+        title: 自己PRタイトル
+        content: 自己PR内容
       apealing_image:
-        title: '画像タイトル'
-        content: '画像撮影の背景'
-        image: 'アピール画像'
+        title: 画像タイトル
+        content: 画像撮影の背景
+        image: アピール画像
       apealing_video:
-        title: '動画タイトル'
-        content: '動画作成の背景'
-        video: 'アピール動画'
+        title: 動画タイトル
+        content: 動画作成の背景
+        video: アピール動画
       educational_background:
-        location: '高校所在地'
-        division: '高校設置区分'
-        school_name: '高校名'
-        entrance_date: '入学年月'
-        graduation_date: '卒業(予定)年月'
-        note: '備考'
+        location: 高校所在地
+        division: 高校設置区分
+        school_name: 高校名
+        entrance_date: 入学年月
+        graduation_date: 卒業(予定)年月
+        note: 備考
       extracurricular_activity:
-        name: '活動名'
-        beginning_year: '開始年'
-        ending_year: '終了年'
-        summary: '活動概要'
+        name: 活動名
+        beginning_year: 開始年
+        ending_year: 終了年
+        summary: 活動概要
       award:
         title: 表彰名
         year: 受賞年
-        summary: 表彰概要
+        summary: 受賞の背景
       recruiter:
         email: メールアドレス
         department: 所属
