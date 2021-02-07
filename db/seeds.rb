@@ -5,8 +5,8 @@ CSV.foreach('db/csv/conditions.csv', headers: true) do |row|
   )
 end
 
-#Recruiter.create(family_name: '田中', given_name: '太郎', family_name_kana: 'タナカ', given_name_kana: 'タロウ',
-#                email: 'admin@gmail.com', password: '111111', department: '所属なし', tel: '090', admin: true, approved: true)
+Recruiter.create(family_name: '田中', given_name: '太郎', family_name_kana: 'タナカ', given_name_kana: 'タロウ',
+                email: 'admin@gmail.com', password: '111111', department: '所属なし', tel: '090', admin: true, approved: true)
 
 s1 = Student.find_by(family_name: '田中')
 s2 = Student.find_by(family_name: '山田')
