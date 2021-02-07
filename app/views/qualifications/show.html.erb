@@ -1,0 +1,13 @@
+<%= render partial: 'partials/global_nav' %>
+
+<h2>資格情報</h2>
+
+<p>資格① <%= @qualification.qualification_1st %></p>
+<p>資格② <%= @qualification.qualification_2nd  %></p>
+<p>資格③ <%= @qualification.qualification_3rd %></p>
+<p>資格④ <%= @qualification.qualification_4th %></p>
+<p>資格⑤ <%= @qualification.qualification_5th %> </p>
+<p>資格のアピール</p>
+ <%= @qualification.note %> <br>
+
+<%= link_to '編集', edit_student_qualification_path(current_student.id) %>

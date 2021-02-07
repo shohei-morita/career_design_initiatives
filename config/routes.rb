@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
     resource :address
     resource :educational_background
+    resource :qualification
     resources :extracurricular_activities
     resources :awards
 
