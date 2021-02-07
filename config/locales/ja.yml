@@ -86,6 +86,13 @@ ja:
         title: 件名
       scout_message:
         content: 本文
+      qualification:
+        qualification_1st: 資格①
+        qualification_2nd: 資格②
+        qualification_3rd: 資格③
+        qualification_4th: 資格④
+        qualification_5th: 資格⑤
+        note: 資格取得の背景
     errors:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
