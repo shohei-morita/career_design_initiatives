@@ -27,5 +27,11 @@
       <li><%= link_to '表彰情報一覧', student_awards_path(current_student.id) %></li>
     <% end %>
 
+    <% if current_student.qualification.nil? %>
+      <li><%= link_to '資格情報登録', new_student_qualification_path(current_student.id) %></li>
+    <% else %>
+      <li><%= link_to '資格情報', student_qualification_path(current_student.id) %></li>
+    <% end %>
+
 
   </ul>

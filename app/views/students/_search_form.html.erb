@@ -1,6 +1,6 @@
 <%= search_form_for @search, url: students_path do |f| %>
   <%= f.label :student, '生徒検索（フリーワード）' %><br>
-  <%= f.text_field :educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_cont, placeholder: '○○高校' %><br>
+  <%= f.text_field :educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_or_qualification_qualification_1st_or_qualification_qualification_2nd_or_qualification_qualification_3rd_or_qualification_qualification_4th_or_qualification_qualification_5th_cont, placeholder: '〇〇高校や〇〇部などで検索してください' %><br>
   <%= f.label :industries, '希望業界' %><br>
   <%= f.collection_select :industries_id_eq, Industry.all, :id, :name, include_blank: '指定しない' %><br>
   <%= f.label :occupations, '希望職種' %><br>

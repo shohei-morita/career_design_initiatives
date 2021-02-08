@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_075849) do
+ActiveRecord::Schema.define(version: 2021_02_07_100249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,19 @@ ActiveRecord::Schema.define(version: 2021_01_31_075849) do
     t.index ["company_id"], name: "index_job_informations_on_company_id"
   end
 
+  create_table "qualifications", force: :cascade do |t|
+    t.string "qualification_1st"
+    t.string "qualification_2nd"
+    t.string "qualification_3rd"
+    t.string "qualification_4th"
+    t.string "qualification_5th"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "student_id"
+    t.index ["student_id"], name: "index_qualifications_on_student_id"
+  end
+
   create_table "recruiters", force: :cascade do |t|
     t.string "family_name", null: false
     t.string "given_name", null: false
@@ -162,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_075849) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_recruiters_on_confirmation_token", unique: true
     t.index ["email"], name: "index_recruiters_on_email", unique: true
     t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
   end
@@ -250,6 +264,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_075849) do
   add_foreign_key "job_information_conditions", "conditions"
   add_foreign_key "job_information_conditions", "job_informations"
   add_foreign_key "job_informations", "companies"
+  add_foreign_key "qualifications", "students"
   add_foreign_key "scout_messages", "recruiters"
   add_foreign_key "scout_messages", "scouts"
   add_foreign_key "scout_messages", "students"

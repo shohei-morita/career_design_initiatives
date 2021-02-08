@@ -1,0 +1,32 @@
+<%= render partial: 'partials/global_nav' %>
+
+<h2>資格情報</h2>
+
+<% if @qualification.qualification_1st.present? %>
+  <p>資格 <%= @qualification.qualification_1st %></p>
+<% end %>
+
+<% if @qualification.qualification_2nd.present? %> %>
+  <p>資格 <%= @qualification.qualification_2nd %></p>
+<% end %>
+
+<% if @qualification.qualification_3rd.present? %>
+  <p>資格 <%= @qualification.qualification_3rd %></p>
+<% end %>
+
+<% if @qualification.qualification_4th.present? %>
+  <p>資格 <%= @qualification.qualification_4th %></p>
+<% end %>
+
+<% if @qualification.qualification_5th.present? %>
+  <p>資格 <%= @qualification.qualification_5th %> </p>
+<% end %>
+
+<p>資格のアピール</p>
+<% if @qualification.note.present? %>
+  <%= @qualification.note %> <br>
+<% else %>
+  記述はありません<br>
+<% end %>
+
+<%= link_to '編集', edit_student_qualification_path(current_student.id) %>

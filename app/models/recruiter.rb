@@ -28,7 +28,7 @@ class Recruiter < ApplicationRecord
   validates :given_name, presence: true
   validates :department, presence: true
   validates :tel, presence: true, format: { with: VALID_TEL_NUMBER_REGEX,
-                                            message: '電話番号は数字のみもしくはハイフン（ー）を含んだ形式で入力してください' }
+                                            message: 'は数字のみもしくはハイフン（ー）を含んだ形式で入力してください' }
   validates :family_name_kana, presence: true,
                                format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
   validates :given_name_kana, presence: true,

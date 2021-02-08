@@ -79,6 +79,59 @@
   </div>
 <% end %>
 
+<h3>希望条件</h3>
+<p>希望業界<br>
+  <% if @student.conditions.where(type: 'Industry').count == 0 %>
+   希望業界は登録されていません
+  <% else %>
+    <% @student.conditions.where(type: 'Industry').each do |industry| %>
+      <%=  industry.name %> /
+    <% end %>
+  <% end %>
+</p>
+
+<p>希望職種<br>
+  <% if @student.conditions.where(type: 'Occupation').count == 0  %>
+    希望職種は登録されていません
+  <% else %>
+    <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
+      <%=  occupation.name %> /
+    <% end %>
+  <% end %>
+</p>
+
+<p>希望する働き方<br>
+  <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
+    希望する働き方は登録されていません
+  <% else %>
+    <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
+      <%=  workstyle.name %> /
+    <% end %>
+  <% end %>
+</p>
+
+<p>希望勤務地<br>
+  <% if @student.conditions.where(type: 'Workplace').count == 0  %>
+    希望勤務地の登録はありません
+  <% else %>
+    <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
+      <%=  workplace.name %> /
+    <% end %>
+  <% end %>
+</p>
+
+<h3>保有資格情報</h3>
+<% if @student.qualification.qualification_1st.present? %> <%= @student.qualification.qualification_1st %>  <% end %>
+<% if @student.qualification.qualification_2nd.present? %> <%= @student.qualification.qualification_2nd %>  <% end %>
+<% if @student.qualification.qualification_3rd.present? %> <%= @student.qualification.qualification_3rd %>  <% end %>
+<% if @student.qualification.qualification_4th.present? %> <%= @student.qualification.qualification_4th %>  <% end %>
+<% if @student.qualification.qualification_5th.present? %> <%= @student.qualification.qualification_5th %>  <% end %>
+<br>
+
+<% if @student.qualification.note.present? %>
+  <p>コメント:<%= @student.qualification.note %></p>
+<% end %>
+
 <% if @target_list.present? %>
   <%= link_to 'Listを解除する', target_list_path(id: @target_list.id, key: 'company_show'), method: :delete %>
 <% else %>
