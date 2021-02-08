@@ -2,12 +2,31 @@
 
 <h2>資格情報</h2>
 
-<p>資格① <%= @qualification.qualification_1st %></p>
-<p>資格② <%= @qualification.qualification_2nd  %></p>
-<p>資格③ <%= @qualification.qualification_3rd %></p>
-<p>資格④ <%= @qualification.qualification_4th %></p>
-<p>資格⑤ <%= @qualification.qualification_5th %> </p>
+<% if @qualification.qualification_1st.present? %>
+  <p>資格 <%= @qualification.qualification_1st %></p>
+<% end %>
+
+<% if @qualification.qualification_2nd.present? %> %>
+  <p>資格 <%= @qualification.qualification_2nd %></p>
+<% end %>
+
+<% if @qualification.qualification_3rd.present? %>
+  <p>資格 <%= @qualification.qualification_3rd %></p>
+<% end %>
+
+<% if @qualification.qualification_4th.present? %>
+  <p>資格 <%= @qualification.qualification_4th %></p>
+<% end %>
+
+<% if @qualification.qualification_5th.present? %>
+  <p>資格 <%= @qualification.qualification_5th %> </p>
+<% end %>
+
 <p>資格のアピール</p>
- <%= @qualification.note %> <br>
+<% if @qualification.note.present? %>
+  <%= @qualification.note %> <br>
+<% else %>
+  記述はありません<br>
+<% end %>
 
 <%= link_to '編集', edit_student_qualification_path(current_student.id) %>

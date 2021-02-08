@@ -44,6 +44,17 @@ RSpec.describe Qualification, type: :model do
     expect(@qualification.errors[:qualification_5th]).to include('は50文字以内で入力してください')
   end
 
+  it 'qualification_1stから5thがいずれも入力されていない場合、無効である' do
+    @qualification.qualification_1st = nil
+    @qualification.qualification_2nd = nil
+    @qualification.qualification_3rd = nil
+    @qualification.qualification_4th = nil
+    @qualification.qualification_5th = nil
+    @qualification.valid?
+
+    expect(@qualification.errors[:qualification_any]).to include('を入力してください')
+  end
+
   it 'noteが500文字を超えている場合、無効である' do
     @qualification.note = 'a' * 501
     @qualification.valid?
