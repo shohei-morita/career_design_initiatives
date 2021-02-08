@@ -54,8 +54,7 @@ class JobInformationsController < ApplicationController
   def job_information_params
     params.require(:job_information).permit(
       :recruiter_id, :title, :content, :appealing_point, :pay,
-      :working_hour, :working_status, :benefit, :day_off, :selection, :status,
-      condition_ids:[]
+      :working_hour, :working_status, :benefit, :day_off, :selection, :status, condition_ids:[]
       )
   end
 end

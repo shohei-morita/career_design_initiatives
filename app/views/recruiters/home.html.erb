@@ -1,1 +1,23 @@
 <%= render partial: 'partials/company_global_nav' %>
+
+
+<table>
+  <tr>
+    <th>スカウト残数</th>
+    <th>送信数</th>
+    <th>開封数</th>
+    <th>開封率</th>
+  </tr>
+  <tr>
+    <td><%= 50 - @scouts.all.count %></td>
+    <td><%= sends = @scouts.all.count %></td>
+    <td><%= read = @scouts.where(read_unread: true).count %></td>
+    <td>
+      <% if @scouts.all.count > 0 %>
+        <%= (read / sends.to_f).round(3) * 100 %>%
+      <% else %>
+        ー
+      <% end %>
+    </td>
+  </tr>
+</table>

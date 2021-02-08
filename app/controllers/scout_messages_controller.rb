@@ -2,10 +2,15 @@ class ScoutMessagesController < ApplicationController
   before_action do
     @scout = Scout.find(params[:scout_id])
   end
-  
+
   before_action :authenticate_student_and_recruiter
 
   def index
+    if student_signed_in?
+      @scout.read_unread = true
+      @scout.save
+    end
+
     @scout_messages = @scout.scout_messages.order(created_at: 'ASC')
     @recruiter = @scout.recruiter
 
