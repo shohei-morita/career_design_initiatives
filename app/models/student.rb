@@ -74,4 +74,14 @@ class Student < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def active_for_authentication?
+    if suspended == false
+      super && !suspended?
+    end
+  end
+
+  def inactive_message
+    suspended? ? super : 'アカウントが凍結されています'
+  end
 end

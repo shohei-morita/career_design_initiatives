@@ -30,11 +30,13 @@
   <% end %>
   <div class="form-group">
 
-  <p>アカウント状況<%= @recruiter.suspended %><p>
-    <% if @recruiter.suspended == false %>
-      <%= f.submit "アカウント凍結", name: "suspended",  Class: "btn btn-info"%>
-    <% else %>
+    <p>アカウント状況<br>
+      <%= @recruiter.suspended ? '凍結' : 'アクティブ' %>
+    </p>
+    <% if @recruiter.suspended %>
       <%= f.submit "凍結解除", name: "release",  Class: "btn btn-info"%>
+    <% else %>
+      <%= f.submit "アカウント凍結", name: "suspended",  Class: "btn btn-info"%>
     <% end %>
 
   </div>

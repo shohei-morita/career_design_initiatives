@@ -2,6 +2,7 @@ module Admin
   class RecruitersController < ApplicationController
     before_action :if_not_admin
     before_action :set_recruiter, only: %i[show edit update destroy]
+    before_action :set_student, only: %i[show_student edit_student update_student destroy_student]
     before_action :authenticate_recruiter!
 
     def index
@@ -10,11 +11,32 @@ module Admin
                     else
                       Recruiter.all
                     end
+      @students = Student.all
     end
 
     def show; end
 
     def edit; end
+
+    def show_student; end
+
+    def edit_student; end
+
+    def update_student
+      if params[:back]
+        redirect_to admin_recruiters_path
+      elsif params[:suspended]
+        @student.suspended = true
+        @student.save
+        redirect_to edit_student_admin_recruiter_path(@student.id)
+      elsif params[:release]
+        @student.suspended = false
+        @student.save
+        redirect_to edit_student_admin_recruiter_path(@student.id)
+      else
+        render :edit_student
+      end
+    end
 
     def update
       if params[:back]
@@ -64,6 +86,10 @@ module Admin
 
     def set_recruiter
       @recruiter = Recruiter.find(params[:id])
+    end
+
+    def set_student
+      @student = Student.find(params[:id])
     end
   end
 end
