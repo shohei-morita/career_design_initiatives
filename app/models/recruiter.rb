@@ -35,11 +35,15 @@ class Recruiter < ApplicationRecord
                               format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
 
   def active_for_authentication?
-    super && approved?
+    if approved == false
+      super && approved?
+    elsif approved == true && suspended == false
+      super && !suspended?
+    end
   end
 
   def inactive_message
-    approved? ? super : 'アカウントがまだ承認されていません'
+    approved? ? super : 'アカウントがまだ承認されていません' || suspended? ? super : 'アカウントが凍結されています'
   end
 
   def password_required?

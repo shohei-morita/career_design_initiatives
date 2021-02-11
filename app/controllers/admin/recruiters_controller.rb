@@ -26,8 +26,14 @@ module Admin
         RegistrationMailer.approval(@recruiter, @password).deliver
         @recruiter.save
         redirect_to edit_admin_recruiter_path(@recruiter.id)
-      elsif @recruiter.update(recruiter_params)
-        redirect_to admin_recruiters_path
+      elsif params[:suspended]
+        @recruiter.suspended = true
+        @recruiter.save
+        redirect_to edit_admin_recruiter_path(@recruiter.id)
+      elsif params[:release]
+        @recruiter.suspended = false
+        @recruiter.save
+        redirect_to edit_admin_recruiter_path(@recruiter.id)
       else
         render :edit
       end
