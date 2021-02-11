@@ -4,9 +4,12 @@ class StudentsController < ApplicationController
   before_action :authenticate_recruiter!, only: %i[index company_show]
   before_action :authenticate_student!, only: %i[hom profile pr show]
 
+  PER = 10
+
   def index
     @search = Student.ransack(params[:q])
     @result_students = @search.result(distinct: true)
+    @student_pages = @result_students.page(params[:page]).per(PER)
   end
 
   def home; end

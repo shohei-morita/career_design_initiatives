@@ -1,8 +1,11 @@
 class TargetListsController < ApplicationController
   before_action :authenticate_recruiter!
 
+  PER = 10
+
   def index
     @targets = TargetList.all
+    @target_pages = @targets.page(params[:page]).per(PER)
     scouts = current_recruiter.scouts
     @scout_ids = []
     scouts.each do |s|
