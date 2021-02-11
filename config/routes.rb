@@ -20,19 +20,14 @@ Rails.application.routes.draw do
       get :settings
     end
     resource :company, only: %i(show edit update)
-    resources :job_informations do
-      collection do
-        post :confirm
-      end
-    end
+    resources :job_informations
   end
 
   resources :target_lists, only: %i(index create destroy)
 
   namespace :admin do
-    resources :recruiters do
+    resources :recruiters, except: %i(show) do
       member do
-        get :show_student
         get :edit_student
         patch :update_student
         delete :destroy_student
@@ -51,22 +46,22 @@ Rails.application.routes.draw do
       get :company_show
     end
 
-    resource :address
-    resource :educational_background
-    resource :qualification
+    resource :address, except: %i(destroy)
+    resource :educational_background, except: %i(destroy)
+    resource :qualification, except: %i(destroy)
     resources :extracurricular_activities
     resources :awards
 
-    resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint'
-    resource :apealing_image, controller: :self_introductions, type: 'ApealingImage'
-    resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo'
+    resource :apealing_point, controller: :self_introductions, type: 'ApealingPoint', except: %i(destroy)
+    resource :apealing_image, controller: :self_introductions, type: 'ApealingImage', except: %i(destroy)
+    resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo', except: %i(destroy)
   end
 
-  resources :scouts do
-    resources :scout_messages
+  resources :scouts, only: %i(index create) do
+    resources :scout_messages, only: %i(index create)
   end
 
-  resources :notifications
+  resources :notifications, only: %i(index show)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
