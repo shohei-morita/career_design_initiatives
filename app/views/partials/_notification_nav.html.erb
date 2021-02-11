@@ -2,7 +2,7 @@
   <a>
     <% @notifications = Notification.where(object: "student", object_id: current_student.id).order(created_at: "DESC") if student_signed_in? %>
     <% @notifications = Notification.where(object: "recruiter", object_id: current_recruiter.id).order(created_at: "DESC") if recruiter_signed_in? %>
-    <i></i> <%= @notifications.where(checked: false).count if @notifications.present? %> 件の新着メッセージがあります
+    <i></i> <%= @notifications.present? ? "#{@notifications.where(checked: false).count}件の新着メッセージがあります" : '' %>
   </a>
   <div>
     <% if @notifications.present? %>
@@ -12,7 +12,6 @@
      <% end %>
      <%= link_to "もっと見る", notifications_path %>
     <% else %>
-      <span>メッセージはありません</span>
-    <% end %>
+   <% end %>
   </div>
 </li>

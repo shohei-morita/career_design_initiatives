@@ -121,15 +121,19 @@
 </p>
 
 <h3>保有資格情報</h3>
-<% if @student.qualification.qualification_1st.present? %> <%= @student.qualification.qualification_1st %>  <% end %>
-<% if @student.qualification.qualification_2nd.present? %> <%= @student.qualification.qualification_2nd %>  <% end %>
-<% if @student.qualification.qualification_3rd.present? %> <%= @student.qualification.qualification_3rd %>  <% end %>
-<% if @student.qualification.qualification_4th.present? %> <%= @student.qualification.qualification_4th %>  <% end %>
-<% if @student.qualification.qualification_5th.present? %> <%= @student.qualification.qualification_5th %>  <% end %>
+<% if @student.qualification.present? %>
+  <%= @student.qualification.qualification_1st.present? ? @student.qualification.qualification_1st : '' %>
+  <%= @student.qualification.qualification_2nd.present? ? @student.qualification.qualification_2nd : '' %>
+  <%= @student.qualification.qualification_3rd.present? ? @student.qualification.qualification_3rd : '' %>
+  <%= @student.qualification.qualification_4th.present? ? @student.qualification.qualification_4th : '' %>
+  <%= @student.qualification.qualification_5th.present? ? @student.qualification.qualification_5th : '' %>
 <br>
 
-<% if @student.qualification.note.present? %>
-  <p>コメント:<%= @student.qualification.note %></p>
+  <% if @student.qualification.note.present? %>
+    <p>コメント:<%= @student.qualification.note %></p>
+  <% end %>
+<% else %>
+  <p> 資格情報は登録されていません </p>
 <% end %>
 
 <% if @target_list.present? %>
