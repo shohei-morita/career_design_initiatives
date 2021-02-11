@@ -1,0 +1,16 @@
+<div>
+  <h3>Notifications</h3>
+  <table class="table">
+    <tbody>
+      <% @notifications.each do |notification| %>
+      <tr>
+        <td class="p-1 m-1">
+          <span>
+            <%= link_to "#{notification.message} / #{notification.message_time} #{notification.checked ? '/ 既読' : '/ 未読'} ", notification_path(notification.id) %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

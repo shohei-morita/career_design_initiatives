@@ -14,10 +14,12 @@
     <td><%= read = @scouts.where(read_unread: true).count %></td>
     <td>
       <% if @scouts.all.count > 0 %>
-        <%= (read / sends.to_f).round(3) * 100 %>%
+        <%= ((read / sends.to_f) * 100).round(1) %>%
       <% else %>
         ー
       <% end %>
     </td>
   </tr>
 </table>
+
+<%= render partial: 'partials/notification_nav' %>

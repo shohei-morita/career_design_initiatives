@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/show'
+  get 'notifications/index'
   root 'top#top'
   get 'top/applicaiton_completion', to: 'top#application_completion'
 
@@ -58,6 +60,8 @@ Rails.application.routes.draw do
   resources :scouts do
     resources :scout_messages
   end
+
+  resources :notifications
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

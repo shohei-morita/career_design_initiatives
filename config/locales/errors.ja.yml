@@ -28,6 +28,11 @@ ja:
           attributes:
             beginning_year:
               blank: 'を選択してください'
+        scout:
+          attributes:
+            student_id:
+              taken: 'にはすでにスカウトを送信しています'
+              required: 'にはすでにスカウトを送信しています'
         award:
           attributes:
             year:

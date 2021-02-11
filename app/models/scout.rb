@@ -9,6 +9,7 @@ class Scout < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validate :scouts_count_must_be_within_limit
+  validates :student_id, uniqueness: true
 
   def message_time
     created_at.strftime('%m/%d/%y at %l:%M %p')

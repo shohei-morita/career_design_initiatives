@@ -39,6 +39,25 @@ class ScoutMessagesController < ApplicationController
 
     @scout_message = @scout.scout_messages.build(scout_message_params)
     if @scout_message.save
+      if @scout_message.recruiter_id
+        notification = Notification.create(
+          object: 'student',
+          object_id: @scout.student_id,
+          action: 'scoutmessage',
+          action_id: @scout_message.id,
+        )
+        notification.message = notification.new_message
+        notification.save
+      elsif @scout_message.student_id
+        notification = Notification.create(
+          object: 'recruiter',
+          object_id: @scout.recruiter_id,
+          action: 'scoutmessage',
+          action_id: @scout_message.id,
+        )
+        notification.message = notification.new_message
+        notification.save
+      end
       redirect_to scout_scout_messages_path(@scout.id)
     else
       render 'index'

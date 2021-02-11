@@ -85,6 +85,7 @@ ja:
         status: ステータス
       scout:
         title: 件名
+        student_id: 対象者
       scout_message:
         content: 本文
       qualification:

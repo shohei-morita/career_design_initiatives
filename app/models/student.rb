@@ -51,6 +51,10 @@ class Student < ApplicationRecord
     )
   end
 
+  def create_scout!(current_student)
+    temp = Notification.where(["student_id = ? and recruiter_id = ?"])
+  end
+
   def thumbnail
     avatar.variant(resize: '150x150').processed
   end
