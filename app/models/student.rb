@@ -51,6 +51,10 @@ class Student < ApplicationRecord
     )
   end
 
+  def create_scout!(current_student)
+    temp = Notification.where(["student_id = ? and recruiter_id = ?"])
+  end
+
   def thumbnail
     avatar.variant(resize: '150x150').processed
   end
@@ -69,5 +73,15 @@ class Student < ApplicationRecord
     result = update(params, *options)
     clean_up_passwords
     result
+  end
+
+  def active_for_authentication?
+    if suspended == false
+      super && !suspended?
+    end
+  end
+
+  def inactive_message
+    suspended? ? super : 'アカウントが凍結されています'
   end
 end

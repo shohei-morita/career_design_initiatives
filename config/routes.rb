@@ -30,7 +30,14 @@ Rails.application.routes.draw do
   resources :target_lists, only: %i(index create destroy)
 
   namespace :admin do
-    resources :recruiters
+    resources :recruiters do
+      member do
+        get :show_student
+        get :edit_student
+        patch :update_student
+        delete :destroy_student
+      end
+    end
   end
 
   resources :students, only: %i(index show) do
@@ -58,6 +65,8 @@ Rails.application.routes.draw do
   resources :scouts do
     resources :scout_messages
   end
+
+  resources :notifications
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

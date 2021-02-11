@@ -1,7 +1,8 @@
 module Admin
   class RecruitersController < ApplicationController
     before_action :if_not_admin
-    before_action :set_recruiter, only: %i[show edit update destroy]
+    before_action :set_recruiter, only: %i[edit update destroy]
+    before_action :set_student, only: %i[edit_student update_student destroy_student]
     before_action :authenticate_recruiter!
 
     def index
@@ -10,9 +11,8 @@ module Admin
                     else
                       Recruiter.all
                     end
+      @students = Student.all
     end
-
-    def show; end
 
     def edit; end
 
@@ -26,21 +26,53 @@ module Admin
         RegistrationMailer.approval(@recruiter, @password).deliver
         @recruiter.save
         redirect_to edit_admin_recruiter_path(@recruiter.id)
-      elsif @recruiter.update(recruiter_params)
-        redirect_to admin_recruiters_path
+      elsif params[:suspended]
+        @recruiter.suspended = true
+        @recruiter.save
+        redirect_to edit_admin_recruiter_path(@recruiter.id)
+      elsif params[:release]
+        @recruiter.suspended = false
+        @recruiter.save
+        redirect_to edit_admin_recruiter_path(@recruiter.id)
       else
         render :edit
       end
     end
 
     def destroy
-      @recruiter = Recruiter.find(params[:id])
       if @recruiter.destroy
         redirect_to admin_recruiters_path, danger: 'ユーザを削除しました'
       else
         redirect_to admin_recruiters_path
       end
     end
+
+    def edit_student; end
+
+    def update_student
+      if params[:back]
+        redirect_to admin_recruiters_path
+      elsif params[:suspended]
+        @student.suspended = true
+        @student.save
+        redirect_to edit_student_admin_recruiter_path(@student.id)
+      elsif params[:release]
+        @student.suspended = false
+        @student.save
+        redirect_to edit_student_admin_recruiter_path(@student.id)
+      else
+        render :edit_student
+      end
+    end
+
+    def destroy_student
+      if @student.destroy
+        redirect_to admin_recruiters_path, danger: 'ユーザを削除しました'
+      else
+        redirect_to admin_recruiters_path
+      end
+    end
+
 
     private
 
@@ -58,6 +90,10 @@ module Admin
 
     def set_recruiter
       @recruiter = Recruiter.find(params[:id])
+    end
+
+    def set_student
+      @student = Student.find(params[:id])
     end
   end
 end

@@ -18,9 +18,18 @@ class ScoutsController < ApplicationController
   def create
     @scout = Scout.new(scout_params)
     if @scout.save
+      notification = Notification.create(
+        object: 'student',
+        object_id: @scout.student_id,
+        action: 'scout',
+        action_id: @scout.id,
+      )
+      notification.message = notification.new_message
+      notification.save
       redirect_to scout_scout_messages_path(@scout.id), notice: 'スカウトを送信しました'
     else
-      render :new, notice: 'スカウトを送信できませんでした'
+      redirect_to request.referrer, flash: { error: @scout.errors.full_messages }
+      #render :new, notice: 'スカウトを送信できませんでした'
     end
   end
 

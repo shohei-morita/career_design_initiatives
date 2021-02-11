@@ -27,7 +27,7 @@
       <% if student.educational_background.nil? %>
         高校の所在地情報はありません。<br>
       <% else %>
-        所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name if student.educational_background.present?  %><br>
+        所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name %><br>
       <% end %>
 
       <% if student.apealing_point.nil? %>
@@ -56,3 +56,5 @@
   </tr>
 </table><br><br>
 <% end %>
+
+<%= paginate @student_pages %>

@@ -1,0 +1,17 @@
+<li>
+  <a>
+    <% @notifications = Notification.where(object: "student", object_id: current_student.id).order(created_at: "DESC") if student_signed_in? %>
+    <% @notifications = Notification.where(object: "recruiter", object_id: current_recruiter.id).order(created_at: "DESC") if recruiter_signed_in? %>
+    <i></i> <%= @notifications.present? ? "#{@notifications.where(checked: false).count}件の新着メッセージがあります" : '' %>
+  </a>
+  <div>
+    <% if @notifications.present? %>
+    <% @notifications.limit(5).each do |notification| %>
+     <%= link_to "#{notification.message} / #{notification.checked ? '/ 既読' : '/ 未読'}", notification_path(notification.id) %>
+    <div></div>
+     <% end %>
+     <%= link_to "もっと見る", notifications_path %>
+    <% else %>
+   <% end %>
+  </div>
+</li>
