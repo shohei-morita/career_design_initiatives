@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/show'
-  get 'notifications/index'
   root 'top#top'
   get 'top/applicaiton_completion', to: 'top#application_completion'
 

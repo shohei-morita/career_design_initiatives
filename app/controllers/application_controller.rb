@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def configure_permitted_parameters
     if resource_class == Student
       student_attributes = %i(family_name given_name family_name_kana given_name_kana
