@@ -57,11 +57,11 @@ Rails.application.routes.draw do
     resource :apealing_video, controller: :self_introductions, type: 'ApealingVideo', except: %i(destroy)
   end
 
-  resources :scouts, only: %i(index create) do
-    resources :scout_messages, only: %i(index create)
+  resources :scouts, only: %i(index new create) do
+    resources :scout_messages, only: %i(index new create)
   end
 
-  resources :notifications, only: %i(index show)
+  resources :notifications, only: %i(index new create show)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
