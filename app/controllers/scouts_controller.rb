@@ -26,10 +26,9 @@ class ScoutsController < ApplicationController
       )
       notification.message = notification.new_message
       notification.save
-      redirect_to scout_scout_messages_path(@scout.id), notice: 'スカウトを送信しました'
+      redirect_to scouts_path
     else
       redirect_to request.referrer, flash: { error: @scout.errors.full_messages }
-      #render :new, notice: 'スカウトを送信できませんでした'
     end
   end
 

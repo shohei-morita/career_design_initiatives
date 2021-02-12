@@ -3,7 +3,7 @@
 <%= form_with(model: @scout, local: true) do |f| %>
   <% if flash[:error].present? %>
   <ul class="errors">
-    <h3><%= flash[:error].count %>件のエラーがあります</h3>
+    <h2><%= flash[:error].count %>件のエラーがあります</h2>
     <% flash[:error].each do |e| %>
       <li><%= e %></li>
     <% end %>
