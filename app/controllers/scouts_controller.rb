@@ -37,8 +37,8 @@ class ScoutsController < ApplicationController
 
   def scout_params
     params.require(:scout).permit(
-      :student_id, :recruiter_id, :title,
-      scout_messages_attributes: %i[id scout_id recruiter_id content read_unread]
+      :student_id, :recruiter_id, :title, job_information_ids:[],
+      scout_messages_attributes: %i[id scout_id recruiter_id content read_unread],
     )
   end
 end

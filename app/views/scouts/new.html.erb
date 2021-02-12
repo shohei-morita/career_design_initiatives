@@ -17,6 +17,10 @@
     <%= message.text_area :content %>
     <%= message.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
   <% end %>
+
+  <%= f.label :job_information %><br />
+  <%= f.collection_select :job_information_ids, current_recruiter.company.job_informations.where(status: 1), :id, :title, {prompt: "添付する求人情報を選択してください"}, { multiple: true } %><br />
+
   <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
   <%= f.hidden_field :student_id, value: params[:student_id] %>
   <%= f.submit '送信' %>

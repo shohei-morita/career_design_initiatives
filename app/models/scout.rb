@@ -8,6 +8,7 @@ class Scout < ApplicationRecord
   accepts_nested_attributes_for :scout_messages
 
   has_many :scout_job_infos, dependent: :destroy
+  has_many :job_informations, through: :scout_job_infos
 
   validates :title, presence: true, length: { maximum: 50 }
   validate :scouts_count_must_be_within_limit
