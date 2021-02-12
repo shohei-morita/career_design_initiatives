@@ -7,6 +7,8 @@ class JobInformation < ApplicationRecord
   has_many :workstyles, through: :job_information_conditions, source: :condition
   has_many :workplaces, through: :job_information_conditions, source: :condition
 
+  has_many :scout_job_infos, dependent: :destroy
+
   enum status: { 準備中: 0, 公開中: 1 }
 
   validates :title, presence: true, length: { maximum: 50 }
