@@ -1,0 +1,2 @@
+class ScoutJobInfo < ApplicationRecord
+end

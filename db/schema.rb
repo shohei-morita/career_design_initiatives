@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_102839) do
+ActiveRecord::Schema.define(version: 2021_02_12_124643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,6 +191,15 @@ ActiveRecord::Schema.define(version: 2021_02_09_102839) do
     t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
   end
 
+  create_table "scout_job_infos", force: :cascade do |t|
+    t.bigint "job_information_id"
+    t.bigint "scout_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_information_id"], name: "index_scout_job_infos_on_job_information_id"
+    t.index ["scout_id"], name: "index_scout_job_infos_on_scout_id"
+  end
+
   create_table "scout_messages", force: :cascade do |t|
     t.text "content", null: false
     t.boolean "read_unread", default: false, null: false
@@ -277,6 +286,8 @@ ActiveRecord::Schema.define(version: 2021_02_09_102839) do
   add_foreign_key "job_information_conditions", "job_informations"
   add_foreign_key "job_informations", "companies"
   add_foreign_key "qualifications", "students"
+  add_foreign_key "scout_job_infos", "job_informations"
+  add_foreign_key "scout_job_infos", "scouts"
   add_foreign_key "scout_messages", "recruiters"
   add_foreign_key "scout_messages", "scouts"
   add_foreign_key "scout_messages", "students"
