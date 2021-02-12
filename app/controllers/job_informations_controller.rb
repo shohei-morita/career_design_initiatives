@@ -22,7 +22,12 @@ class JobInformationsController < ApplicationController
   end
 
   def show
-    @job_information = JobInformation.find(params[:id])
+    @job_information = @recruiter.company.job_informations.find(params[:id])
+    if @job_information.status == '準備中' && current_student
+      redirect_to request.referer
+    else @job_information.status == '準備中' && @recruiter.id != current_recruiter.id
+      redirect_to request.referer
+    end
   end
 
   def edit

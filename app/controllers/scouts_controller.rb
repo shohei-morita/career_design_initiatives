@@ -26,10 +26,9 @@ class ScoutsController < ApplicationController
       )
       notification.message = notification.new_message
       notification.save
-      redirect_to scout_scout_messages_path(@scout.id), notice: 'スカウトを送信しました'
+      redirect_to scouts_path
     else
       redirect_to request.referrer, flash: { error: @scout.errors.full_messages }
-      #render :new, notice: 'スカウトを送信できませんでした'
     end
   end
 
@@ -37,8 +36,8 @@ class ScoutsController < ApplicationController
 
   def scout_params
     params.require(:scout).permit(
-      :student_id, :recruiter_id, :title,
-      scout_messages_attributes: %i[id scout_id recruiter_id content read_unread]
+      :student_id, :recruiter_id, :title, job_information_ids:[],
+      scout_messages_attributes: %i[id scout_id recruiter_id content read_unread],
     )
   end
 end

@@ -6,6 +6,12 @@ class ScoutMessagesController < ApplicationController
   before_action :authenticate_student_and_recruiter
 
   def index
+    unless @scout.student_id == current_student.try(:id) || @scout.recruiter_id == current_recruiter.try(:id)
+      redirect_to scouts_path
+    end
+
+    @job_informations = @scout.job_informations.all
+
     if student_signed_in?
       @scout.read_unread = true
       @scout.save

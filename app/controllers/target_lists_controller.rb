@@ -4,7 +4,7 @@ class TargetListsController < ApplicationController
   PER = 10
 
   def index
-    @targets = TargetList.all
+    @targets = current_recruiter.target_lists.all
     @target_pages = @targets.page(params[:page]).per(PER)
     scouts = current_recruiter.scouts
     @scout_ids = []

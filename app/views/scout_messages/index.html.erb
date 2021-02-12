@@ -9,18 +9,20 @@
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
 
-<%= render 'message_form'%><br><br>
 
-<% if @recruiter.company.job_informations.where(status: 1).any? %>
-  <div>
-    公開中求人一覧
-    <table>
-      <% @recruiter.company.job_informations.each do |job_information| %>
-        <tr><td><%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id) if job_information.status == '公開中' %></td></tr>
-      <% end %>
-    </table>
-  </div><br><br>
+<ul>
+<% if @job_informations.nil? %>
+  <li>添付求人はありません</li>
+<% else %>
+  <% @job_informations.each do |job_information| %>
+  <li>
+    <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
+  </li>
+  <% end %>
 <% end %>
+</ul>
+
+<%= render 'message_form'%><br><br>
 
 <%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
   <% if @scout_message.errors.any? %>
