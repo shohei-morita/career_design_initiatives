@@ -1,57 +1,49 @@
 <%= current_recruiter.company.name %>
-<ul>
-  <li><%= link_to 'HOME', home_recruiters_path %></li>
-  <li><%= link_to '求人情報の登録・管理', recruiter_job_informations_path(current_recruiter.id) %></li>
-  <li><%= link_to '生徒検索', students_path %></li>
-  <li><%= link_to 'SCOUT', scouts_path %></li>
-  <li><%= link_to 'LIST', target_lists_path %></li>
-  <li><%= link_to '各種設定', settings_recruiters_path %></li>
-</ul>
 
 <div class="sitename">
-    <a href="#">Career Design Initiatives</a>
-  </div>
+  <a href="#">Career Design Initiatives</a>
+</div>
 
 
 <div class="navbar navbar-default" role="navigation">
-     <div class="navbar-collapse">
-       <ul class="nav navbar-nav">
-        <li class="global_nav">
-          <%= link_to(home_recruiters_path, class: 'nav-box') do %>
-            <span class="fa fa-home"></span>
-            HOME
-          <% end %>
-        </li>
-        <li class="global_nav nav-job-info">
-          <%= link_to(recruiter_job_informations_path(current_recruiter.id), class: 'nav-box') do %>
-            <span class="fas fa-briefcase"></span>
-            求人管理
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(students_path, class: 'nav-box-pr') do %>
-            <span class="fas fa-search-plus"></span>
-             生徒検索
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(target_lists_path, class: 'nav-box') do %>
-            <span class="fas fa-clipboard-list"></span>
-            TARGETS
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(scouts_path, class: 'nav-box') do %>
-            <span class="far fa-envelope"></span>
-            SCOUT
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(settings_recruiters_path, class: 'nav-box') do %>
-            <span class="fas fa-cogs"></span>
-            各種設定
-          <% end %>
-        </li>
-      </ul>
-    </div>
+  <div class="navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="global_nav">
+        <%= link_to(home_recruiters_path, class: 'nav-box') do %>
+          <span class="fa fa-home"></span>
+          HOME
+        <% end %>
+      </li>
+      <li class="global_nav nav-job-info">
+        <%= link_to(recruiter_job_informations_path(current_recruiter.id), class: 'nav-box') do %>
+          <span class="fas fa-briefcase"></span>
+          JOBS
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(students_path, class: 'nav-box-pr') do %>
+          <span class="fas fa-search-plus"></span>
+           SEARCH
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(target_lists_path, class: 'nav-box') do %>
+          <span class="fas fa-clipboard-list"></span>
+          TARGETS
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(scouts_path, class: 'nav-box') do %>
+          <span class="far fa-envelope"></span>
+          SCOUT
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(settings_recruiters_path, class: 'nav-box') do %>
+          <span class="fas fa-cogs"></span>
+          SETTINGS
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>

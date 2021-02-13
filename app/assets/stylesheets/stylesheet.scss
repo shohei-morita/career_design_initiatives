@@ -1,0 +1,25 @@
+.body {
+  background-color: #F7E7C0;
+}
+
+.btn {
+  display: inline-block;
+  width: 300px;
+  max-width: 100%;
+  padding: 15px 10px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+}
+
+.btn:focus,
+.btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
