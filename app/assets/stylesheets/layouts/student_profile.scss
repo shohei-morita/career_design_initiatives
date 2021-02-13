@@ -1,4 +1,4 @@
-.profile-wrapper .pr-wrapper {
+.profile-wrapper, .pr-wrapper, .student-show-wrapper {
   margin-top: 25px;
 }
 .profile-wrapper li{
@@ -9,4 +9,49 @@
 .pr-wrapper li{
   list-style: none;
   margin-bottom: 15px;
+}
+
+//生徒基本情報の見た目
+.student-show-table {
+  margin-left: 100px;
+  width: 70%;
+  border-collapse: collapse;
+}
+
+.student-show-table tr {
+  border-bottom: solid 2px white;
+}
+
+.student-show-table tr:last-child {
+  border-bottom: none;
+}
+
+.student-show-table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #E94A67;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.student-show-table th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #E94A67;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.student-show-table td{
+  width: 70%;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px 0;
 }
