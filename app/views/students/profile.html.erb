@@ -2,35 +2,35 @@
 
 <div class="profile-wrapper text-center container">
   <ul class="profile-list">
-    <li><%= link_to '基本情報', student_path(current_student.id), class: "btn" %></li>
+    <li><%= link_to '基本情報', student_path(current_student.id), class: "li-btn" %></li>
     <% if current_student.address.nil? %>
-      <li><%= link_to '住所登録', new_student_address_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '住所登録', new_student_address_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '住所情報', student_address_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '住所情報', student_address_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
     <% if current_student.educational_background.nil? %>
-      <li><%= link_to '所属高校登録', new_student_educational_background_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '所属高校登録', new_student_educational_background_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '所属高校情報', student_educational_background_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '所属高校情報', student_educational_background_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
     <% unless current_student.extracurricular_activities.any? %>
-      <li><%= link_to '課外活動登録', new_student_extracurricular_activity_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '課外活動登録', new_student_extracurricular_activity_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '登録課外活動一覧', student_extracurricular_activities_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '登録課外活動一覧', student_extracurricular_activities_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
     <% unless current_student.awards.any? %>
-      <li><%= link_to '表彰情報登録', new_student_award_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '表彰情報登録', new_student_award_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '表彰情報一覧', student_awards_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '表彰情報一覧', student_awards_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
     <% if current_student.qualification.nil? %>
-      <li><%= link_to '資格情報登録', new_student_qualification_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '資格情報登録', new_student_qualification_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '資格情報', student_qualification_path(current_student.id), class: "btn" %></li>
+      <li><%= link_to '資格情報', student_qualification_path(current_student.id), class: "li-btn" %></li>
     <% end %>
   </ul>
 </div>

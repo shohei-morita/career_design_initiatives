@@ -1,21 +1,23 @@
 <%= render partial: 'partials/global_nav' %>
-<h2>PR</h2>
+
+<div class="pr-wrapper text-center container">
   <ul>
     <% if current_student.apealing_point.nil? %>
-      <li><%= link_to '自己PR登録', new_student_apealing_point_path(current_student.id) %></li>
+      <li><%= link_to '自己PR登録', new_student_apealing_point_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '自己PR', student_apealing_point_path(current_student.id) %></li>
+      <li><%= link_to '自己PR', student_apealing_point_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
     <% if current_student.apealing_image.nil? %>
-      <li><%= link_to '自己PR画像登録', new_student_apealing_image_path(current_student.id) %></li>
+      <li><%= link_to '自己PR画像登録', new_student_apealing_image_path(current_student.id), class: "li-btn" %></li>
     <% else %>
-      <li><%= link_to '自己PR画像', student_apealing_image_path(current_student.id) %></li>
+      <li><%= link_to '自己PR画像', student_apealing_image_path(current_student.id), class: "li-btn" %></li>
     <% end %>
 
       <% if current_student.apealing_video.nil? %>
-        <li><%= link_to '自己PR動画登録', new_student_apealing_video_path(current_student.id) %></li>
+        <li><%= link_to '自己PR動画登録', new_student_apealing_video_path(current_student.id), class: "li-btn" %></li>
       <% else %>
-        <li><%= link_to '自己PR動画', student_apealing_video_path(current_student.id) %></li>
+        <li><%= link_to '自己PR動画', student_apealing_video_path(current_student.id), class: "li-btn" %></li>
     <% end %>
   </ul>
+</div>

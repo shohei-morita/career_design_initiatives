@@ -2,7 +2,7 @@
   background-color: #F7E7C0;
 }
 
-.btn {
+.li-btn {
   display: inline-block;
   width: 300px;
   max-width: 100%;
@@ -17,8 +17,8 @@
   color: #FFFEF6;
 }
 
-.btn:focus,
-.btn:hover {
+.li-btn:focus,
+.li-btn:hover {
   background-color: #B80D28;
   border-color: currentColor;
   color: #e25c00;
