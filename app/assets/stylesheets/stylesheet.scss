@@ -39,11 +39,35 @@
   text-decoration: none;
   transition: .25s;
   color: #FFFEF6;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .rounded-btn:focus,
 .rounded-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+//丸型のボタンパーツ(小さい)
+.rounded-btn-sm {
+  display: inline-block;
+  width: 50px;
+  max-width: 100%;
+  padding: 1px 1px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+}
+
+.rounded-btn-sm:focus,
+.rounded-btn-sm:hover {
   background-color: #B80D28;
   border-color: currentColor;
   color: #e25c00;
