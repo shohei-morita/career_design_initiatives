@@ -12,21 +12,21 @@
 }
 
 //生徒基本情報の見た目
-.student-show-table {
+.student-table {
   margin-left: 100px;
   width: 70%;
   border-collapse: collapse;
 }
 
-.student-show-table tr {
+.student-table tr {
   border-bottom: solid 2px white;
 }
 
-.student-show-table tr:last-child {
+.student-table tr:last-child {
   border-bottom: none;
 }
 
-.student-show-table th{
+.student-table th{
   position: relative;
   text-align: left;
   width: 30%;
@@ -36,7 +36,7 @@
   padding: 10px 0;
 }
 
-.student-show-table th:after{
+.student-table th:after{
   display: block;
   content: "";
   width: 0px;
@@ -49,7 +49,7 @@
   border-bottom: 10px solid transparent;
 }
 
-.student-show-table td{
+.student-table td{
   width: 0%;
   text-align: center;
   background-color: #eee;

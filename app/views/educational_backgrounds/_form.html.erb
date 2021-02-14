@@ -1,6 +1,5 @@
 <%= form_with(model: [student, educational_background], url: student_educational_background_path, local: true) do |f| %>
 <% if educational_background.errors.any? %>
-  <h2><%= educational_background.errors.count %>件のエラーがあります。</h2>
   <ul>
     <% educational_background.errors.full_messages.each do |message| %>
       <li><%= message %></li>
