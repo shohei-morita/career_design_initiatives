@@ -56,14 +56,13 @@
   padding: 10px 15px;
 }
 
-//生徒基本情報編集画面の見た目
-.student-edit-wrapper {
+//生徒基本関連情報編集画面の見た目
+.student-wrapper {
   width: 70%;
 }
 
 .normal-form {
-  display: block;
-  width: 450px;
+  width: 70%;
 }
 
 .form-after {
@@ -72,4 +71,8 @@
 
 ::placeholder {
   font-size: 0.8rem;
+}
+
+.educational_background-btn {
+  margin-left: 180px;
 }

@@ -10,7 +10,7 @@
   </head>
 
   <body class="body">
-    <div class="container-fluid">
+    <div class="container-fluid center-block">
       <header>
         <% if student_signed_in? %>
           <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete, class: "log_out" %></li>

@@ -7,28 +7,42 @@
   </ul>
 <% end %>
 
-  <%= f.label :location %><br />
-  <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, include_blank: '都道府県' %><br />
+<div class="wrapper student-wrapper container">
 
-  <%= f.label :division %><br />
-  <%= f.select :division, EducationalBackground.divisions.keys, include_blank: '選択してください' %><br />
+  <div class="form-group">
+    <strong><%= f.label :location %></strong>
+    <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, {}, { include_blank: '都道府県', class: "form-control normal-form" } %>
+  </div>
+  <div>
+    <strong><%= f.label :division %></strong>
+    <%= f.select :division, EducationalBackground.divisions.keys, {}, { include_blank: '選択してください', class: "form-control normal-form" } %>
+  </div>
 
-  <%= f.label :school_name %><br />
-  <%= f.text_field :school_name %><br />
+  <div class="form-group">
+    <strong><%= f.label :school_name %></strong>
+    <%= f.text_field :school_name, class: "form-control normal-form" %>
+  </div>
 
-  <%= f.label :entrance_date %><br />
-  <%= raw sprintf(f.date_select(:entrance_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %><br />
+  <div class="form-group">
+    <strong><%= f.label :entrance_date %>〜<%= f.label :graduation_date %></strong><br>
+    <%= raw sprintf(f.date_select(:entrance_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %>
+    〜
+    <%= raw sprintf(f.date_select(:graduation_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %>
+  </div>
 
-  <%= f.label :graduation_date %><br />
-  <%= raw sprintf(f.date_select(:graduation_date, use_month_numbers: true, prompt:"--", discard_day:true, date_separator:'%s'),'年')+'月' %><br />
+  <div class="form-group">
+    <strong><%= f.label :note %><strong>
+    <%= f.text_area :note, size: "20x10", class: "form-control normal-form" %>
+  </div>
 
-  <%= f.label :note %><br />
-  <%= f.text_area :note %><br />
   <% f.hidden_field :student_id, value: current_student.id %>
 
-  <% if request.path_info.include?('edit') %>
-    <%= f.submit '更新' %>
-  <% else %>
-    <%= f.submit '登録' %>
-  <% end %>
+  <div>
+    <% if request.path_info.include?('edit') %>
+      <%= f.submit '更新', class: "rounded-btn educational_background-btn" %>
+    <% else %>
+      <%= f.submit '登録', class: "rounded-btn educational_background-btn" %>
+    <% end %>
+  </div>
 <% end %>
+</div>
