@@ -7,6 +7,10 @@ class ApealingImage < SelfIntroduction
     image.variant(resize: '150x150').processed
   end
 
+  def profile_image_size_for_student
+    image.variant(resize: '300x300').processed
+  end
+
   def profile_image_size
     image.variant(resize: '500x500').processed
   end
