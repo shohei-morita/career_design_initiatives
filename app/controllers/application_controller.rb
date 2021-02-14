@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     if resource_class == Student
       student_attributes = %i(family_name given_name family_name_kana given_name_kana
-                              nickname tel gender graduation_year birth_date avatar)
+                              nickname tel gender graduation_year birth_date avatar address)
       devise_parameter_sanitizer.permit(:sign_up, keys: student_attributes)
       devise_parameter_sanitizer.permit(:account_update, keys: [student_attributes, condition_ids:[]])
 

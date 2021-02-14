@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
-  has_one :address, dependent: :destroy
+
   has_one :apealing_point, dependent: :destroy
   has_one :apealing_image, dependent: :destroy
   has_one :apealing_video, dependent: :destroy

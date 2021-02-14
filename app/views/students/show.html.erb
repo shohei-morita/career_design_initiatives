@@ -19,6 +19,10 @@
       <td><%= @student.family_name_kana.nil? && @student.given_name_kana.nil? ? 'カナ氏名未登録' : @student.family_name_kana << '  ' << @student.given_name_kana %></td>
     </tr>
     <tr>
+      <th>email</th>
+      <td><%= @student.email %></td>
+    </tr>
+    <tr>
       <th>ニックネーム</th>
       <td><%= @student.nickname.nil? ? 'ニックネーム未登録' : @student.nickname %></td>
     </tr>
@@ -33,6 +37,10 @@
     <tr>
       <th>性別</th>
       <td><%= @student.gender.nil? ? '性別未登録' : @student.gender %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @student.address.nil? ? '住所未登録' : @student.address %></td>
     </tr>
     <tr>
       <th>希望業界</th>
@@ -81,10 +89,6 @@
           <% end %>
         <% end %>
       </td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td><%= @student.email %></td>
     </tr>
   </table>
 

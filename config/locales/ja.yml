@@ -15,11 +15,13 @@ ja:
         tel: 電話番号
         birth_date: 生年月日
         gender: 性別
+        address: 住所
       address:
         postcode: 郵便番号
         prefecture_code: 都道府県
         address_city: 市区町村
         address_street: 番地
+        address_building: 建物
       apealing_point:
         title: 自己PRタイトル
         content: 自己PR内容

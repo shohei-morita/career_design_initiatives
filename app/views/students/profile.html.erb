@@ -3,11 +3,6 @@
 <div class="wrapper profile-wrapper text-center container">
   <ul class="profile-list">
     <li><%= link_to '基本情報', student_path(current_student.id), class: "li-btn" %></li>
-    <% if current_student.address.nil? %>
-      <li><%= link_to '住所登録', new_student_address_path(current_student.id), class: "li-btn" %></li>
-    <% else %>
-      <li><%= link_to '住所情報', student_address_path(current_student.id), class: "li-btn" %></li>
-    <% end %>
 
     <% if current_student.educational_background.nil? %>
       <li><%= link_to '所属高校登録', new_student_educational_background_path(current_student.id), class: "li-btn" %></li>

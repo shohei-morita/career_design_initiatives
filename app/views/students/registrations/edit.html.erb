@@ -33,12 +33,12 @@
 
   <div class="form-group">
     <strong><%= f.label :tel %></strong>
-    <%= f.text_field :tel, autofocus: true, autocomplete: "tel", class: "form-control normal-form"  %>
+    <%= f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "例:000-999-4444", class: "form-control normal-form"  %>
   </div>
 
   <div class="form-group">
     <strong><%= f.label :nickname %></strong>
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "form-control normal-form" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "記載した名前が企業に表示されます", class: "form-control normal-form" %>
   </div>
 
   <div calss="form-group">
@@ -49,6 +49,11 @@
   <div class="form-group">
     <strong><%= f.label :gender %></strong>
     <%= f.select :gender, Student.genders.keys, {prompt: "選択してください"}, {class: "form-control normal-form"} %>
+  </div>
+
+  <div calss="form-group">
+    <strong><%= f.label :address %></strong>
+    <%= f.text_field :address, class: "form-control normal-form", placeholder: "富山県富山市木場町1番１号 タナカビル204号室" %>
   </div>
 
   <div class="title">
