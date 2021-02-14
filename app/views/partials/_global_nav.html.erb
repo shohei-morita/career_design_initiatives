@@ -1,35 +1,36 @@
-<div class="sitename">
-    <a href="#">Career Design Initiatives</a>
-  </div>
-
-
-<div class="navbar navbar-default" role="navigation">
-     <div class="navbar-collapse">
-       <ul class="nav navbar-nav">
-        <li class="global_nav">
-          <%= link_to(home_students_path, class: 'nav-box') do %>
-            <span class="fa fa-home"></span>
-            HOME
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(profile_students_path, class: 'nav-box') do %>
-            <span class="fa fa-id-card"></span>
-            PROFILE
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(pr_students_path, class: 'nav-box-pr') do %>
-            <span class="fas fa-microphone-alt"></span>
-             Self APPEAL
-          <% end %>
-        </li>
-        <li class="global_nav">
-          <%= link_to(scouts_path, class: 'nav-box') do %>
-            <span class="far fa-envelope"></span>
-            SCOUT
-          <% end %>
-        </li>
-      </ul>
-    </div>
-</div>
+<nav class="navbar navbar-default fixed-top" id="h-nav">
+  <a class="nabbar-brand h-nav-title mr-auto p-0">
+  <a class="navbar-brand h-nav-title mr-auto p-0" href="#"><h4>Career Design Initiatives</h4></a>
+  <ul class="h-nav-menu mb-0 mr-auto">
+    <li class="global_nav">
+      <%= link_to(home_students_path, class: 'nav-box') do %>
+        <span class="fa fa-home"></span>
+        HOME
+      <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(profile_students_path, class: 'nav-box') do %>
+          <span class="fa fa-id-card"></span>
+          PROFILE
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(pr_students_path, class: 'nav-box-pr') do %>
+         <span class="fas fa-microphone-alt"></span>
+          Self APPEAL
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(scouts_path, class: 'nav-box') do %>
+          <span class="far fa-envelope"></span>
+          SCOUT
+        <% end %>
+      </li>
+      <li class="global_nav">
+        <%= link_to(destroy_student_session_path, method: :delete, class: 'nav-box') do %>
+          <span class="fas fa-sign-out-alt"></span>
+          LOGOUT
+        <% end %>
+      </li>
+    </ul>
+  </nav>

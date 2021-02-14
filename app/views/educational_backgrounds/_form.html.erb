@@ -1,13 +1,20 @@
-<%= form_with(model: [student, educational_background], url: student_educational_background_path, local: true) do |f| %>
-<% if educational_background.errors.any? %>
-  <ul>
-    <% educational_background.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: 'partials/global_nav' %>
 
 <div class="wrapper student-wrapper container">
+  <%= form_with(model: [student, educational_background], url: student_educational_background_path, local: true) do |f| %>
+  <% if educational_background.errors.any? %>
+    <ul>
+      <% educational_background.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if request.path_info.include?('edit') %>
+    <h3>高校情報編集</h3><br>
+  <% else %>
+    <h3>高校情報登録</h3><br>
+  <% end %>
 
   <div class="form-group">
     <strong><%= f.label :location %></strong>
