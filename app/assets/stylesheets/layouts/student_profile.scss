@@ -1,4 +1,4 @@
-.profile-wrapper, .pr-wrapper, .student-show-wrapper {
+.wrapper {
   margin-top: 25px;
 }
 .profile-wrapper li{
@@ -50,8 +50,26 @@
 }
 
 .student-show-table td{
-  width: 70%;
+  width: 0%;
   text-align: center;
   background-color: #eee;
-  padding: 10px 0;
+  padding: 10px 15px;
+}
+
+//生徒基本情報編集画面の見た目
+.student-edit-wrapper {
+  width: 70%;
+}
+
+.normal-form {
+  display: block;
+  width: 450px;
+}
+
+.form-after {
+  margin-left: 20px;
+}
+
+::placeholder {
+  font-size: 0.8rem;
 }

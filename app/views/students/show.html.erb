@@ -1,6 +1,6 @@
 <%= render partial: 'partials/global_nav' %>
 
-<div class="student-show-wrapper text-center container">
+<div class="wrapper student-show-wrapper text-center container">
   <table class="table student-show-table">
     <tr>
       <th>プロフィール画像</th>
@@ -32,7 +32,7 @@
     </tr>
     <tr>
       <th>性別</th>
-      <td><%= @student.gender.nil? ? '電話番号未登録' : @student.genders %></td>
+      <td><%= @student.gender.nil? ? '性別未登録' : @student.gender %></td>
     </tr>
     <tr>
       <th>希望業界</th>
@@ -42,6 +42,18 @@
         <% else %>
           <% @student.conditions.where(type: 'Industry').each do |industry| %>
             <%=  industry.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望職種</th>
+      <td>
+        <% if @student.conditions.where(type: 'Occupation').count == 0 %>
+          希望業界は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
+            <%=  occupation.name %> /
           <% end %>
         <% end %>
       </td>

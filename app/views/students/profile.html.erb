@@ -1,6 +1,6 @@
 <%= render partial: 'partials/global_nav' %>
 
-<div class="profile-wrapper text-center container">
+<div class="wrapper profile-wrapper text-center container">
   <ul class="profile-list">
     <li><%= link_to '基本情報', student_path(current_student.id), class: "li-btn" %></li>
     <% if current_student.address.nil? %>
