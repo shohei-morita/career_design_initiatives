@@ -51,26 +51,26 @@
 
 .student-table td{
   width: 0%;
-  text-align: center;
+  text-align: left;
   background-color: #eee;
   padding: 10px 15px;
 }
 
 //生徒基本情報テーブルの見た目（横型）
-.student-table-horizon {
+.table-horizon {
   width: 100%;
   border-collapse: collapse;
 }
 
-.student-table-horizon tr {
+.table-horizon tr {
   border-bottom: solid 2px white;
 }
 
-.student-table-horizon tr:last-child {
+.table-horizon tr:last-child {
   border-bottom: none;
 }
 
-.student-table-horizon th{
+.table-horizon th{
   position: relative;
   text-align: left;
   width: 30%;
@@ -80,7 +80,7 @@
   padding: 10px 0;
 }
 
-.student-table-horizon td{
+.table-horizon td{
   width: 0%;
   text-align: center;
   background-color: #eee;
@@ -106,5 +106,5 @@
 
 .educational_background-btn, .extracurricular_activity-btn,
 .awards-btn, .qualification-btn, .self_introduction-btn {
-  margin-left: 180px;
+  margin-left: 40%;
 }

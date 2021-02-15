@@ -38,5 +38,11 @@
         SETTINGS
       <% end %>
     </li>
-    </ul>
-  </nav>
+    <li class="global_nav">
+      <%= link_to(destroy_recruiter_session_path, method: :delete, class: 'nav-box') do %>
+        <span class="fas fa-sign-out-alt"></span>
+        LOGOUT
+      <% end %>
+    </li>
+  </ul>
+</nav>

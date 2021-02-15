@@ -28,6 +28,7 @@ RSpec.describe 'job_information機能', type: :system do
         fill_in 'job_information[benefit]', with: '特になし'
         fill_in 'job_information[day_off]', with: '特になし'
         fill_in 'job_information[selection]', with: '面接なし'
+        fill_in 'job_information[workplace_detail]', with: 'どこでも'
         select '準備中', from: 'job_information[status]'
 
         click_button '保存'
@@ -50,6 +51,7 @@ RSpec.describe 'job_information機能', type: :system do
         fill_in 'job_information[benefit]', with: '特になし'
         fill_in 'job_information[day_off]', with: '特になし'
         fill_in 'job_information[selection]', with: '面接なし'
+        fill_in 'job_information[workplace_detail]', with: 'どこでも'
         select '公開中', from: 'job_information[status]'
 
         click_button '保存'
