@@ -74,13 +74,62 @@
   color: #e25c00;
 }
 
-//チェックボックスフィールド
+//丸型の検索結果の各アクションボタンパーツ
+.rounded-action-btn {
+  display: inline-block;
+  width: 100px;
+  max-width: 100%;
+  padding: 5px 5px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 10px;
+}
+
+.rounded-action-btn:focus,
+.rounded-action-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+//丸型の検索結果表示ボタン
+.search-btn {
+  display: inline-block;
+  width: 200px;
+  max-width: 100%;
+  padding: 5px 5px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 10px;
+}
+
+.rounded-btn:focus,
+.rounded-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+/* チェックボックスフィールド */
 .checkbox {
   background-color: #eee;
   margin-bottom: 30px;
 }
 
-//メッセージボックス
+/* メッセージボックス */
 .message-box{
     position: relative;
     width: 70%;
@@ -105,7 +154,7 @@
     padding: 0;
 }
 
-//見出し
+/* 見出し */
 .heading {
   padding-bottom: 10px;
   border-bottom: 4px solid #e25c00;

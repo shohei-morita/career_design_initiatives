@@ -1,13 +1,34 @@
 <%= search_form_for @search, url: students_path do |f| %>
-  <%= f.label :student, '生徒検索（フリーワード）' %><br>
-  <%= f.text_field :educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_or_qualification_qualification_1st_or_qualification_qualification_2nd_or_qualification_qualification_3rd_or_qualification_qualification_4th_or_qualification_qualification_5th_cont, placeholder: '〇〇高校や〇〇部などで検索してください' %><br>
-  <%= f.label :industries, '希望業界' %><br>
-  <%= f.collection_select :industries_id_eq, Industry.all, :id, :name, include_blank: '指定しない' %><br>
-  <%= f.label :occupations, '希望職種' %><br>
-  <%= f.collection_select :occupations_id_eq, Occupation.all, :id, :name, include_blank: '指定しない' %><br>
-  <%= f.label :workstyles, '希望する働き方' %><br>
-  <%= f.collection_select :workstyles_id_eq, Workstyle.all, :id, :name, include_blank: '指定しない' %><br>
-  <%= f.label :workplaces, '希望勤務地' %><br>
-  <%= f.collection_select :workplaces_id_eq, Workplace.all, :id, :name, include_blank: '指定しない' %><br>
-  <%= f.submit '検索' %>
+  <table class="table search-table">
+    <tr class="control-group">
+      <th><%= f.label :student, 'フリーワード検索' %></th>
+      <td>
+        <%= f.text_field :educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_or_qualification_qualification_1st_or_qualification_qualification_2nd_or_qualification_qualification_3rd_or_qualification_qualification_4th_or_qualification_qualification_5th_cont, placeholder: '〇〇高校や〇〇部などで検索してください', class: "form-control" %>
+      </td>
+    <tr>
+    <tr class="control-group">
+      <th><%= f.label :industries, '希望業界' %></th>
+      <td><%= f.collection_select :industries_id_eq, Industry.all, :id, :name, { include_blank: '指定しない' }, { class: "form-control" }  %></td>
+    </tr>
+    <tr class="control-group">
+      <th><%= f.label :occupations, '希望職種' %></th>
+      <td><%= f.collection_select :occupations_id_eq, Occupation.all, :id, :name, { include_blank: '指定しない' }, { class: "form-control" }  %></td>
+    </tr>
+    <tr class="control-group">
+      <th><%= f.label :workstyles, '希望する働き方' %></th>
+      <td><%= f.collection_select :workstyles_id_eq, Workstyle.all, :id, :name, { include_blank: '指定しない' }, { class: "form-control" }  %></td>
+    </tr>
+    <tr class="control-group">
+      <th><%= f.label :workplaces, '希望勤務地' %></th>
+      <td><%= f.collection_select :workplaces_id_eq, Workplace.all, :id, :name, { include_blank: '指定しない' }, { class: "form-control" }  %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center">
+        <%= f.button(type: :submit, class: "search-btn") do %>
+          <i class="fas fa-search"></i>
+          この条件で検索
+        <% end %>
+      </td>
+    <tr>
+  </table>
 <% end %>

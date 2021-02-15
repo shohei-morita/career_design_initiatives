@@ -1,9 +1,13 @@
-//リクルーター基本関連情報編集画面の見た目
+/* リクルーター基本関連情報編集画面の見た目 */
 .recruiter-wrapper {
   width: 70%;
 }
 
-//タブメニュー
+.search-form-wrapper, {
+  width: 90%;
+}
+
+/* タブメニュー */
 .area {
   width: 100%;
   margin: auto;
@@ -41,7 +45,7 @@ input:checked + .tab_class + .content_class {
   display: block;
 }
 
-//求人リストの並び
+/* 求人リストの並び */
 .job-list li {
   display: inline-block;
 }
@@ -52,12 +56,11 @@ input:checked + .tab_class + .content_class {
   border-collapse: collapse;
 }
 
-//アコーディオンメニュー
+/* アコーディオンメニュー */
 .accordion-hidden{
   display: none;
 }
 
-/* Question部分 */
 .accordion-open {
   display: block;
   padding: 10px;
@@ -68,17 +71,15 @@ input:checked + .tab_class + .content_class {
   color: white;
 }
 
-/* Answer部分は最初は表示しない */
 .accordion-close {
   display: block;
   height: 0;
   overflow: hidden;
   padding: 0;
   opacity: 0;
-  transition: 0.5s;/* 表示速度の設定 */
+  transition: 0.5s;
 }
 
-/* チェックボックスにチェックが入ったらAnswer部分を表示 */
 .accordion-hidden:checked + .accordion-open + .accordion-close {
   height: auto;
   opacity: 1;
@@ -96,7 +97,7 @@ input:checked + .tab_class + .content_class {
   padding-right: 20px;
 }
 
-//求人情報テーブルの見た目(縦型)
+/*求人情報テーブルの見た目(縦型)*/
 .job-table {
   margin-left: 100px;
   width: 70%;
@@ -139,4 +140,49 @@ input:checked + .tab_class + .content_class {
   text-align: left;
   background-color: #eee;
   padding: 10px 15px;
+}
+
+/*検索フォーム*/
+.search-table th,
+.search-table td {
+  border: none;
+}
+
+/*検索結果表示*/
+.search-result-table {
+  border-collapse: collapse;
+  box-shadow: 4px 4px 4px grey;
+}
+
+.search-result-table th,
+.search-result-table td {
+  border: none;
+}
+
+.search-result-table .block1,
+.search-result-table .block3 {
+  background: #EEE9E8;
+}
+
+.search-result-table .block2 {
+  background: #C9C2C1;
+}
+
+.search-result-table .thumbnail {
+  width: 10%;
+}
+
+.search-result-table .intro {
+  width: 80%;
+}
+
+.search-result-table .action {
+  width: 10%;
+  text-align: center;
+  vertical-align: center;
+}
+
+.search-result-table .action_menu {
+  text-align: center;
+  vertical-align: center;
 }
