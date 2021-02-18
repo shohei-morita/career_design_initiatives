@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     elsif current_recruiter.admin? == false
       home_recruiters_path
     elsif current_recruiter.admin? == true
-      admin_recruiters_path
+      home_admin_recruiters_path
     else
       flash[:notice] = "新規登録が完了しました！"
       home_students_path

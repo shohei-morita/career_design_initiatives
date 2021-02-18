@@ -1,0 +1,28 @@
+<div class="wrapper show-wrapper container">
+  <%= search_form_for @search, url: admin_recruiters_path do |f| %>
+    <table class="table search-table">
+      <tr class="form-group">
+        <th><%= f.label :student, 'フリーワード検索' %></th>
+        <td>
+          <%= f.text_field :email_or_family_name_or_given_name_or_family_name_kana_or_given_name_kana_or_department_or_tel_or_company_name, class:"form-control" %>
+        </td>
+      <tr>
+      <tr class="form-group">
+        <th><%= f.label :approved, '承認状況' %></th>
+        <td><%= f.select :approved_eq, options_for_select({ '承認': true, '未承認': false }), { include_blank: true }, class: "form-control" %></td>
+      </tr>
+      <tr class="form-group">
+        <th><%= f.label :suspended, 'アカウント状況' %></th>
+        <td><%= f.select :approved_eq, options_for_select({ '凍結': true, 'アクティブ': false }),{ include_blank: true }, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center">
+          <%= f.button(type: :submit, class: "search-btn") do %>
+            <i class="fas fa-search"></i>
+            この条件で検索
+          <% end %>
+        </td>
+      <tr>
+    </table>
+  <% end %>
+</div>

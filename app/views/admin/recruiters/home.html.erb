@@ -1,0 +1,15 @@
+<%= render partial: 'partials/admin_company_global_nav' %>
+
+
+<div class="wrapper container">
+  <% if Recruiter.where(approved: false).count > 0 %>
+    <h3 class="heading-sm"><%= Recruiter.where(approved: false).count %>のアカウント申請があります</h3>
+    <% Recruiter.where(approved: false).each do |recruiter| %>
+     <ul class="admin-top-list">
+       <li>申請企業：<%= link_to "#{recruiter.company.name}", edit_admin_recruiter_path(recruiter.id) %></li>
+     </ul>
+    <% end %>
+    <% else %>
+  <h3 class="heading-sm">現在アカウント申請企業はありません</h3>
+  <% end %>
+</div>

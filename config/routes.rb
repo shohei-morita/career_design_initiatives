@@ -27,6 +27,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :recruiters, except: %i(show) do
+      collection do
+        get :home
+        get :student_index
+      end
       member do
         get :edit_student
         patch :update_student
