@@ -1,19 +1,41 @@
 <%= render partial: 'partials/company_global_nav' %>
 
-<h2>担当者情報</h2>
-<p>icon<br>
-<% if current_recruiter.avatar.attached? %>
-  <%= image_tag current_recruiter.avatar %>
-<% end %>
-</p>
-<p>所  属<br><%= current_recruiter.department %></p>
-<p>役  職<br><%= current_recruiter.title %></p>
-<p>姓  名<br><%= current_recruiter.family_name %>  <%= current_recruiter.given_name %></p>
-<p>カナ姓名<br><%= current_recruiter.family_name_kana %>  <%= current_recruiter.given_name_kana %></p>
-<p>email<br><%= current_recruiter.email %></p>
-<p>tel<br><%= current_recruiter.tel %></p>
-<p>fax<br><%= current_recruiter.fax %></p>
+<div class="wrapper recruiter-wrapper container">
+  <h3 class="heading">担当者情報</h3>
 
-<%= link_to '担当者情報編集', edit_profile_path(current_recruiter.id) %><br>
+  <table class="table job-table">
+    <tr>
+      <th>所属</th>
+      <td><%= current_recruiter.department %></td>
+    </tr>
+    <tr>
+      <th>役職</th>
+      <td><%= current_recruiter.title %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= current_recruiter.family_name %>  <%= current_recruiter.given_name %></td>
+    </tr>
+    <tr>
+      <th>カナ氏名</th>
+      <td><%= current_recruiter.family_name_kana %>  <%= current_recruiter.given_name_kana %></td>
+    </tr>
+    <tr>
+      <th>email</th>
+      <td><%= current_recruiter.email %></td>
+    </tr>
+    <tr>
+      <th>tel</th>
+      <td><%= current_recruiter.tel %></td>
+    </tr>
+    <tr>
+      <th>fax</th>
+      <td><%= current_recruiter.fax %></td>
+    </tr>
+  </table>
 
-<%= link_to "各種設定に戻る", settings_recruiters_path %>
+
+  <%= link_to '編集', edit_profile_path(current_recruiter.id), class: "rounded-btn job-info-btn" %><br>
+
+  <%= link_to "各種設定に戻る", settings_recruiters_path %>
+</div>

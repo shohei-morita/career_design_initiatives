@@ -63,6 +63,10 @@ class Student < ApplicationRecord
     avatar.variant(resize: '200x200').processed
   end
 
+  def header_image
+    avatar.variant(resize: '200x200').processed
+  end
+
   def update_without_current_password(params, *options)
     params.delete(:current_password)
     if params[:password].blank? && params[:password_confirmation].blank?

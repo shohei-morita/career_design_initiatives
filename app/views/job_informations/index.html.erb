@@ -6,36 +6,35 @@
 <%= link_to '新規登録', new_recruiter_job_information_path, class: "rounded-btn" %>
 <br><br>
 
-  <div class="area">
-    <input type="radio" name="tab_name" id="tab1" checked>
-    <label class="tab_class" for="tab1">準備中求人</label>
-    <div class="content_class">
-      <% if @draft_job_informations.any? %>
-        <% @draft_job_informations.each do |job_information| %>
-           <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
-             <td><%= job_information.title %></td>
-             <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>
-             <td><%= link_to '削除', recruiter_job_information_path(current_recruiter.id, job_information.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "rounded-btn-sm job-btn" %></td><br>
-          <% end %>
-        <% end %>
-      <% else %>
-        <h4>準備中の求人はありません</h4>
+<input type="checkbox" id="check1" class="accordion-hidden">
+<label for="check1" class="accordion-open">公開中求人</label>
+<label for="check1" class="accordion-close">
+  <% if @open_job_informations.any? %>
+    <% @open_job_informations.each do |job_information| %>
+       <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
+         <td><%= job_information.title %></td>
+         <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>
+         <td><%= link_to '削除', recruiter_job_information_path(current_recruiter.id, job_information.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "rounded-btn-sm job-btn" %></tds><br>
       <% end %>
-    </div>
-    <input type="radio" name="tab_name" id="tab2" >
-    <label class="tab_class" for="tab2">公開中求人</label>
-    <div class="content_class">
-      <% if @open_job_informations.any? %>
-        <% @open_job_informations.each do |job_information| %>
-           <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
-             <td><%= job_information.title %></td>
-             <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>
-             <td><%= link_to '削除', recruiter_job_information_path(current_recruiter.id, job_information.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "rounded-btn-sm job-btn" %></tds><br>
-          <% end %>
-        <% end %>
-      <% else %>
-        <h4>公開中の求人はありません</h4>
+    <% end %>
+  <% else %>
+    <h4>公開中の求人はありません</h4>
+  <% end %>
+</label>
+
+<input type="checkbox" id="check2" class="accordion-hidden">
+<label for="check2" class="accordion-open">準備中求人</label>
+<label for="check2" class="accordion-close">
+  <% if @draft_job_informations.any? %>
+    <% @draft_job_informations.each do |job_information| %>
+       <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
+         <td><%= job_information.title %></td>
+         <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>
+         <td><%= link_to '削除', recruiter_job_information_path(current_recruiter.id, job_information.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "rounded-btn-sm job-btn" %></td><br>
       <% end %>
-    </div>
-  </div>
+    <% end %>
+  <% else %>
+    <h4>準備中の求人はありません</h4>
+  <% end %>
+</label>
 </div>

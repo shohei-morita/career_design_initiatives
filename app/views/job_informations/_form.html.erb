@@ -70,15 +70,15 @@
       <% end %>
     </label>
     <input type="checkbox" id="check2" class="accordion-hidden">
-    <label for="check3" class="accordion-open">働き方選択</label>
-    <label for="check3" class="accordion-close">
+    <label for="check2" class="accordion-open">働き方選択</label>
+    <label for="check2" class="accordion-close">
       <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
         <%= b.label { b.check_box + b.text } %>
       <% end %>
     </label>
     <input type="checkbox" id="check3" class="accordion-hidden">
-    <label for="check2" class="accordion-open">勤務地選択</label>
-    <label for="check2" class="accordion-close">
+    <label for="check3" class="accordion-open">勤務地選択</label>
+    <label for="check3" class="accordion-close">
       <%= f.collection_check_boxes(:condition_ids, Workplace.all, :id, :name) do |b| %>
         <%= b.label { b.check_box + b.text } %>
       <% end %>

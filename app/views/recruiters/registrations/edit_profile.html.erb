@@ -1,67 +1,57 @@
 <%= render partial: 'partials/company_global_nav' %>
-<h2>担当者情報更新</h2>
+<div class="wrapper recruiter-wrapper container">
+  <h3 class="heading">担当者情報更新</h3>
 
-<%= form_for(resource, as: resource_name, url: update_profile_path, html: { method: :put }) do |f| %>
-  <%= render "recruiters/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: update_profile_path, html: { method: :put }) do |f| %>
+    <%= render "recruiters/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field form-group">
+      <strong><%= f.label :department %></strong>
+      <%= f.text_field :department, autofocus: true, autocomplete: "family_name", class: "form-control " %>
+    </div>
+
+    <div class="field form-group">
+      <strong><%= f.label :title %></strong>
+      <%= f.text_field :title, autofocus: true, autocomplete: "family_name", class: "form-control " %>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :"氏名" %></strong>
+      <div class="form-inline">
+        <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "form-control inline-form form-before" %>
+        <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name", class: "form-control inline-form form-after"  %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :"カナ氏名" %></strong>
+      <div class="form-inline">
+        <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "form-control inline-form form-before", placeholder: "カタカナかひらがなで入力"  %>
+        <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana", class: "form-control inline-form form-after", placeholder: "カタカナかひらがなで入力"   %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :email %></strong>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control "  %>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :tel %></strong>
+      <%= f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "例:000-999-4444", class: "form-control "  %>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :fax %></strong>
+      <%= f.text_field :tel, autofocus: true, autocomplete: "fax", placeholder: "例:000-999-4444", class: "form-control "  %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "変更", class:"rounded-btn job-info-btn" %>
+    </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div class="field">
-    <%= f.label :department %><br />
-    <%= f.text_field :department, autofocus: true, autocomplete: "family_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, autofocus: true, autocomplete: "family_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :family_name %><br />
-    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :given_name %><br />
-    <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :family_name_kana %><br />
-    <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :given_name_kana %><br />
-    <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tel %><br />
-    <%= f.text_field :tel, autofocus: true, autocomplete: "tel" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :fax %><br />
-    <%= f.text_field :fax, autofocus: true, autocomplete: "tel" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "変更" %>
-  </div>
-<% end %>
-
-
-<%= link_to "Back", :back %>
+</div>

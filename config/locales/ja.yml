@@ -90,6 +90,7 @@ ja:
       scout:
         title: 件名
         student_id: 対象者
+        job_information: 募集要項
       scout_message:
         content: 本文
       qualification:

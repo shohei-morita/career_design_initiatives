@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     resources :scout_messages, only: %i(index new create)
   end
 
-  resources :notifications, only: %i(index new create show)
+  resources :notifications, only: %i(index new create show destroy)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

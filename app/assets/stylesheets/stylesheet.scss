@@ -161,3 +161,17 @@
   font-size: 1.75rem;
   font-weight: bold;
 }
+
+.heading-sm {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #e25c00;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.student-image img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

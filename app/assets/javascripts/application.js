@@ -14,6 +14,5 @@
 //= require jquery
 //= require activestorage
 //= require jquery/dist/jquery.js
-//= require select2
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .

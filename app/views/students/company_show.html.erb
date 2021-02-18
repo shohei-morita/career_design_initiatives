@@ -1,149 +1,224 @@
 <%= render partial: 'partials/company_global_nav' %>
+<div class="wrapper container">
+  <h3 class="student-image">
+    <%= image_tag @student.header_image  %>
+    <%= @student.nickname.nil? ? "ID#{@student.id}さんのプロフィール" : "#{@student.nickname}さんのプロフィール" %>
+  </h3><br><br>
 
-<h3>自己PR情報</h3>
-<%= image_tag @student.profile_image  %>
+  <% if @student.apealing_point.nil? %>
+    <h3 class="heading">PR</h3>
+    <p>PRは登録されていません</p>
+  <% else %>
+    <h3 class="heading-sm">PR  <%= @student.apealing_point.title %></h3>
+    <p><%= simple_format(@student.apealing_point.content) %></p>
+  <% end %>
 
-<% if @student.apealing_point.nil? %>
-  <div>
-    <p>自己PRは登録されていません</p>
-  </div>
-<% else %>
-  <div>
-    <p>
-       タイトル:<%= @student.apealing_point.title %><br>
-       内容:<%= @student.apealing_point.content %>
-    </p>
-  </div>
-<% end %>
+  <% if @student.apealing_image.nil? %>
+    <h3 class="heading">PR画像</h3>
+    <p>PR動画は登録されていません</p>
+  <% else %>
+    <h3 class="heading-sm">PR画像  <%= @student.apealing_image.title %></h3>
+    <%= image_tag @student.apealing_image.profile_image_size %>
+    <p><%= simple_format(@student.apealing_point.content) %></p>
+  <% end %>
 
-<h3>学歴</h3>
-<% if @student.educational_background.nil? %>
-  <div>
-    <p>学歴情報は登録されていません</p>
-  </div>
-<% else %>
-  <div>
-    <p>
-      所在地:<%= JpPrefecture::Prefecture.find(@student.educational_background.location).name %><br>
-      学校:<%= @student.educational_background.division %><%= @student.educational_background.school_name %><br>
-      入学年月〜卒業（予定）年月:<%= l(@student.educational_background.entrance_date, format: :short) %>〜<%= l(@student.educational_background.graduation_date, format: :short) %><br>
-      備考:<%= @student.educational_background.note %>
-    </p>
-  </div>
-<% end %>
+  <% if @student.apealing_video.nil? %>
+    <h3 class="heading">PR動画</h3>
+    <p>PR動画は登録されていません</p>
+  <% else %>
+    <h3 class="heading-sm">PR動画  <%= @student.apealing_video.title %></h3>
+    <video src="<%= rails_blob_path(@student.apealing_video.video) %>" type="video/mp4" controls width="500" height="auto"></video>
+    <p><%= simple_format(@student.apealing_video.content) %></p>
+  <% end %>
 
-<h3>課外活動</h3>
-<% if @student.extracurricular_activities.nil? %>
-  <p>課外活動情報は登録されていません</p>
-<% else %>
-  <% @student.extracurricular_activities.each do |activity| %>
-    <p>
-      活動:<%= activity.name %>
-      活動期間:<%= l(activity.beginning_year, format: :very_short) %>
-        〜
-      <% if activity.ending_year.nil? %>
-        現在<br>
+  <h3 class="heading-sm">学歴情報</h3>
+  <% if @student.educational_background.nil? %>
+    学歴情報は登録されていません
+  <% else %>
+    <table class="table company-show-student-table">
+      <tr>
+        <th>所在地</th>
+        <td><%= JpPrefecture::Prefecture.find(@student.educational_background.location).name %></td>
+      </tr>
+      <tr>
+        <th>学校</th>
+        <td><%= @student.educational_background.division %><%= @student.educational_background.school_name %></td>
+      </tr>
+      <tr>
+        <th>入学〜卒業(予定)年</th>
+        <td><%= l(@student.educational_background.entrance_date, format: :short) %>〜<%= l(@student.educational_background.graduation_date, format: :short) %></td>
+      </tr>
+      <tr>
+        <th>概要</th>
+        <td><%= simple_format(@student.educational_background.note) %></td>
+      </tr>
+    </table>
+  <% end %>
+
+  <h3 class="heading-sm">課外活動</h3>
+  <% if @student.extracurricular_activities.nil? %>
+    課外活動情報は登録されていません
+  <% else %>
+  <table class="table table-horizon-top">
+    <tr>
+      <th>活動期間</th>
+      <th>課外活動名</th>
+      <th></th>
+    </tr>
+    <% @student.extracurricular_activities.each do |extracurricular_activity| %>
+    <tr>
+      <td>
+      <%= l(extracurricular_activity.beginning_year, format: :very_short)%>〜
+      <% if extracurricular_activity.ending_year.nil? %>
+        現在
       <% else %>
-        <%= l(activity.ending_year, format: :very_short) %><br>
+        <%= l(extracurricular_activity.ending_year, format: :very_short) %>
       <% end %>
-      概要:<%= activity.summary %>
-    </p>
-  <% end %>
-<% end %>
-
-<h3>PR画像</h3>
-<% if @student.apealing_image.nil? %>
-  <p>PR画像は登録されていません</p>
-<% else %>
-  <div>
-    <%= image_tag @student.apealing_image.profile_image_size if @student.apealing_image.image.present? %>
-    <p>
-      タイトル：<%= @student.apealing_image.title %><br>
-      内容：<%= @student.apealing_image.content %>
-    </p>
-  </div>
-<% end %>
-
-<h3>PR動画</h3>
-<% if @student.apealing_video.nil? %>
-  <p>PR画像は登録されていません</p>
-<% else %>
-  <div>
-    <% if @student.apealing_video.video.present? %>
-      <video src="<%= rails_blob_path(@student.apealing_video.video) %>" type="video/mp4" controls width="500" height="auto"></video>
+      </td>
+      <td><%= extracurricular_activity.name %></td>
+      <td><%= link_to '詳細', student_extracurricular_activity_path(@student.id, extracurricular_activity.id), class: "rounded-btn-sm" %></td>
+    </tr>
     <% end %>
-    <p>
-      タイトル：<%= @student.apealing_video.title %><br>
-      内容：<%= @student.apealing_video.content %>
-    </p>
-  </div>
-<% end %>
+    <% end %>
+  </table>
 
-<h3>希望条件</h3>
-<p>希望業界<br>
-  <% if @student.conditions.where(type: 'Industry').count == 0 %>
-   希望業界は登録されていません
+  <h3 class="heading-sm">受賞経歴</h3>
+  <table class="table table-horizon">
+  <tr>
+    <th>受賞年</th>
+    <th>表彰名</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @student.awards.all.each do |award| %>
+  <tr>
+    <td>
+      <% if award.year.nil?%>
+        不明
+        <% else %>
+      <%= l(award.year, format: :very_short)%></td>
+      <% end %>
+    <td><%= award.title %></td>
+    <td><%= link_to '詳細', student_award_path(@student.id, award.id), class: "rounded-btn-sm" %></td>
+  </tr>
+  <% end %>
+  </table>
+
+
+
+
+  <h3 class="heading-sm">希望条件</h3>
+
+  <table class="table company-show-student-table">
+    <tr>
+      <th>希望業界</th>
+      <td>
+        <% if @student.conditions.where(type: 'Industry').count == 0 %>
+         希望業界は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Industry').each do |industry| %>
+            <%=  industry.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望職種</th>
+      <td>
+        <% if @student.conditions.where(type: 'Occupation').count == 0 %>
+         希望職種は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
+            <%=  occupation.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望する働き方</th>
+      <td>
+        <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
+          希望する働き方は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
+            <%=  workstyle.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    <tr>
+    <tr>
+      <th>希望勤務地</th>
+      <td>
+        <% if @student.conditions.where(type: 'Workplace').count == 0  %>
+          希望勤務地は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
+            <%=  workplace.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+  <h3 class="heading">保有資格情報</h3>
+  <table class="table company-show-student-table">
+    <% if @student.qualification.nil? %>
+    <tr>
+      <th>資格名</th>
+      <td>資格情報は登録されていません</td>
+    </tr>
+    <% else %>
+    <% if @student.qualification.qualification_1st.nil? %>
+      <tr>
+        <th>資格名</th>
+        <td><%= @student.qualification.qualification_1st %></td>
+      </tr>
+    <% end %>
+
+    <% if @student.qualification.qualification_2nd.present? %>
+      <tr>
+        <th>資格名</th>
+        <td><%= @student.qualification.qualification_2nd %></td>
+      </tr>
+    <% end %>
+
+    <% if @qstudent.qualification.qualification_3rd.present? %>
+      <tr>
+        <th>資格名</th>
+        <td><%= @student.qualification.qualification_3rd %></td>
+      </tr>
+    <% end %>
+
+    <% if @student.qualification.qualification_4th.present? %>
+      <tr>
+        <th>資格名</th>
+        <td><%= @student.qualification.qualification_4th %></td>
+      </tr>
+    <% end %>
+
+    <% if @student.qualification.qualification_5th.present? %>
+      <tr>
+        <th>資格名</th>
+        <td><%= @student.qualification.qualification_5th %></td>
+      </tr>
+    <% end %>
+    <% if @student.qualification.note.present? %>
+      <tr>
+        <th>資格取得の背景</th>
+        <td><%= @student.qualification.note %></td>
+    <% end %>
+    <% end %>
+  </table>
+
+
+  <% if @target_list.present? %>
+    <%= link_to 'Listを解除する', target_list_path(id: @target_list.id, key: 'company_show'), method: :delete, class: "search-btn" %>
   <% else %>
-    <% @student.conditions.where(type: 'Industry').each do |industry| %>
-      <%=  industry.name %> /
-    <% end %>
+    <%= link_to 'Listに登録する', target_lists_path(student_id: @student.id, key: 'company_show'), method: :post, class: "search-btn" %>
   <% end %>
-</p>
 
-<p>希望職種<br>
-  <% if @student.conditions.where(type: 'Occupation').count == 0  %>
-    希望職種は登録されていません
+  <% if @scout_ids.include?(@student.id) %>
+    <%= link_to 'スカウト確認', scout_scout_messages_path(@student.scouts.ids, key: 'company_show'), class: "search-btn" %>
   <% else %>
-    <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
-      <%=  occupation.name %> /
-    <% end %>
+    <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: @student.id, key: 'company_show'), class: "search-btn" %>
   <% end %>
-</p>
-
-<p>希望する働き方<br>
-  <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
-    希望する働き方は登録されていません
-  <% else %>
-    <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
-      <%=  workstyle.name %> /
-    <% end %>
-  <% end %>
-</p>
-
-<p>希望勤務地<br>
-  <% if @student.conditions.where(type: 'Workplace').count == 0  %>
-    希望勤務地の登録はありません
-  <% else %>
-    <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
-      <%=  workplace.name %> /
-    <% end %>
-  <% end %>
-</p>
-
-<h3>保有資格情報</h3>
-<% if @student.qualification.present? %>
-  <%= @student.qualification.qualification_1st.present? ? @student.qualification.qualification_1st : '' %>
-  <%= @student.qualification.qualification_2nd.present? ? @student.qualification.qualification_2nd : '' %>
-  <%= @student.qualification.qualification_3rd.present? ? @student.qualification.qualification_3rd : '' %>
-  <%= @student.qualification.qualification_4th.present? ? @student.qualification.qualification_4th : '' %>
-  <%= @student.qualification.qualification_5th.present? ? @student.qualification.qualification_5th : '' %>
-<br>
-
-  <% if @student.qualification.note.present? %>
-    <p>コメント:<%= @student.qualification.note %></p>
-  <% end %>
-<% else %>
-  <p> 資格情報は登録されていません </p>
-<% end %>
-
-<% if @target_list.present? %>
-  <%= link_to 'Listを解除する', target_list_path(id: @target_list.id, key: 'company_show'), method: :delete %>
-<% else %>
-  <%= link_to 'Listに登録する', target_lists_path(student_id: @student.id, key: 'company_show'), method: :post %>
-<% end %>
-
-<% if @scout_ids.include?(@student.id) %>
-  <%= link_to 'スカウト確認', scout_scout_messages_path(@student.scouts.ids, key: 'company_show') %>
-<% else %>
-  <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: @student.id, key: 'company_show') %>
-<% end %>
+</div>

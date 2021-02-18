@@ -182,7 +182,22 @@ input:checked + .tab_class + .content_class {
   vertical-align: center;
 }
 
+.settings-list li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+
 .search-result-table .action_menu {
   text-align: center;
   vertical-align: center;
+}
+
+.password-form {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.table-horizon-top {
+  margin-right: 10px;
 }

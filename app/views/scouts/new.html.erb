@@ -1,27 +1,36 @@
 <%= render partial: 'partials/company_global_nav' %>
 
-<%= form_with(model: @scout, local: true) do |f| %>
-  <% if flash[:error].present? %>
-  <ul class="errors">
-    <h2><%= flash[:error].count %>件のエラーがあります</h2>
-    <% flash[:error].each do |e| %>
-      <li><%= e %></li>
+<div class="wrapper recruiter-wrapper container">
+  <h3 class="heading">スカウト送信</h3>
+  <%= form_with(model: @scout, local: true) do |f| %>
+    <% if flash[:error].present? %>
+    <ul class="errors">
+      <h2><%= flash[:error].count %>件のエラーがあります</h2>
+      <% flash[:error].each do |e| %>
+        <li><%= e %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
+
+    <table class="table">
+      <tr class="form-group">
+        <th><%= f.label :title %></th>
+        <td><%= f.text_field :title, class: "form-control" %></td>
+      </tr>
+    <%= f.fields_for :scout_messages do |message| %>
+      <tr class="form-group">
+        <th><%= message.label :content %></th>
+        <td><%= message.text_area :content, class: "form-control" %></td>
+      </tr>
+      <%= message.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+    <% end %>
+      <tr class="form-group">
+        <th><%= f.label :job_information %></th>
+        <td><%= f.collection_select :job_information_ids, current_recruiter.company.job_informations.where(status: 1), :id, :title, {prompt: "添付する求人情報を選択してください"}, { multiple: true, class: "form-control" } %></td>
+      </tr>
+    </table>
+    <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+    <%= f.hidden_field :student_id, value: params[:student_id] %>
+    <%= f.submit '送信', class: "rounded-btn  job-info-btn" %>
   <% end %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.fields_for :scout_messages do |message| %>
-    <%= message.label :content %>
-    <%= message.text_area :content %>
-    <%= message.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
-  <% end %>
-
-  <%= f.label :job_information %><br />
-  <%= f.collection_select :job_information_ids, current_recruiter.company.job_informations.where(status: 1), :id, :title, {prompt: "添付する求人情報を選択してください"}, { multiple: true } %><br />
-
-  <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
-  <%= f.hidden_field :student_id, value: params[:student_id] %>
-  <%= f.submit '送信' %>
-<% end %>
+</div>

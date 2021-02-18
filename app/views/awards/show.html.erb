@@ -1,7 +1,7 @@
 <%= render partial: 'partials/global_nav' %>
 
-<div class="wrapper show-wrapper text-center container">
-  <h3>表彰詳細</h3>
+<div class="wrapper show-wrapper container">
+  <h3 class="heading">表彰詳細</h3>
   <table class="table student-table">
     <tr>
       <th>表彰名</th>
@@ -16,5 +16,8 @@
       <td><%= @award.summary.nil? ? '概要の登録はありません' : simple_format(@award.summary) %></td>
     </tr>
   </table>
-  <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn" %>
+  <% if student_signed_in? %>
+    <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn" %>
+  <% end %>
+  <%= link_to '戻る', :back, class: "rounded-btn job-info-btn" %>
 </div>
