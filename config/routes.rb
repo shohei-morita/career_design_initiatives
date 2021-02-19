@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       get :settings
     end
     resource :company, only: %i(show edit update)
-    resources :job_informations
+    resources :job_information
   end
 
   resources :target_lists, only: %i(index create destroy)

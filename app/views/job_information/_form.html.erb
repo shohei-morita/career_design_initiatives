@@ -1,5 +1,5 @@
 <div class="wrapper recruiter-wrapper container">
-  <%= form_with(model: [recruiter, job_information], local: true) do |f| %>
+  <%= form_with(model: [recruiter, job_information], url: recruiter_job_information_index_path, local: true) do |f| %>
   <% if job_information.errors.any? %>
     <ul>
       <% job_information.errors.full_messages.each do |message| %>

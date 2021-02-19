@@ -7,7 +7,7 @@ RSpec.describe 'job_information機能', type: :system do
 
     before do
       login_as approved_recruiter
-      visit recruiter_job_informations_path(approved_recruiter.id)
+      visit recruiter_job_information_index_path(approved_recruiter.id)
     end
 
     context '求人情報の登録・管理画面にアクセスした場合' do

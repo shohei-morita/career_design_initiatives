@@ -14,7 +14,7 @@
       <tr>
         <th>添付求人</th>
         <td>
-          <% @job_informations.each do |job_information| %>
+          <% @job_information.each do |job_information| %>
           <li>
             <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
           </li>
