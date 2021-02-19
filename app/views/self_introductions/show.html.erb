@@ -1,12 +1,10 @@
-<%= render partial: 'partials/global_nav' %>
-
-<div class="wrapper show-wrapper text-center container">
+<div class="wrapper student-wrapper container">
   <% if request.path_info == student_apealing_point_path(current_student.id) %>
-    <h3>自己PR詳細</h3>
+    <h3 class="heading">自己PR詳細</h3>
   <% elsif request.path_info == student_apealing_image_path(current_student.id) %>
-    <h3>自己PR画像詳細</h3>
+    <h3 class="heading">自己PR画像詳細</h3>
   <% else %>
-    <h3>自己PR動画詳細</h3>
+    <h3 class="heading">自己PR動画詳細</h3>
   <% end %>
 
   <table class="table student-table">
@@ -42,10 +40,10 @@
     </tr>
   </table>
   <% if request.path_info == student_apealing_point_path(current_student.id) %>
-    <%= link_to '編集', edit_student_apealing_point_path(current_student.id), class: "rounded-btn" %>
+    <%= link_to '編集', edit_student_apealing_point_path(current_student.id), class: "rounded-btn student-btn-position" %>
   <% elsif request.path_info == student_apealing_image_path(current_student.id) %>
-    <%= link_to '編集', edit_student_apealing_image_path(current_student.id), class: "rounded-btn"  %>
+    <%= link_to '編集', edit_student_apealing_image_path(current_student.id), class: "rounded-btn student-btn-position"  %>
   <% else %>
-    <%= link_to '編集', edit_student_apealing_video_path(current_student.id), class: "rounded-btn"  %>
+    <%= link_to '編集', edit_student_apealing_video_path(current_student.id), class: "rounded-btn student-btn-position"  %>
   <% end %>
 </div>

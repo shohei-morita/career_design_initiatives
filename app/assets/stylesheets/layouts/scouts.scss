@@ -1,8 +1,14 @@
+.scout-index-table {
+  width: 80%;
+  margin-left: 10%;
+}
 .scout-index-table th {
+  width: 20%;
   background-color: #E94A67;
   color: #fff;
 }
 .scout-index-table td {
+  width: 80%;
   background-color: #F7FCFE;
 }
 
@@ -17,7 +23,8 @@
 
 /* メッセージやりとり */
 .messages {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   padding: 16px;
   background: #F7FCFE;
   border-radius: 15px;
@@ -38,4 +45,9 @@
   font-size: 0.9em;
   background-color: #E94A67;
   color: #fff;
+}
+
+.message-size {
+  width: 80%;
+  margin-left: 10%;
 }

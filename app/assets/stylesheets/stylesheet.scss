@@ -175,3 +175,35 @@
   height: 100px;
   object-fit: cover;
 }
+
+/* アコーディオンメニュー */
+.accordion-hidden{
+  display: none;
+}
+
+.accordion-open {
+  display: block;
+  padding: 10px;
+  background: #D42C49;
+  cursor: pointer;
+  margin: 5px 0;
+  font-weight: 700;
+  color: white;
+}
+
+.accordion-close {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.accordion-hidden:checked + .accordion-open + .accordion-close {
+  height: auto;
+  opacity: 1;
+  padding: 10px;
+  background: #FFC9D2;
+  font-weight: 700;
+}

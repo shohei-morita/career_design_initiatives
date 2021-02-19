@@ -1,5 +1,3 @@
-<%= render partial: 'partials/global_nav' %>
-
 <div class="wrapper student-wrapper container">
   <%= form_with(model: [student, qualification], url: student_qualification_path, local: true) do |f| %>
   <% if qualification.errors.any? %>
@@ -11,51 +9,46 @@
   <% end %>
 
   <% if request.path_info.include?('edit') %>
-    <h3>資格情報編集</h3><br>
+    <h3 class="heading">資格情報編集</h3><br>
   <% else %>
-    <h3>資格情報登録</h3><br>
+    <h3 class="heading">資格情報登録</h3><br>
   <% end %>
 
-  <p class="message-box">
-    自分をもっともアピールできる資格を最大5つ記入しよう。
-    資格取得にかけた思いやエピソードを一緒に記入すると、企業からの注目が上がるかも？<br>
-  </p><br>
-
   <div class="form-group">
-    <%= f.label :qualification_1st %>
-    <%= f.text_field :qualification_1st, class: "form-control normal-form" %>
+    <strong><%= f.label :qualification_1st %></strong>
+    <%= f.text_field :qualification_1st, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :qualification_2nd %>
-    <%= f.text_field :qualification_2nd, class: "form-control normal-form" %>
+    <strong><%= f.label :qualification_2nd %></strong>
+    <%= f.text_field :qualification_2nd, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :qualification_3rd %>
-    <%= f.text_field :qualification_3rd, class: "form-control normal-form" %>
+    <strong><%= f.label :qualification_3rd %></strong>
+    <%= f.text_field :qualification_3rd, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :qualification_4th %>
-    <%= f.text_field :qualification_4th, class: "form-control normal-form"  %>
+    <strong><%= f.label :qualification_4th %></strong>
+    <%= f.text_field :qualification_4th, class: "form-control"  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :qualification_5th %>
-    <%= f.text_field :qualification_5th, class: "form-control normal-form"  %>
+    <strong><%= f.label :qualification_5th %></strong>
+    <%= f.text_field :qualification_5th, class: "form-control"  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :note %>
-    <%= f.text_area :note, size: "20x10", class: "form-control normal-form text-form" %>
+    <strong><%= f.label :note %></strong>
+    <%= f.text_area :note, size: "20x10", class: "form-control" %>
   </div>
     <% f.hidden_field :student_id, value: current_student.id %>
 
     <% if request.path_info.include?('edit') %>
-      <%= f.submit '更新', class: "rounded-btn qualification-btn" %>
+      <%= f.submit '更新', class: "rounded-btn student-btn-position" %>
     <% else %>
-      <%= f.submit '登録', class: "rounded-btn qualification-btn"  %>
+      <%= f.submit '登録', class: "rounded-btn student-btn-position"  %>
     <% end %>
   <% end %>
 </div>

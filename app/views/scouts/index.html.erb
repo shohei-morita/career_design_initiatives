@@ -1,6 +1,3 @@
-<%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
-<%= render partial: 'partials/global_nav' if student_signed_in? %>
-
 <div class="wrapper recruiter-wrapper container">
   <h3 class="heading"><%= recruiter_signed_in? ? 'メッセージ一覧' : 'スカウト一覧' %></h3>
   <table class="table scout-index-table">

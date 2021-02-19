@@ -1,5 +1,3 @@
-<%= render partial: 'partials/admin_company_global_nav' %>
-
 <div class="wrapper student-show-wrapper text-center container">
   <h3 class="heading">生徒基本情報</h3>
   <%= form_with(model: [ :admin, @student ], url: update_student_admin_recruiter_path, method: :patch, local: true) do |f| %>
