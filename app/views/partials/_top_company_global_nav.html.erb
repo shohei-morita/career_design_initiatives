@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default fixed-top" id="h-nav">
+  <a class="nabbar-brand h-nav-title mr-auto p-0">
+  <a class="navbar-brand h-nav-title mr-auto p-0" href="/"><h4>Career Design Initiatives</h4></a>
+  <ul class="h-nav-menu mb-0 mr-auto">
+    <li class="global_nav">
+      <%= link_to(root_path, class: 'nav-box') do %>
+        <span class="fas fa-building"></span>
+        生徒の方はこちら
+      <% end %>
+    </li>
+    <li class="global_nav">
+    </li>
+    <li class="global_nav">
+      <%= link_to(new_recruiter_session_path, class: 'nav-box') do %>
+        <span class="as fa-sign-in-alt"></span>
+        企業LOGIN　
+      <% end %>
+      <%= link_to(new_recruiter_registration_path, class: 'nav-box') do %>
+        <span class="fas fa-user-plus"></span>
+        アカウント申請
+      <% end %>
+    </li>
+  </ul>
+</nav>

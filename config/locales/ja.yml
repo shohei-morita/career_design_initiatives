@@ -16,6 +16,7 @@ ja:
         birth_date: 生年月日
         gender: 性別
         address: 住所
+        graduation_year: 卒業年度
       address:
         postcode: 郵便番号
         prefecture_code: 都道府県

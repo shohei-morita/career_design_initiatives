@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root 'top#top'
+  get 'top/company', to: 'top#company'
   get 'top/applicaiton_completion', to: 'top#application_completion'
 
-  devise_for :students, controllers: { registrations: 'students/registrations'}
-  devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
+  devise_for :students, controllers: {
+    registrations: 'students/registrations',  sessions: "students/sessions"
+  }
+  devise_for :recruiters, controllers: {
+    registrations: 'recruiters/registrations',
+    sessions: "recruiters/sessions"
+  }
 
   devise_scope :recruiter do
     post 'recruiters/registrations/confirm', to: 'recruiters/registrations#confirm', as: :confirm_application
