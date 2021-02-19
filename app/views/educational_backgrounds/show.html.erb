@@ -1,11 +1,32 @@
 <%= render partial: 'partials/global_nav' %>
 
-<h2>高校情報</h2>
+<div class="wrapper educational_background-show-wrapper text-center container">
+  <table class="table student-table">
+    <tr>
+      <th>高校所在地</th>
+      <td><%= JpPrefecture::Prefecture.find(current_student.educational_background.location).name.nil? ? '所在地未登録' :  JpPrefecture::Prefecture.find(current_student.educational_background.location).name %></td>
+    </tr>
+    <tr>
+      <th>高校設置区分</th>
+      <td><%= current_student.educational_background.division.nil? ? '学校区分未登録' : current_student.educational_background.division %></td>
+    </tr>
+    <tr>
+      <th>高校名</th>
+      <td><%= current_student.educational_background.school_name.nil? ? '学校名未登録' : current_student.educational_background.school_name %></td>
+    </tr>
+    <tr>
+      <th>入学〜卒業(予定)年月</th>
+      <td>
+        <%= current_student.educational_background.entrance_date.nil? ? '入学年月未登録' : l(current_student.educational_background.entrance_date, format: :short) %>
+        〜
+        <%= current_student.educational_background.graduation_date.nil? ? '卒業（予定）年月未登録' : l(current_student.educational_background.graduation_date, format: :short) %>
+      </td>
+    </tr>
+    <tr>
+      <th>備考</th>
+      <td class="text-left"><%= current_student.educational_background.note.nil? ? '備考未登録' : simple_format(current_student.educational_background.note) %></td>
+    </tr>
+  </table>
 
-<p>学校所在地<br><%= JpPrefecture::Prefecture.find(current_student.educational_background.location).name %></p>
-<p>学校区分<br><%= current_student.educational_background.division %></p>
-<p>学校名<br><%= current_student.educational_background.school_name %></p>
-<p>入学年月〜卒業（予定）年月<br><%= l(current_student.educational_background.entrance_date, format: :short) %>〜<%= l(current_student.educational_background.graduation_date, format: :short) %></p>
-<p>備考<br><%= current_student.educational_background.note %> </p>
-
-<%= link_to '編集', edit_student_educational_background_path(current_student.id) %>
+  <%= link_to '編集', edit_student_educational_background_path(current_student.id), {class: 'rounded-btn'}  %>
+</div>

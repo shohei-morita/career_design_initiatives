@@ -1,81 +1,99 @@
 <%= render partial: 'partials/global_nav' if student_signed_in? %>
 
-<h2>ユーザー情報編集</h2>
+<div class="wrapper student-wrapper container">
+<%= devise_error_messages %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
+  <div class="form-group form-inline">
+    <strong><%= f.label :avatar %></strong>
+    <%= f.file_field :avatar, class: "form-control-file" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <strong><%= f.label :"氏名" %></strong>
+    <div class="form-inline">
+      <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "form-control inline-form form-before" %>
+      <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name", class: "form-control inline-form form-after"  %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :tel %><br />
-    <%= f.text_field :tel, autofocus: true, autocomplete: "tel" %>
+  <div class="form-group">
+    <strong><%= f.label :"カナ氏名" %></strong>
+    <div class="form-inline">
+      <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "form-control inline-form form-before", placeholder: "カタカナかひらがなで入力"  %>
+      <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana", class: "form-control inline-form form-after", placeholder: "カタカナかひらがなで入力"   %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :family_name %><br />
-    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+  <div class="form-group">
+    <strong><%= f.label :email %></strong>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control normal-form"  %>
   </div>
 
-  <div class="field">
-    <%= f.label :given_name %><br />
-    <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name" %>
+  <div class="form-group">
+    <strong><%= f.label :tel %></strong>
+    <%= f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "例:000-999-4444", class: "form-control normal-form"  %>
   </div>
 
-  <div class="field">
-    <%= f.label :family_name_kana %><br />
-    <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana" %>
+  <div class="form-group">
+    <strong><%= f.label :nickname %></strong>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "記載した名前が企業に表示されます", class: "form-control normal-form" %>
   </div>
 
-  <div class="field">
-    <%= f.label :given_name_kana %><br />
-    <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana" %>
+  <div calss="form-group">
+    <strong><%= f.label :birth_date %></strong>
+    <%= f.date_field :birth_date, class: "form-control normal-form" %>
   </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  <div class="form-group">
+    <strong><%= f.label :gender %></strong>
+    <%= f.select :gender, Student.genders.keys, {prompt: "選択してください"}, {class: "form-control normal-form"} %>
   </div>
 
-  <div>
-    <%= f.label :birth_date %><br />
-    <%= raw sprintf(f.date_select(:birth_date, use_month_numbers: true, start_year: (Time.now.year - 20), end_year: (Time.now.year - 15), date_separator:'%s'),'年','月')+'日' %>
+  <div calss="form-group">
+    <strong><%= f.label :address %></strong>
+    <%= f.text_field :address, class: "form-control normal-form", placeholder: "富山県富山市木場町1番１号 タナカビル204号室" %>
   </div>
 
-  <div>
-    <%= f.label :gender %><br />
-    <%= f.select :gender, Student.genders.keys, {prompt: "選択してください"} %>
+  <div class="title">
+    <strong><%= f.label :"希望業界" %></strong><br>
+    <div class="checkbox">
+      <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name, { class: "checkbox" }) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :Industry %><br />
-    <%= f.collection_select(:condition_ids, Industry.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="title">
+    <strong><%= f.label :"希望職種" %></strong><br>
+    <div class="checkbox">
+      <%= f.collection_check_boxes(:condition_ids, Occupation.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :occupation %><br />
-    <%= f.collection_select(:condition_ids, Occupation.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="title">
+    <strong><%= f.label :"希望する働き方" %></strong><br>
+    <div class="checkbox">
+      <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :workplace %><br />
-    <%= f.collection_select(:condition_ids, Workplace.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="title">
+    <strong><%= f.label :"希望勤務地" %></strong><br>
+    <div class="checkbox">
+      <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :workstyle %><br />
-    <%= f.collection_select(:condition_ids, Workstyle.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
-  </div>
-
-  <div class="actions">
-    <%= f.submit '更新' %>
+  <div class="text-center">
+    <%= f.submit '情報更新', class: 'rounded-btn'%>
   </div>
 <% end %>
+</div>

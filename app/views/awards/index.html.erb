@@ -1,26 +1,26 @@
-<h1>登録課外活動一覧</h1>
-
-<%= link_to '表彰情報の登録', new_student_award_path %>
-
-
-<table>
-<tr>
-  <th>受賞年</th>
-  <th>表彰名</th>
-  <th colspan="3"></th>
-</tr>
-<% @awards.each do |award| %>
-<tr>
-  <td>
-    <% if award.year.nil?%>
-      不明
-      <% else %>
-    <%= l(award.year, format: :very_short)%></td>
-    <% end %>
-  <td><%= award.title %></td>
-  <td><%= link_to '詳細', student_award_path(current_student.id, award.id) %></td>
-  <td><%= link_to '編集', edit_student_award_path(current_student.id, award.id) %></td>
-  <td><%= link_to '削除', student_award_path(current_student.id, award.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-</tr>
-<% end %>
-</table>
+<%= render partial: 'partials/global_nav' %>
+<div class="container wrapper student-wrapper">
+  <h3>登録表彰一覧</h3>
+  <%= link_to '表彰登録', new_student_award_path, class: "rounded-btn" %>
+  <table class="table table-horizon">
+  <tr>
+    <th>受賞年</th>
+    <th>表彰名</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @awards.each do |award| %>
+  <tr>
+    <td>
+      <% if award.year.nil?%>
+        不明
+        <% else %>
+      <%= l(award.year, format: :very_short)%></td>
+      <% end %>
+    <td><%= award.title %></td>
+    <td><%= link_to '詳細', student_award_path(current_student.id, award.id), class: "rounded-btn-sm" %></td>
+    <td><%= link_to '編集', edit_student_award_path(current_student.id, award.id), class: "rounded-btn-sm" %></td>
+    <td><%= link_to '削除', student_award_path(current_student.id, award.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "rounded-btn-sm" %></td>
+  </tr>
+  <% end %>
+  </table>
+</div>

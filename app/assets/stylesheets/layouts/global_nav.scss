@@ -1,0 +1,30 @@
+#h-nav{
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  background-color: #D42C49;
+}
+
+.h-nav-menu{
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#h-nav li{
+  list-style: none;
+  width: 100%;
+  text-align: center;
+}
+
+#h-nav a{
+  color:white;
+}
+
+.h-nav-menu .nav-link.active{
+  background-color: transparent;
+}
+
+.h-nav-menu .nav-link.active .nav-a-span{
+  border-bottom: 3px solid white;
+}

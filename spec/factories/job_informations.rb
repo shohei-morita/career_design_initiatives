@@ -9,6 +9,7 @@ FactoryBot.define do
     sequence(:benefit, 'nothing_special_1')
     sequence(:day_off, '100_days_off_per_a_year_1')
     sequence(:selection, 'interview_1')
+    sequence(:workplace_detail, 'everywhere_1')
     status { 0 }
 
     association :company

@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
-  has_one :address, dependent: :destroy
+
   has_one :apealing_point, dependent: :destroy
   has_one :apealing_image, dependent: :destroy
   has_one :apealing_video, dependent: :destroy
@@ -60,7 +60,7 @@ class Student < ApplicationRecord
   end
 
   def profile_image
-    avatar.variant(resize: '300x300').processed
+    avatar.variant(resize: '200x200').processed
   end
 
   def update_without_current_password(params, *options)

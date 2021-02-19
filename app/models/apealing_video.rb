@@ -7,6 +7,10 @@ class ApealingVideo < SelfIntroduction
     video.variant(resize: '150x150').processed
   end
 
+  def show_size_for_student
+    video.variant(resize: '500x500').processed
+  end
+
   def show_size
     video.variant(resize: '500x500').processed
   end

@@ -46,7 +46,6 @@ Rails.application.routes.draw do
       get :company_show
     end
 
-    resource :address, except: %i(destroy)
     resource :educational_background, except: %i(destroy)
     resource :qualification, except: %i(destroy)
     resources :extracurricular_activities

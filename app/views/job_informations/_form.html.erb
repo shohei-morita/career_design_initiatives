@@ -1,52 +1,100 @@
-<%= form_with(model: [recruiter, job_information], local: true) do |f| %>
-<% if job_information.errors.any? %>
-  <h2><%= job_information.errors.count %>件のエラーがあります。</h2>
-  <ul>
-    <% job_information.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: 'partials/company_global_nav' %>
 
-  <%= f.label :title %><br />
-  <%= f.text_field :title %><br />
+<div class="wrapper recruiter-wrapper container">
+  <%= form_with(model: [recruiter, job_information], local: true) do |f| %>
+  <% if job_information.errors.any? %>
+    <ul>
+      <% job_information.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-  <%= f.label :content %><br />
-  <%= f.text_area :content %><br />
+  <% if request.path_info.include?('edit') %>
+    <h3 class="heading">求人情報編集</h3>
+  <% else %>
+    <h3 class="heading">求人情報登録</h3>
+  <% end %>
 
-  <%= f.label :appealing_point %><br />
-  <%= f.text_area :appealing_point %><br />
+  <div class="form-group">
+    <strong><%= f.label :title %></strong>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= f.label :pay %><br />
-  <%= f.text_area :pay %><br />
+  <div class="form-group">
+    <strong><%= f.label :content %></strong>
+    <%= f.text_area :content, size: "20x10", class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :working_status %><br />
-  <%= f.text_area :working_status %><br />
+  <div class="form-group">
+    <strong><%= f.label :appealing_point %></strong>
+    <%= f.text_area :appealing_point, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :working_hour %><br />
-  <%= f.text_area :working_hour %><br />
+  <div class="form-group">
+    <strong><%= f.label :pay %></strong>
+    <%= f.text_area :pay, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :benefit%><br />
-  <%= f.text_area :benefit %><br />
+  <div class="form-group">
+    <strong><%= f.label :working_status %></strong>
+    <%= f.text_area :working_status, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :day_off %><br />
-  <%= f.text_area :day_off %><br />
+  <div class="form-group">
+    <strong><%= f.label :working_hour %></strong>
+    <%= f.text_area :working_hour, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :selection %><br />
-  <%= f.text_area :selection %><br />
+  <div class="form-group">
+    <strong><%= f.label :benefit%></strong>
+    <%= f.text_area :benefit, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :occupation %><br />
-  <%= f.collection_select(:condition_ids, Occupation.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="form-group">
+    <strong><%= f.label :day_off %></strong>
+    <%= f.text_area :day_off, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :workplace %><br />
-  <%= f.collection_select(:condition_ids, Workplace.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="form-group">
+    <strong><%= f.label :selection %></strong>
+    <%= f.text_area :selection, class: "form-control text-form" %>
+  </div>
 
-  <%= f.label :workstyle %><br />
-  <%= f.collection_select(:condition_ids, Workstyle.all, :id, :name, { prompt: '選択してください' }, { multiple: true } ) %><br />
+  <div class="accofrdion">
+    <input type="checkbox" id="check1" class="accordion-hidden">
+    <label for="check1" class="accordion-open">職種選択</label>
+    <label for="check1" class="accordion-close">
+      <%= f.collection_check_boxes(:condition_ids, Occupation.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </label>
+    <input type="checkbox" id="check2" class="accordion-hidden">
+    <label for="check3" class="accordion-open">働き方選択</label>
+    <label for="check3" class="accordion-close">
+      <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </label>
+    <input type="checkbox" id="check3" class="accordion-hidden">
+    <label for="check2" class="accordion-open">勤務地選択</label>
+    <label for="check2" class="accordion-close">
+      <%= f.collection_check_boxes(:condition_ids, Workplace.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-group">
+    <strong><%= f.label :workplace_detail %></strong>
+    <%= f.text_area :workplace_detail, class: "form-control trext-form" %>
+  </div>
 
-  <%= f.label :status %><br />
-  <%= f.select :status, JobInformation.statuses.keys.to_a, {prompt: "ステータスを選択してください"} %><br />
+  <div class="form-group">
+    <strong><%= f.label :status %></strong>
+    <%= f.select :status, JobInformation.statuses.keys.to_a, {prompt: "ステータスを選択してください"} , { class: "form-control" }%>
+  </div>
 
-  <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
-  <%= f.submit '保存' %>
-<% end %>
+    <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
+    <%= f.submit '保存', class: "rounded-btn job-info-btn" %>
+  <% end %>
+</div>

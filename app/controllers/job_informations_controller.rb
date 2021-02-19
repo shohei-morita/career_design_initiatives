@@ -24,8 +24,8 @@ class JobInformationsController < ApplicationController
   def show
     @job_information = @recruiter.company.job_informations.find(params[:id])
     if @job_information.status == '準備中' && current_student
-      redirect_to request.referer
-    else @job_information.status == '準備中' && @recruiter.id != current_recruiter.id
+      redirect_to request.referer, notice
+    elsif @job_information.status == '準備中' && @recruiter.id != current_recruiter.id
       redirect_to request.referer
     end
   end
@@ -59,7 +59,8 @@ class JobInformationsController < ApplicationController
   def job_information_params
     params.require(:job_information).permit(
       :recruiter_id, :title, :content, :appealing_point, :pay,
-      :working_hour, :working_status, :benefit, :day_off, :selection, :status, condition_ids:[]
+      :working_hour, :working_status, :benefit, :day_off, :selection,
+      :workplace_detail, :status, condition_ids:[]
       )
   end
 end

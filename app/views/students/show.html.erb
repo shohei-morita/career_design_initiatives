@@ -1,58 +1,96 @@
 <%= render partial: 'partials/global_nav' %>
 
-<h2>基本情報</h2>
-  <p>icon<br>
-    <% if @student.avatar.attached? %>
-      <%= image_tag @student.profile_image %>
-    <% end %>
-  </p>
-  <p>email<br><%= @student.email %></p>
-  <p>姓  名<br><%= @student.family_name %>  <%= @student.given_name %></p>
-  <p>カナ姓名<br><%= @student.family_name_kana %>  <%= @student.given_name_kana %></p>
-  <p>ニックネーム<br><%= @student.nickname %></p>
-  <p>生年月日<br><%= @student.birth_date %></p>
-  <p>email<br><%= @student.email %></p>
-  <p>tel<br><%= @student.tel %></p>
-  <p>性別<br><%= @student.gender %></p>
+<div class="wrapper student-show-wrapper text-center container">
+  <table class="table student-table">
+    <tr>
+      <th>プロフィール画像</th>
+      <td>
+        <% if @student.avatar.attached? %>
+          <%= image_tag @student.profile_image, class: "profile-image" %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= @student.family_name.nil? && @student.given_name.nil? ? '氏名未登録' : @student.family_name << '  ' << @student.given_name %></td>
+    </tr>
+    <tr>
+      <th>カナ氏名</th>
+      <td><%= @student.family_name_kana.nil? && @student.given_name_kana.nil? ? 'カナ氏名未登録' : @student.family_name_kana << '  ' << @student.given_name_kana %></td>
+    </tr>
+    <tr>
+      <th>email</th>
+      <td><%= @student.email %></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td><%= @student.nickname.nil? ? 'ニックネーム未登録' : @student.nickname %></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><%= @student.birth_date.nil? ? '生年月日未登録' : @student.birth_date %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @student.tel.nil? ? '電話番号未登録' : @student.tel %></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><%= @student.gender.nil? ? '性別未登録' : @student.gender %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @student.address.nil? ? '住所未登録' : @student.address %></td>
+    </tr>
+    <tr>
+      <th>希望業界</th>
+      <td>
+        <% if @student.conditions.where(type: 'Industry').count == 0 %>
+          希望業界は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Industry').each do |industry| %>
+            <%=  industry.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望職種</th>
+      <td>
+        <% if @student.conditions.where(type: 'Occupation').count == 0 %>
+          希望業界は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
+            <%=  occupation.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望する働き方</th>
+      <td>
+        <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
+          希望する働き方は登録されていません
+        <% else %>
+          <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
+            <%=  workstyle.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>希望勤務地</th>
+      <td>
+        <% if @student.conditions.where(type: 'Workplace').count == 0  %>
+          希望勤務地の登録はありません
+        <% else %>
+          <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
+            <%=  workplace.name %> /
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 
-  <p>希望業界<br>
-    <% if @student.conditions.where(type: 'Industry').count == 0 %>
-     希望業界は登録されていません
-    <% else %>
-      <% @student.conditions.where(type: 'Industry').each do |industry| %>
-        <%=  industry.name %> /
-      <% end %>
-    <% end %>
-  </p>
-
-  <p>希望職種<br>
-    <% if @student.conditions.where(type: 'Occupation').count == 0  %>
-      希望職種は登録されていません
-    <% else %>
-      <% @student.conditions.where(type: 'Occupation').each do |occupation| %>
-        <%=  occupation.name %> /
-      <% end %>
-    <% end %>
-  </p>
-
-  <p>希望する働き方<br>
-    <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
-      希望する働き方は登録されていません
-    <% else %>
-      <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
-        <%=  workstyle.name %> /
-      <% end %>
-    <% end %>
-  </p>
-
-  <p>希望勤務地<br>
-    <% if @student.conditions.where(type: 'Workplace').count == 0  %>
-      希望勤務地の登録はありません
-    <% else %>
-      <% @student.conditions.where(type: 'Workplace').each do |workplace| %>
-        <%=  workplace.name %> /
-      <% end %>
-    <% end %>
-  </p>
-
-  <%= link_to '編集', edit_student_registration_url if student_signed_in? %>
+  <%= link_to '編集',edit_student_registration_url, {class: 'rounded-btn'}  %>
+</div>

@@ -1,60 +1,45 @@
-<%= render partial: 'partials/company_global_nav' %><br>
+<%= render partial: 'partials/company_global_nav' %>
 
-<h3>生徒検索</h3>
+<div class="wrapper show-wrapper text-left container">
+  <h3 class="heading">生徒検索</h3>
 
-<%= render 'search_form' %>
+  <%= render 'search_form' %>
 
-<% @result_students.each do |student| %>
-<table>
-  <tr>
-    <td>
-      <%= image_tag student.thumbnail if student.avatar.present? %>
-    </td>
+  <div class="search-form-wrapper">
+    <% @result_students.each do |student| %>
+    <table class="table search-result-table">
+      <tr>
+        <td class="block1 thumbnail"><%= image_tag student.thumbnail %></td>
+        <td class="block1 intros">
+          <%= student.nickname.nil? ? "#ID{student.id}さん" : "ニックネーム / #{student.nickname}さん" %><br>
+          <%= student.gender.nil? ? '性別 / 登録なし' : "性別 / #{student.gender}" %><br>
+          <%= student.educational_background.nil? ? '高校 / 登録なし' : "高校 / #{student.educational_background.school_name}" %><br>
+          <%= student.educational_background.nil? ? '高校所在地 / 登録なし' : "高校所在地 / #{JpPrefecture::Prefecture.find(student.educational_background.location).name}" %>
+        </td>
+        <td rowspan="2" class="block2 actions">
+          <div class="action_menu">
+            <%= link_to '詳細', company_show_student_path(student.id), class:"rounded-action-btn" %><br>
+            <% if @scout_ids.include?(student.id) %>
+              <%= link_to 'スカウト済', scout_scout_messages_path(student.scouts.ids, key: 'index'), class:"rounded-action-btn"  %><br>
+            <% else %>
+              <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: student.id, key: 'index'), class:"rounded-action-btn"  %><br>
+            <% end %>
 
-    <td>
-      <% if student.nickname.nil? %>
-        ID:<%= student.id %><br>
-      <% else %>
-        ニックネーム:<%= student.nickname %><br>
-      <% end %>
+            <% if current_recruiter.target_lists.find_by(student_id: student.id).present? %>
+              <%= link_to 'List解除', target_list_path(id: student.target_lists.ids, key: 'index'), method: :delete, class:"rounded-action-btn"  %>
+            <% else %>
+              <%= link_to 'List登録', target_lists_path(student_id: student.id, key: 'index'), method: :post, class:"rounded-action-btn"  %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="block3"><%= student.apealing_point.content.nil? ? '自己PR/登録なし' : "自己PR / #{student.apealing_point.content}" %></td>
+      </tr>
+     </table>
+    <% end %>
 
-      <% if student.educational_background.nil? %>
-        高校情報はありません<br>
-      <% else %>
-        高校:<%= student.educational_background.school_name %><br>
-      <% end %>
 
-      <% if student.educational_background.nil? %>
-        高校の所在地情報はありません。<br>
-      <% else %>
-        所在地:<%= JpPrefecture::Prefecture.find(student.educational_background.location).name %><br>
-      <% end %>
-
-      <% if student.apealing_point.nil? %>
-        自己PR情報はありません。<br>
-      <% else %>
-        自己PR:<%= student.apealing_point.content if student.apealing_point.present? %><br>
-      <% end %>
-    </td>
-
-    <td>
-      <%= link_to '詳細確認', company_show_student_path(student.id) %>
-      <% if @scout_ids.include?(student.id) %>
-        <%= link_to 'スカウト確認', scout_scout_messages_path(student.scouts.ids, key: 'index') %>
-      <% else %>
-        <%= link_to 'スカウト', new_scout_path(recruiter_id: current_recruiter.id, student_id: student.id, key: 'index') %>
-      <% end %>
-    </td>
-
-    <td>
-      <% if current_recruiter.target_lists.find_by(student_id: student.id).present? %>
-        <%= link_to 'Listを解除する', target_list_path(id: student.target_lists.ids, key: 'index'), method: :delete %>
-      <% else %>
-        <%= link_to 'Listに登録する', target_lists_path(student_id: student.id, key: 'index'), method: :post %>
-      <% end %>
-    </td>
-  </tr>
-</table><br><br>
-<% end %>
-
-<%= paginate @student_pages %>
+    <%= paginate @student_pages %>
+  </div>
+</div>

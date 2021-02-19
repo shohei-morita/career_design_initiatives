@@ -9,22 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div class="container-fluid">
-      <header>
-        <% if student_signed_in? %>
-          <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete, class: "log_out" %></li>
-        <% else %>
-          <li><%= link_to "ログイン", new_student_session_path, class: "log_in" %></li>
-          <li><%= link_to "新規登録", new_student_registration_path, class: "sign_in" %></li>
-        <% end %>
-        <% if recruiter_signed_in? %>
-          <li><%= link_to "企業ログアウト", destroy_recruiter_session_path, method: :delete, class: "log_out" %></li>
-        <% else %>
-          <li><%= link_to "企業ログイン", new_recruiter_session_path, class: "log_in" %></li>
-          <li><%= link_to "企業新規登録", new_recruiter_registration_path, class: "sign_in" %></li>
-        <% end %>
-      </header>
+  <body class="body">
+    <div class="container-fluid center-block">
       <% unless request.path_info.include?('scout') %>
       <% flash.each do |message_type, message| %>
         <div><%= message %></div>
