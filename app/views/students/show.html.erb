@@ -1,6 +1,5 @@
-<%= render partial: 'partials/global_nav' %>
-
-<div class="wrapper student-show-wrapper text-center container">
+<div class="wrapper student-show-wrapper container">
+  <h3 class="heading">プロフィール</h3>
   <table class="table student-table">
     <tr>
       <th>プロフィール画像</th>
@@ -67,10 +66,10 @@
       </td>
     </tr>
     <tr>
-      <th>希望する働き方</th>
+      <th>希望条件</th>
       <td>
         <% if @student.conditions.where(type: 'Workstyle').count == 0  %>
-          希望する働き方は登録されていません
+          希望条件は登録されていません
         <% else %>
           <% @student.conditions.where(type: 'Workstyle').each do |workstyle| %>
             <%=  workstyle.name %> /
@@ -92,5 +91,5 @@
     </tr>
   </table>
 
-  <%= link_to '編集',edit_student_registration_url, {class: 'rounded-btn'}  %>
+  <%= link_to '編集',edit_student_registration_url, {class: 'rounded-btn student-btn-position'}  %>
 </div>

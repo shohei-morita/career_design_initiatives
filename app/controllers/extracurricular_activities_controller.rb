@@ -1,5 +1,6 @@
 class ExtracurricularActivitiesController < ApplicationController
-  before_action :authenticate_student!
+  before_action :authenticate_student!, only: %i[index new create edit update destroy]
+  before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :set_student
 
   def index

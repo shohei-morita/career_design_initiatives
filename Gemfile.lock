@@ -248,6 +248,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
+    rinku (2.0.6)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -390,6 +391,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.4)
   ransack
+  rinku
   rspec-rails
   rubocop
   rubocop-performance

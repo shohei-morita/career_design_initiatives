@@ -1,5 +1,3 @@
-<%= render partial: 'partials/global_nav' %>
-
 <div class="wrapper student-wrapper container">
   <%= form_with(model: [student, educational_background], url: student_educational_background_path, local: true) do |f| %>
   <% if educational_background.errors.any? %>
@@ -11,23 +9,23 @@
   <% end %>
 
   <% if request.path_info.include?('edit') %>
-    <h3>高校情報編集</h3><br>
+    <h3 class="heading">高校情報編集</h3><br>
   <% else %>
-    <h3>高校情報登録</h3><br>
+    <h3 class="heading">高校情報登録</h3><br>
   <% end %>
 
   <div class="form-group">
     <strong><%= f.label :location %></strong>
-    <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, {}, { include_blank: '都道府県', class: "form-control normal-form" } %>
+    <%= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, {}, { include_blank: '都道府県', class: "form-control" } %>
   </div>
   <div>
     <strong><%= f.label :division %></strong>
-    <%= f.select :division, EducationalBackground.divisions.keys, {}, { include_blank: '選択してください', class: "form-control normal-form" } %>
+    <%= f.select :division, EducationalBackground.divisions.keys, {}, { include_blank: '選択してください', class: "form-control" } %>
   </div>
 
   <div class="form-group">
     <strong><%= f.label :school_name %></strong>
-    <%= f.text_field :school_name, class: "form-control normal-form" %>
+    <%= f.text_field :school_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -39,16 +37,16 @@
 
   <div class="form-group">
     <strong><%= f.label :note %><strong>
-    <%= f.text_area :note, size: "20x10", class: "form-control normal-form" %>
+    <%= f.text_area :note, size: "20x10", class: "form-control" %>
   </div>
 
   <% f.hidden_field :student_id, value: current_student.id %>
 
   <div>
     <% if request.path_info.include?('edit') %>
-      <%= f.submit '更新', class: "rounded-btn educational_background-btn" %>
+      <%= f.submit '更新', class: "rounded-btn student-btn-position" %>
     <% else %>
-      <%= f.submit '登録', class: "rounded-btn educational_background-btn" %>
+      <%= f.submit '登録', class: "rounded-btn student-btn-position" %>
     <% end %>
   </div>
 <% end %>

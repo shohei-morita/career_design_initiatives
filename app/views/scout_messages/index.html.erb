@@ -1,40 +1,55 @@
-<%= render partial: 'partials/company_global_nav' if recruiter_signed_in? %>
-<%= render partial: 'partials/global_nav' if student_signed_in? %>
+<div class="wrapper recruiter-wrapper container">
+  <h3 class="heading"><%= recruiter_signed_in? ? "#{@scout.student.nickname.nil? ? "ID#{@scout.student.id}さんへのスカウト" : "#{@scout.student.nickname}さんへのスカウト"}" : "#{@scout.recruiter.company.name}からのスカウト" %></h3>
 
-送信企業：<%= link_to "#{@scout.recruiter.company.name}", recruiter_company_path(@scout.recruiter.id) if student_signed_in? %><br>
-<%= "生徒:#{@scout.student.nickname}さん" if recruiter_signed_in?%><br>
-<%= "件名:#{@scout.title}" %>
+  <div class="">
+    <table class="table scout-index-table">
+      <tr>
+        <th>件名</th>
+        <td><%= @scout.title %></td>
+      </tr>
+      <tr>
+        <th>本文</th>
+        <td><%= simple_format(@scout_messages.first.content) %></td>
+      </tr>
+      <tr>
+        <th>添付求人</th>
+        <td>
+          <% @job_informations.each do |job_information| %>
+          <li>
+            <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
+          </li>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>送信企業</th>
+        <td><%= link_to "#{@scout.recruiter.company.name}", recruiter_company_path(@scout.recruiter.id) %></td>
+      </tr>
+    </table>
 
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
 
+    <% if @over_ten %>
 
-<ul>
-<% if @job_informations.nil? %>
-  <li>添付求人はありません</li>
-<% else %>
-  <% @job_informations.each do |job_information| %>
-  <li>
-    <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
-  </li>
-  <% end %>
-<% end %>
-</ul>
+      <%= link_to '以前のメッセージ', '?m=all' %>
+    <% end %>
 
-<%= render 'message_form'%><br><br>
+    <%= render 'message_form'%>
 
-<%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
-  <% if @scout_message.errors.any? %>
-    <h2><%= @scout_message.errors.count %>件のエラーがあります。</h2>
-    <ul>
-      <% @scout_message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
+      <% if @scout_message.errors.any? %>
+        <ul>
+          <% @scout_message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-  <%= f.text_area :content %>
-  <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
-  <%= f.hidden_field :student_id, value: current_student.id if student_signed_in? %>
-<%= f.submit '送信' %>
-<% end %>
+      <div class="form-group message-size">
+        <strong><%= f.label :メッセージ %></strong>
+        <%= f.text_area :content, class: "form-control" %>
+      <div><br>
+      <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+      <%= f.hidden_field :student_id, value: current_student.id if student_signed_in? %>
+    <%= f.submit '送信', class: "rounded-btn job-info-btn" %>
+    <% end %>
+  </div>
+</div>

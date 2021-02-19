@@ -1,3 +1,18 @@
+/* 申請受付 */
+.application {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    font-size: 1.5em;
+}
+.application p {
+    margin: 0;
+    padding: 0;
+}
+
 /* リクルーター基本関連情報編集画面の見た目 */
 .recruiter-wrapper {
   width: 70%;
@@ -54,38 +69,6 @@ input:checked + .tab_class + .content_class {
   margin-left: 50px;
   width: 90%;
   border-collapse: collapse;
-}
-
-/* アコーディオンメニュー */
-.accordion-hidden{
-  display: none;
-}
-
-.accordion-open {
-  display: block;
-  padding: 10px;
-  background: #D42C49;
-  cursor: pointer;
-  margin: 5px 0;
-  font-weight: 700;
-  color: white;
-}
-
-.accordion-close {
-  display: block;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;
-  transition: 0.5s;
-}
-
-.accordion-hidden:checked + .accordion-open + .accordion-close {
-  height: auto;
-  opacity: 1;
-  padding: 10px;
-  background: #FFC9D2;
-  font-weight: 700;
 }
 
 .job-info-btn {
@@ -182,7 +165,27 @@ input:checked + .tab_class + .content_class {
   vertical-align: center;
 }
 
+.settings-list li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+
 .search-result-table .action_menu {
   text-align: center;
   vertical-align: center;
+}
+
+.password-form {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.table-horizon-top {
+  margin-right: 10px;
+}
+
+.admin-top-list li {
+  list-style: none;
+  font-size: 1.5em;
 }

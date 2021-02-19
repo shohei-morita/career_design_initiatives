@@ -1,5 +1,3 @@
-<%= render partial: 'partials/global_nav' %>
-
 <div class="wrapper student-wrapper container">
   <%= form_with(model: [student, extracurricular_activity], local: true) do |f| %>
     <% if extracurricular_activity.errors.any? %>
@@ -11,13 +9,13 @@
     <% end %>
 
     <% if request.path_info.include?('edit') %>
-      <h3>課外活動編集</h3>
+      <h3 class="heading">課外活動編集</h3>
     <% else %>
-      <h3>課外活動登録</h3>
+      <h3 class="heading">課外活動登録</h3>
     <% end %>
     <div class="form-group">
       <strong><%= f.label :name %></strong>
-      <%= f.text_field :name, class: "form-control normal-form" %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
 
     <div class="form-group">
@@ -29,14 +27,14 @@
 
     <div class="form-group">
       <strong><%= f.label :summary %></strong>
-      <%= f.text_area :summary, size: "20x10", class: "form-control normal-form text-form" %>
+      <%= f.text_area :summary, size: "20x10", class: "form-control" %>
     </div>
     <% f.hidden_field :student_id, value: current_student.id %>
 
     <% if request.path_info.include?('edit') %>
-      <%= f.submit '更新', class: "rounded-btn extracurricular_activity-btn" %>
+      <%= f.submit '更新', class: "rounded-btn student-btn-position" %>
     <% else %>
-      <%= f.submit '登録', class: "rounded-btn extracurricular_activity-btn" %>
+      <%= f.submit '登録', class: "rounded-btn student-btn-position" %>
     <% end %>
   <% end %>
 </div>

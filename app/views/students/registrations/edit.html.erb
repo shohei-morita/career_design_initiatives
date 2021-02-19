@@ -1,9 +1,8 @@
-<%= render partial: 'partials/global_nav' if student_signed_in? %>
-
 <div class="wrapper student-wrapper container">
-<%= devise_error_messages %>
+  <h3 class="heading">プロフィール編集</h3>
+  <%= devise_error_messages %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
   <div class="form-group form-inline">
     <strong><%= f.label :avatar %></strong>
@@ -56,41 +55,38 @@
     <%= f.text_field :address, class: "form-control normal-form", placeholder: "富山県富山市木場町1番１号 タナカビル204号室" %>
   </div>
 
-  <div class="title">
-    <strong><%= f.label :"希望業界" %></strong><br>
-    <div class="checkbox">
-      <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name, { class: "checkbox" }) do |b| %>
-        <%= b.label { b.check_box + b.text } %>
-      <% end %>
-    </div>
-  </div>
+  <input type="checkbox" id="check1" class="accordion-hidden">
+  <label for="check1" class="accordion-open">希望業界</label>
+  <label for="check1" class="accordion-close">
+    <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+  </label>
 
-  <div class="title">
-    <strong><%= f.label :"希望職種" %></strong><br>
-    <div class="checkbox">
-      <%= f.collection_check_boxes(:condition_ids, Occupation.all, :id, :name) do |b| %>
-        <%= b.label { b.check_box + b.text } %>
-      <% end %>
-    </div>
-  </div>
+  <input type="checkbox" id="check2" class="accordion-hidden">
+  <label for="check2" class="accordion-open">希望職種</label>
+  <label for="check2" class="accordion-close">
+    <%= f.collection_check_boxes(:condition_ids, Occupation.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+  </label>
 
-  <div class="title">
-    <strong><%= f.label :"希望する働き方" %></strong><br>
-    <div class="checkbox">
-      <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
-        <%= b.label { b.check_box + b.text } %>
-      <% end %>
-    </div>
-  </div>
+  <input type="checkbox" id="check3" class="accordion-hidden">
+  <label for="check3" class="accordion-open">希望条件</label>
+  <label for="check3" class="accordion-close">
+    <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+  </label>
 
-  <div class="title">
-    <strong><%= f.label :"希望勤務地" %></strong><br>
-    <div class="checkbox">
-      <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
-        <%= b.label { b.check_box + b.text } %>
-      <% end %>
-    </div>
-  </div>
+  <input type="checkbox" id="check4" class="accordion-hidden">
+  <label for="check4" class="accordion-open">希望勤務地</label>
+  <label for="check4" class="accordion-close">
+    <%= f.collection_check_boxes(:condition_ids, Workplace.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+  </label>
+
 
   <div class="text-center">
     <%= f.submit '情報更新', class: 'rounded-btn'%>

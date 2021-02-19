@@ -11,5 +11,8 @@ class TopController < ApplicationController
     end
   end
 
+  def company
+  end
+
   def application_completion; end
 end

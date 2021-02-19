@@ -1,5 +1,3 @@
-<%= render partial: 'partials/global_nav' %>
-
 <div class="wrapper student-wrapper container">
   <%= form_with(model: [student, self_introduction], url: self_introduction_path, local: true) do |f| %>
   <% if self_introduction.errors.any? %>
@@ -11,22 +9,22 @@
   <% end %>
 
   <% if request.path_info.include?('apealing_point') && request.path_info.include?('edit')%>
-    <h3>自己PR編集</h3><br>
+    <h3 class="heading">自己PR編集</h3><br>
   <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
-    <h3>自己PR画像編集</h3><br>
+    <h3 class="heading">自己PR画像編集</h3><br>
   <% elsif request.path_info.include?('apealing_video') && request.path_info.include?('edit') %>
-    <h3>自己PR動画編集</h3><br>
+    <h3 class="heading">自己PR動画編集</h3><br>
   <% elsif request.path_info.include?('apealing_point') && request.path_info.include?('new')%>
-    <h3>自己PR登録</h3><br>
+    <h3 class="heading">自己PR登録</h3><br>
   <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
-    <h3>自己PR画像登録</h3><br>
+    <h3 class="heading">自己PR画像登録</h3><br>
   <% else %>
-    <h3>自己PR動画登録</h3><br>
+    <h3 class="heading">自己PR動画登録</h3><br>
   <% end %>
 
   <div class="form-group">
     <strong><%= f.label :title %></strong>
-    <%= f.text_field :title, class: "form-control normal-form" %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <% if self_introduction.type == 'ApealingImage' %>
@@ -45,7 +43,7 @@
 
     <div class="form-group">
       <strong><%= f.label :content %></strong>
-      <%= f.text_area :content, size: "20x10", class: "form-control normal-form" %>
+      <%= f.text_area :content, size: "20x10", class: "form-control" %>
     </div>
     <% f.hidden_field :student_id, value: current_student.id %>
 

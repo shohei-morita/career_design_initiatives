@@ -5,21 +5,26 @@ module Admin
     before_action :set_student, only: %i[edit_student update_student destroy_student]
     before_action :authenticate_recruiter!
 
+    PER = 10
+
+    def top; end
+
     def index
-      @recruiters = if params[:approved] == 'false'
-                      Recruiter.where(approved: false)
-                    else
-                      Recruiter.all
-                    end
-      @students = Student.all
+      @search = Recruiter.ransack(params[:q])
+      @result_recruiters = @search.result(distinct: true)
+      @recruiter_pages = @result_recruiters.page(params[:page]).per(PER)
+    end
+
+    def student_index
+      @search = Student.ransack(params[:q])
+      @result_students = @search.result(distinct: true)
+      @student_pages = @result_students.page(params[:page]).per(PER)
     end
 
     def edit; end
 
     def update
-      if params[:back]
-        redirect_to admin_recruiters_path
-      elsif params[:approved]
+      if params[:approved]
         @recruiter.approved = true
         @password = Devise.friendly_token.first(8)
         @recruiter.password = @password
@@ -50,9 +55,7 @@ module Admin
     def edit_student; end
 
     def update_student
-      if params[:back]
-        redirect_to admin_recruiters_path
-      elsif params[:suspended]
+      if params[:suspended]
         @student.suspended = true
         @student.save
         redirect_to edit_student_admin_recruiter_path(@student.id)

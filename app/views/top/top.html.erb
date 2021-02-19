@@ -1,19 +1,5 @@
-<header>
-  <% if student_signed_in? %>
-    <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete, class: "log_out" %></li>
-  <% else %>
-    <li><%= link_to "ログイン", new_student_session_path, class: "log_in" %></li>
-    <li><%= link_to "新規登録", new_student_registration_path, class: "sign_in" %></li>
-  <% end %>
-  <% if recruiter_signed_in? %>
-    <li><%= link_to "企業ログアウト", destroy_recruiter_session_path, method: :delete, class: "log_out" %></li>
-  <% else %>
-    <li><%= link_to "企業ログイン", new_recruiter_session_path, class: "log_in" %></li>
-    <li><%= link_to "企業新規登録", new_recruiter_registration_path, class: "sign_in" %></li>
-  <% end %>
-</header>
-
-<div class="theme">
+<%= render partial: 'partials/top_global_nav' %>
+<div class="wrapper container">
   <h3 class="title-text">高校生の就職活動をもっと自由に</h3><br>
   <div class="note">
     説明文<br>

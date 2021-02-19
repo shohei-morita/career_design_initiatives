@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root 'top#top'
+  get 'top/company', to: 'top#company'
   get 'top/applicaiton_completion', to: 'top#application_completion'
 
-  devise_for :students, controllers: { registrations: 'students/registrations'}
-  devise_for :recruiters, controllers: { registrations: 'recruiters/registrations' }
+  devise_for :students, controllers: {
+    registrations: 'students/registrations',  sessions: "students/sessions"
+  }
+  devise_for :recruiters, controllers: {
+    registrations: 'recruiters/registrations',
+    sessions: "recruiters/sessions"
+  }
 
   devise_scope :recruiter do
     post 'recruiters/registrations/confirm', to: 'recruiters/registrations#confirm', as: :confirm_application
@@ -27,6 +33,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :recruiters, except: %i(show) do
+      collection do
+        get :home
+        get :student_index
+      end
       member do
         get :edit_student
         patch :update_student
@@ -60,7 +70,7 @@ Rails.application.routes.draw do
     resources :scout_messages, only: %i(index new create)
   end
 
-  resources :notifications, only: %i(index new create show)
+  resources :notifications, only: %i(index new create show destroy)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default fixed-top" id="h-nav">
+  <a class="nabbar-brand h-nav-title mr-auto p-0">
+  <a class="navbar-brand h-nav-title mr-auto p-0" href="#"><h4>Career Design Initiatives</h4></a>
+  <ul class="h-nav-menu mb-0 mr-auto">
+    <li class="global_nav">
+      <%= link_to(home_admin_recruiters_path, class: 'nav-box') do %>
+        <span class="fa fa-home"></span>
+        HOME
+      <% end %>
+    </li>
+    <li class="global_nav">
+      <%= link_to(admin_recruiters_path, class: 'nav-box-pr') do %>
+        <span class="fas fa-search-plus"></span>
+         企業検索
+      <% end %>
+    </li>
+    <li class="global_nav">
+      <%= link_to(student_index_admin_recruiters_path, class: 'nav-box-pr') do %>
+        <span class="fas fa-search-plus"></span>
+         生徒検索
+      <% end %>
+    </li>
+    <li class="global_nav">
+      <%= link_to(destroy_recruiter_session_path, method: :delete, class: 'nav-box') do %>
+        <span class="fas fa-sign-out-alt"></span>
+        LOGOUT
+      <% end %>
+    </li>
+  </ul>
+</nav>

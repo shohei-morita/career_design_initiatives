@@ -1,0 +1,19 @@
+<div class="wrapper recruiter-wrapper container">
+  <%= search_form_for @search, url: student_index_admin_recruiters_path do |f| %>
+    <table class="table search-table">
+      <tr class="control-group">
+        <td>
+          <%= f.text_field :email_or_family_name_or_given_name_or_family_name_kana_or_given_name_kana_or_nickname_or_tel_or_educational_background_school_name_or_extracurricular_activities_name_or_extracurricular_activities_summary_or_awards_title_or_awards_summary_or_apealing_point_title_or_apealing_point_content_or_apealing_video_content_or_apealing_video_title_or_apealing_image_title_or_apealing_image_content_or_qualification_qualification_1st_or_qualification_qualification_2nd_or_qualification_qualification_3rd_or_qualification_qualification_4th_or_qualification_qualification_5th_cont, placeholder: '名前やemailなどで検索', class: "form-control" %>
+        </td>
+      <tr>
+      <tr>
+        <td colspan="2" class="text-center">
+          <%= f.button(type: :submit, class: "search-btn") do %>
+            <i class="fas fa-search"></i>
+            この条件で検索
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
