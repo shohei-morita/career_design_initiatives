@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :recruiter do
     email { 'test01@test.email' }
-    tel { '090-9999-0000' }
-    fax { '090-9999-1111' }
+    tel { '09099990000' }
+    fax { '09099991111' }
     password { 'password' }
     password_confirmation { 'password' }
     family_name { 'さんぷる' }
@@ -19,6 +19,11 @@ FactoryBot.define do
   trait :approved_recruiter do
     email { 'test02@test.email' }
     approved { true }
+  end
+
+  trait :suspended_recruiter do
+    email { 'test03@test.email' }
+    suspended { true }
   end
 
   trait :admin do

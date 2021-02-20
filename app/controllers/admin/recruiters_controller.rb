@@ -83,14 +83,6 @@ module Admin
       redirect_to root_path unless current_recruiter.admin?
     end
 
-    def recruiter_params
-      params.require(:recruiter).permit(
-        :family_name, :given_name, :family_name_kana, :given_name_kana,
-        :department, :title, :tel, :fax, :email, :admin, :approved,
-        :suspended, :password, :password_confirmation
-      )
-    end
-
     def set_recruiter
       @recruiter = Recruiter.find(params[:id])
     end

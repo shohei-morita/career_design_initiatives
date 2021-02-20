@@ -12,12 +12,15 @@ RSpec.describe 'job_information機能', type: :system do
 
     context '求人情報の登録・管理画面にアクセスした場合' do
       it '登録求人一覧が確認できる' do
+        find('.first-accordion').click
+        expect(page).to have_content('公開中の求人はありません')
+
+        find('.second-accordion').click
         expect(page).to have_content('job_', count: 5)
-        expect(page).to have_content('準備中', count: 6)
       end
 
       it '新規求人登録を選択して、求人情報を登録できる' do
-        click_link '新規求人登録'
+        click_link '新規登録'
 
         fill_in 'job_information[title]', with: 'ブラック企業へようこそ'
         fill_in 'job_information[content]', with: '追い出し部屋の管理職候補'
@@ -29,18 +32,28 @@ RSpec.describe 'job_information機能', type: :system do
         fill_in 'job_information[day_off]', with: '特になし'
         fill_in 'job_information[selection]', with: '面接なし'
         fill_in 'job_information[workplace_detail]', with: 'どこでも'
+        find('.first-accordion').click
+        check '経営・経営企画・事業企画系'
+        find('.second-accordion').click
+        check 'テレワーク可'
+        check '家族手当あり'
+        find('.third-accordion').click
+        check '北海道'
+        check '沖縄県'
         select '準備中', from: 'job_information[status]'
 
         click_button '保存'
 
-        expect(page).to have_content('準備中求人')
-        expect(page).to have_content('準備中')
+        find('.second-accordion').click
         expect(page).to have_content('ブラック企業へようこそ')
-        expect(page).to have_content('追い出し部屋の管理職候補')
+
       end
 
-      it '確認を押して、編集ができる' do
-        click_link '確認', match: :first
+      it '詳細を押して、編集ができる' do
+
+        find('.second-accordion').click
+        click_link '詳細', match: :first
+        click_link '編集'
 
         fill_in 'job_information[title]', with: 'ブラック企業へようこそ'
         fill_in 'job_information[content]', with: '追い出し部屋の管理職候補'
@@ -56,13 +69,13 @@ RSpec.describe 'job_information機能', type: :system do
 
         click_button '保存'
 
-        expect(page).to have_content('公開中求人')
+        find('.first-accordion').click
         expect(page).to have_content('ブラック企業へようこそ')
-        expect(page).to have_content('追い出し部屋の管理職候補')
       end
 
       it '任意の求人を削除できる' do
-        click_link '求人削除', match: :first
+        find('.second-accordion').click
+        click_link '削除', match: :first
 
         expect do
           page.accept_confirm '本当に削除しますか？'

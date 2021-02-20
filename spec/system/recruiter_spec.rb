@@ -20,8 +20,8 @@ RSpec.describe 'recruiter機能', type: :system do
         fill_in 'recruiter[family_name_kana]', with: 'タナカ'
         fill_in 'recruiter[given_name_kana]', with: 'タロウ'
         fill_in 'recruiter[email]', with: 'test@mail.com'
-        fill_in 'recruiter[tel]', with: '090-949-3022'
-        fill_in 'recruiter[fax]', with: '090-949-3023'
+        fill_in 'recruiter[tel]', with: '0909493022'
+        fill_in 'recruiter[fax]', with: '0909493023'
 
         click_on '申請'
 
@@ -36,13 +36,13 @@ RSpec.describe 'recruiter機能', type: :system do
         expect(page).to have_content('田中 太郎')
         expect(page).to have_content('タナカ タロウ')
         expect(page).to have_content('test@mail.com')
-        expect(page).to have_content('090-949-3022')
-        expect(page).to have_content('090-949-3023')
+        expect(page).to have_content('0909493022')
+        expect(page).to have_content('0909493023')
 
         click_on '申請'
 
-        expect(page).to have_content('ユーザー申請が完了しました')
-        expect(page).to have_content('承認後メールが届きますので、今しばらくお待ちください')
+        expect(page).to have_content('アカウント申請を受け付けました。')
+        expect(page).to have_content('承認されましたら、ログイン情報が登録メールにて届きます。')
       end
 
       it '管理者が管理画面から申請を承認し、アカウントをメールで通知できるテスト' do
@@ -61,13 +61,17 @@ RSpec.describe 'recruiter機能', type: :system do
         fill_in 'recruiter[family_name_kana]', with: 'タナカ'
         fill_in 'recruiter[given_name_kana]', with: 'タロウ'
         fill_in 'recruiter[email]', with: 'test@mail.com'
-        fill_in 'recruiter[tel]', with: '090-949-3022'
-        fill_in 'recruiter[fax]', with: '090-949-3023'
+        fill_in 'recruiter[tel]', with: '0909493022'
+        fill_in 'recruiter[fax]', with: '0909493023'
 
         click_on '申請'
         click_on '申請'
 
         login_as admin_recruiter
+
+        visit admin_recruiters_path
+
+        click_on '確認'
 
         expect(page).to have_content('△△株式会社')
         expect(page).to have_content('総務部')
@@ -76,9 +80,8 @@ RSpec.describe 'recruiter機能', type: :system do
         expect(page).to have_content('test@mail.com')
         expect(page).to have_content('未承認')
 
-        click_link '確認', match: :first
         click_button '承認'
-        click_button 'Back'
+        click_link '検索結果に戻る'
 
         expect(page).to_not have_content('未承認')
         expect(page).to have_content('承認')
@@ -96,6 +99,9 @@ RSpec.describe 'recruiter機能', type: :system do
     let!(:recruiter) { create(:recruiter) }
     let!(:approved_recruiter) { create(:recruiter, :approved_recruiter) }
     let!(:company) { create(:company, recruiter: approved_recruiter) }
+
+    let!(:suspended_recruiter) { create(:recruiter, :suspended_recruiter) }
+
     context 'ログインページにアクセスした場合' do
       it 'approvedがfalseの場合、ログインできない' do
         visit new_recruiter_session_path
@@ -105,28 +111,39 @@ RSpec.describe 'recruiter機能', type: :system do
 
         click_button 'ログイン'
 
-        expect(page).to have_content('アカウントがまだ承認されていません')
+        expect(page).to have_content('アカウントが未承認か、凍結されています')
       end
 
-      it 'メールアドレスとパスワードを入力の上、ログインすることができる' do
+      it 'approvedがtrueの場合、メールアドレスとパスワードを入力の上、ログインすることができる' do
         visit new_recruiter_session_path
         fill_in 'recruiter[email]', with: approved_recruiter.email
         fill_in 'recruiter[password]', with: approved_recruiter.password
 
         click_button 'ログイン'
 
-        expect(page).to have_content('○○株式会社')
+        expect(page).to have_content('ログインしました')
+      end
+
+      it 'suspendedがtrueの場合、メールアドレスとパスワードを入力しても、ログインできない' do
+        visit new_recruiter_session_path
+        fill_in 'recruiter[email]', with: suspended_recruiter.email
+        fill_in 'recruiter[password]', with: suspended_recruiter.password
+
+        click_button 'ログイン'
+
+        expect(page).to have_content('アカウントが未承認か、凍結されています')
       end
     end
   end
 
-  describe '担当者情報編集機能' do
+  describe '関係情報編集機能' do
     let!(:approved_recruiter) { create(:recruiter, :approved_recruiter) }
     let!(:company) { create(:company, recruiter: approved_recruiter) }
     before do
       login_as approved_recruiter
       visit settings_recruiters_path
     end
+
     context '各種設定から担当者情報にアクセスした場合' do
       it '担当者情報を確認できる' do
         click_link '担当者情報'
@@ -144,9 +161,8 @@ RSpec.describe 'recruiter機能', type: :system do
 
       it '担当者情報を編集できる' do
         click_link '担当者情報'
-        click_link '担当者情報編集'
+        click_link '編集'
 
-        attach_file 'recruiter[avatar]', "#{Rails.root}/tmp/test_image.png"
         fill_in 'recruiter[department]', with: '人事部'
         fill_in 'recruiter[title]', with: '課長'
         fill_in 'recruiter[family_name]', with: '山下'
@@ -154,12 +170,11 @@ RSpec.describe 'recruiter機能', type: :system do
         fill_in 'recruiter[family_name_kana]', with: 'ヤマシタ'
         fill_in 'recruiter[given_name_kana]', with: 'イチロウ'
         fill_in 'recruiter[email]', with: 'jinji@mail.com'
-        fill_in 'recruiter[tel]', with: '090-900-1111'
-        fill_in 'recruiter[fax]', with: '090-900-1122'
+        fill_in 'recruiter[tel]', with: '0909001111'
+        fill_in 'recruiter[fax]', with: '0909001122'
 
         click_button '変更'
 
-        expect(page).to have_selector("img[src$='test_image.png']")
         expect(page).to have_content('人事部')
         expect(page).to have_content('課長')
         expect(page).to have_content('山下')
@@ -167,10 +182,48 @@ RSpec.describe 'recruiter機能', type: :system do
         expect(page).to have_content('ヤマシタ')
         expect(page).to have_content('イチロウ')
         expect(page).to have_content('jinji@mail.com')
-        expect(page).to have_content('090-900-1111')
-        expect(page).to have_content('090-900-1122')
+        expect(page).to have_content('0909001111')
+        expect(page).to have_content('0909001122')
+      end
+    end
+
+    context '各種設定から企業情報にアクセスした場合' do
+      it '企業情報を確認できる' do
+        click_link '企業情報'
+
+        expect(page).to have_content('○○株式会社')
+        expect(page).to have_content('2015')
+        expect(page).to have_content('山田太郎')
+        expect(page).to have_content('500万円')
+        expect(page).to have_content('5億円（2020年度）')
+        expect(page).to have_content('500人')
+        expect(page).to have_content('人材紹介サービス')
+        expect(page).to have_content('www.url.com')
       end
 
+      it '企業情報を編集できる' do
+        click_link '企業情報'
+        click_link '編集'
+
+        fill_in 'company[number_of_employees]', with: '400人'
+        fill_in 'company[business_outline]', with: '特にありません'
+        fill_in 'company[revenue]', with: '4億円（2021年度）'
+        fill_in 'company[url]', with: 'www.ttt.com'
+        find('.first-accordion').click
+        check '金融・保険'
+
+        click_button '更新'
+
+        expect(page).to have_content('400人')
+        expect(page).to have_content('特にありません')
+        expect(page).to have_content('4億円（2021年度')
+        expect(page).to have_content('www.ttt.com')
+        expect(page).to have_content('金融・保険')
+      end
+    end
+
+
+    context '各種設定からパスワード変更にアクセスした場合' do
       it 'パスワードを変更できる' do
         click_link 'パスワード変更'
 

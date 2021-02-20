@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <th>設立年</th>
-      <td><%= @company.foundation_year %></td>
+      <td><%= l(@company.foundation_year, format: :very_short) %></td>
     </tr>
     <tr>
       <th>資本金</th>

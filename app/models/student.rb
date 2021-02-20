@@ -31,10 +31,10 @@ class Student < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :family_name_kana,
-            format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' },
+            format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナもしくはひらがなで入力して下さい' },
             allow_blank: true
   validates :given_name_kana,
-            format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい' },
+            format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナもしくはひらがなで入力して下さい' },
             allow_blank: true
 
   validates :graduation_year, presence: true, on: :create

@@ -29,6 +29,8 @@ class Recruiter < ApplicationRecord
   validates :department, presence: true
   validates :tel, presence: true, format: { with: VALID_TEL_NUMBER_REGEX,
                                             message: 'はハイフンなしの10桁から11桁で入力してください' }
+  validates :fax, format: { with: VALID_TEL_NUMBER_REGEX,
+                                            message: 'はハイフンなしの10桁から11桁で入力してください' }
   validates :family_name_kana, presence: true,
                                format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
   validates :given_name_kana, presence: true,
@@ -40,10 +42,6 @@ class Recruiter < ApplicationRecord
     elsif approved == true && suspended == false
       super && !suspended?
     end
-  end
-
-  def inactive_message
-    approved? ? super : 'アカウントがまだ承認されていません' || suspended? ? super : 'アカウントが凍結されています'
   end
 
   def password_required?
