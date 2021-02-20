@@ -207,3 +207,108 @@
   background: #FFC9D2;
   font-weight: 700;
 }
+
+/* ランディングページ */
+* {
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+dd {
+  margin-left: 0;
+}
+
+.flow {
+  border: 3px solid rgb(107,144,219);
+}
+.flow > li {
+  padding: 30px;
+}
+.flow > li:not(:last-child) {
+  border-bottom: 3px solid rgb(107,144,219);
+  position: relative;
+}
+.flow > li:not(:last-child)::before,
+.flow > li:not(:last-child)::after {
+  content: "";
+  border: solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 15%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.flow > li:not(:last-child)::before {
+  border-width: 22px;
+  border-top-color: rgb(107,144,219);
+}
+.flow > li:not(:last-child)::after {
+  border-width: 18px;
+  border-top-color: #F7E7C0;
+}
+.flow > li dl {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.flow > li dl dt {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: rgb(107,144,219);
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  margin-right: 1vw;
+  text-align: center;
+}
+.flow > li dl dt .icon {
+  font-size: 1.2em;
+  color: #fff;
+  background: rgb(107,144,219);
+  background: -moz-linear-gradient(left, rgba(107,144,219,1) 0%, rgba(102,213,233,1) 100%);
+  background: -webkit-linear-gradient(left, rgba(107,144,219,1) 0%,rgba(102,213,233,1) 100%);
+  background: linear-gradient(to right, rgba(107,144,219,1) 0%,rgba(102,213,233,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b90db', endColorstr='#66d5e9',GradientType=1 );
+  display: block;
+  border-radius: 20px;
+}
+
+.main-title {
+  font-size: 1.5em;
+}
+
+.top-recruiter-position {
+  margin-top: -40%;
+}
+
+.top-recruiter-img {
+  background-image: image-url('career.jpg');
+  height: 800px;
+  background-size:cover;
+  color: #fff;
+}
+
+.recruiter-main-title {
+  font-size: 1.5em;
+
+}
+
+.recruiter-top-text {
+  padding: 20px;
+  background:rgba(0,0,0,0.8)
+}

@@ -1,10 +1,51 @@
 <%= render partial: 'partials/top_global_nav' %>
-<div class="wrapper container">
-  <h3 class="title-text">高校生の就職活動をもっと自由に</h3><br>
-  <div class="note">
-    説明文<br>
-    説明文<br>
-    説明文<br>
-    説明文<br>
+<div class="wrapper container top-image">
+  <div class="text-center">
+    <p class="top-student-title">
+      <strong class="main-title">Career Design Initiativesとは？</strong><br><br>
+      高校生を対象にしたスカウト型求人サイトです。<br>
+      あなたのプロフィールや自己PRに興味をもった企業がスカウトを送ります。<br>
+      より充実した就職活動を送り、自分の可能性を広げてみませんか？
+    </p>
   </div>
-</div>
+    <div class="wrapper">
+      <ul class="flow">
+        <li>
+          <dl>
+            <dt><span class="icon">STEP.01</span>登録</dt>
+            <dd><strong><%= link_to 'ユーザー登録', new_student_registration_path %>をしよう</strong></dd>
+          </dl>
+        </li>
+
+        <li>
+          <dl>
+            <dt><span class="icon">STEP.02</span>プロフィール登録</dt>
+            <dd>
+              <strong>あなたの情報を登録しましょう</strong>
+              <p>プロフィールを充実させると多くの企業が興味をもってくれます！</p>
+            </dd>
+          </dl>
+        </li>
+
+        <li>
+          <dl>
+            <dt><span class="icon">STEP.03</span>自己PR登録</dt>
+            <dd>
+              <strong>あなたの自己PRを登録しましょう</strong>
+              <p>あなたの長所や強みにマッチする企業から注目されるかも！？</p>
+            </dd>
+          </dl>
+        </li>
+
+        <li>
+          <dl>
+            <dt><span class="icon">STEP.04</span>スカウト獲得</dt>
+            <dd>
+              <strong>あなたに興味をもった企業からスカウトが届きます！</strong>
+              <p>たくさん質問をして、自分に最もマッチした企業を選びましょう</p>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
