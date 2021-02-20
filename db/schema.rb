@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_233231) do
+ActiveRecord::Schema.define(version: 2021_02_20_115604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.string "title", null: false
     t.date "year", null: false
     t.text "summary"
-    t.bigint "student_id"
+    t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_awards_on_student_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.text "url", null: false
     t.text "number_of_employees", null: false
     t.text "business_outline"
-    t.bigint "recruiter_id"
+    t.bigint "recruiter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "revenue"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
   end
 
   create_table "company_industry_conditions", force: :cascade do |t|
-    t.bigint "company_id"
-    t.bigint "condition_id"
+    t.bigint "company_id", null: false
+    t.bigint "condition_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_industry_conditions_on_company_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.date "entrance_date", null: false
     t.date "graduation_date", null: false
     t.text "note"
-    t.bigint "student_id"
+    t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_educational_backgrounds_on_student_id"
@@ -95,15 +95,15 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.date "beginning_year", null: false
     t.date "ending_year"
     t.text "summary"
-    t.bigint "student_id"
+    t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_extracurricular_activities_on_student_id"
   end
 
   create_table "job_information_conditions", force: :cascade do |t|
-    t.bigint "job_information_id"
-    t.bigint "condition_id"
+    t.bigint "job_information_id", null: false
+    t.bigint "condition_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["condition_id"], name: "index_job_information_conditions_on_condition_id"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.text "day_off", null: false
     t.text "selection", null: false
     t.integer "status", default: 0, null: false
-    t.bigint "company_id"
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "workplace_detail"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "student_id"
+    t.bigint "student_id", null: false
     t.index ["student_id"], name: "index_qualifications_on_student_id"
   end
 
@@ -181,8 +181,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
   end
 
   create_table "scout_job_information", force: :cascade do |t|
-    t.bigint "job_information_id"
-    t.bigint "scout_id"
+    t.bigint "job_information_id", null: false
+    t.bigint "scout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_information_id"], name: "index_scout_job_information_on_job_information_id"
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
 
   create_table "scouts", force: :cascade do |t|
     t.string "title", null: false
-    t.bigint "recruiter_id"
-    t.bigint "student_id"
+    t.bigint "recruiter_id", null: false
+    t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "read_unread", default: false
@@ -217,15 +217,15 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
     t.string "type"
     t.string "title"
     t.text "content"
-    t.bigint "student_id"
+    t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_self_introductions_on_student_id"
   end
 
   create_table "student_desirable_conditions", force: :cascade do |t|
-    t.bigint "student_id"
-    t.bigint "condition_id"
+    t.bigint "student_id", null: false
+    t.bigint "condition_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["condition_id"], name: "index_student_desirable_conditions_on_condition_id"
@@ -256,8 +256,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_233231) do
   end
 
   create_table "target_lists", force: :cascade do |t|
-    t.bigint "student_id"
-    t.bigint "recruiter_id"
+    t.bigint "student_id", null: false
+    t.bigint "recruiter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recruiter_id"], name: "index_target_lists_on_recruiter_id"

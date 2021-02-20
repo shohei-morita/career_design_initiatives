@@ -56,7 +56,7 @@
   </div>
 
   <input type="checkbox" id="check1" class="accordion-hidden">
-  <label for="check1" class="accordion-open">希望業界</label>
+  <label for="check1" class="accordion-open first-accordion">希望業界</label>
   <label for="check1" class="accordion-close">
     <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
@@ -64,7 +64,7 @@
   </label>
 
   <input type="checkbox" id="check2" class="accordion-hidden">
-  <label for="check2" class="accordion-open">希望職種</label>
+  <label for="check2" class="accordion-open second-accordion">希望職種</label>
   <label for="check2" class="accordion-close">
     <%= f.collection_check_boxes(:condition_ids, Occupation.all, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
@@ -72,7 +72,7 @@
   </label>
 
   <input type="checkbox" id="check3" class="accordion-hidden">
-  <label for="check3" class="accordion-open">希望条件</label>
+  <label for="check3" class="accordion-open third-accordion">希望条件</label>
   <label for="check3" class="accordion-close">
     <%= f.collection_check_boxes(:condition_ids, Workstyle.all, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
@@ -80,7 +80,7 @@
   </label>
 
   <input type="checkbox" id="check4" class="accordion-hidden">
-  <label for="check4" class="accordion-open">希望勤務地</label>
+  <label for="check4" class="accordion-open fourth-accordion">希望勤務地</label>
   <label for="check4" class="accordion-close">
     <%= f.collection_check_boxes(:condition_ids, Workplace.all, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
