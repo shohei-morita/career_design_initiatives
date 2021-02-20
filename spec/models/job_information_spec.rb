@@ -125,7 +125,7 @@ RSpec.describe JobInformation, type: :model do
     @job_information.workplace_detail = 'a' * 201
     @job_information.valid?
 
-    expect(@job_information.errors[:workplace]).to include('は200文字以内で入力してください')
+    expect(@job_information.errors[:workplace_detail]).to include('は200文字以内で入力してください')
   end
 
   it 'statusが空欄の場合、無効である' do

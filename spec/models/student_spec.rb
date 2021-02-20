@@ -42,7 +42,7 @@ RSpec.describe Student, type: :model do
     @student.password_confirmation = 'password2'
     @student.valid?
 
-    expect(@student.errors[:password_confirmation]).to include('とPasswordの入力が一致しません')
+    expect(@student.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
   end
 
   it 'family_name_kanaは平仮名である場合は有効である' do
@@ -59,13 +59,13 @@ RSpec.describe Student, type: :model do
     @student.family_name_kana = '合鴨農法'
     @student.valid?
 
-    expect(@student.errors[:family_name_kana]).to include('はカタカナで入力して下さい')
+    expect(@student.errors[:family_name_kana]).to include('はカタカナもしくはひらがなで入力して下さい')
   end
 
   it 'given_name_kanaがカタカナもしくは平仮名でない場合は無効である' do
     @student.given_name_kana = '合鴨農法'
     @student.valid?
 
-    expect(@student.errors[:given_name_kana]).to include('はカタカナで入力して下さい')
+    expect(@student.errors[:given_name_kana]).to include('はカタカナもしくはひらがなで入力して下さい')
   end
 end
