@@ -7,8 +7,8 @@
 <input type="checkbox" id="check1" class="accordion-hidden">
 <label for="check1" class="accordion-open">公開中求人</label>
 <label for="check1" class="accordion-close">
-  <% if @open_job_informations.any? %>
-    <% @open_job_informations.each do |job_information| %>
+  <% if @open_job_information.any? %>
+    <% @open_job_information.each do |job_information| %>
        <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
          <td><%= job_information.title %></td>
          <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>
@@ -23,8 +23,8 @@
 <input type="checkbox" id="check2" class="accordion-hidden">
 <label for="check2" class="accordion-open">準備中求人</label>
 <label for="check2" class="accordion-close">
-  <% if @draft_job_informations.any? %>
-    <% @draft_job_informations.each do |job_information| %>
+  <% if @draft_job_information.any? %>
+    <% @draft_job_information.each do |job_information| %>
        <%= link_to(edit_recruiter_job_information_path(current_recruiter.id, job_information.id), class: "job-index") do %>
          <td><%= job_information.title %></td>
          <td><%= link_to '詳細', recruiter_job_information_path(current_recruiter.id, job_information.id), class: "rounded-btn-sm job-btn" %></td>

@@ -25,9 +25,11 @@ module Recruiters
     def create
       build_resource(sign_up_params)
 
-      resource.save
-      yield resource if block_given?
-      if resource.persisted?
+      if params[:back]
+        render :new
+      elsif resource.save
+        yield resource if block_given?
+        resource.persisted?
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
           sign_up(resource_name, resource)

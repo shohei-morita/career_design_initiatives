@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   belongs_to :recruiter
-  has_many :job_informations, dependent: :destroy
+  has_many :job_information, dependent: :destroy
   has_many :company_industry_conditions, dependent: :destroy
   has_many :conditions, through: :company_industry_conditions
   has_many :industries, through: :company_industry_conditions, source: :condition

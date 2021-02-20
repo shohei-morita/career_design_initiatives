@@ -24,7 +24,7 @@
     <% end %>
       <tr class="form-group">
         <th><%= f.label :job_information %></th>
-        <td><%= f.collection_select :job_information_ids, current_recruiter.company.job_informations.where(status: 1), :id, :title, {prompt: "添付する求人情報を選択してください"}, { multiple: true, class: "form-control" } %></td>
+        <td><%= f.collection_select :job_information_ids, current_recruiter.company.job_information.where(status: 1), :id, :title, {prompt: "添付する求人情報を選択してください"}, { multiple: true, class: "form-control" } %></td>
       </tr>
     </table>
     <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>

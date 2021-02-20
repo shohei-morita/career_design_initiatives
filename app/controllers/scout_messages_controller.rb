@@ -10,7 +10,7 @@ class ScoutMessagesController < ApplicationController
       redirect_to scouts_path
     end
 
-    @job_informations = @scout.job_informations.all
+    @job_information = @scout.job_information.all
 
     if student_signed_in?
       @scout.read_unread = true

@@ -5,8 +5,8 @@ require 'csv'
 #  )
 #end
 
-#Recruiter.create(family_name: '田中', given_name: '太郎', family_name_kana: 'タナカ', given_name_kana: 'タロウ',
-#                email: 'admin@gmail.com', password: '111111', department: '所属なし', tel: '090', admin: true, approved: true)
+Recruiter.create(family_name: '田中', given_name: '太郎', family_name_kana: 'タナカ', given_name_kana: 'タロウ',
+                email: 'admin@gmail.com', password: '111111', department: '所属なし', tel: '090-9494-0909', admin: true, approved: true)
 
 11.times do |n|
   s = Student.find_by(id: n + 1)
