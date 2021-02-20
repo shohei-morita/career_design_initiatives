@@ -69,15 +69,13 @@
         <% end %>
       </td>
     </tr>
-    <% if @recruiter.approved == false %>
     <tr>
       <th>承認状況</th>
       <td>
-        <%= @recruiter.approved %>
-        <%= f.submit "承認", name: "approved",  Class: "btn-info"%>
+        <%= @recruiter.approved? ? '承認' : '未承認' %>
+        <%= f.submit "承認", name: "approved",  Class: "btn-info" unless @recruiter.approved == true %>
       </td>
     </tr>
-    <% end %>
   </table>
   <% end %>
   <%= link_to '検索結果に戻る', :back %>

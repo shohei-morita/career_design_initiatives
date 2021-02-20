@@ -44,10 +44,6 @@ class Recruiter < ApplicationRecord
     end
   end
 
-  def inactive_message
-    approved? ? super : 'アカウントがまだ承認されていません' || suspended? ? super : 'アカウントが凍結されています'
-  end
-
   def password_required?
     super && confirmed_at
   end

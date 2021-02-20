@@ -21,6 +21,11 @@ FactoryBot.define do
     approved { true }
   end
 
+  trait :suspended_recruiter do
+    email { 'test03@test.email' }
+    suspended { true }
+  end
+
   trait :admin do
     email { 'admin@test.email' }
     password { 'admin_password' }
