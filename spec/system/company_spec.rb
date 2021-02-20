@@ -24,7 +24,7 @@ RSpec.describe 'company機能', type: :system do
       it '登録企業情報を編集できる' do
         click_link '企業情報'
 
-        click_link '企業情報編集'
+        click_link '編集'
 
         fill_in 'company[number_of_employees]', with: '450人(2022年度)'
         fill_in 'company[revenue]', with: '500億円(2022年度)'

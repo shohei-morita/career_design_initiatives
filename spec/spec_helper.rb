@@ -49,7 +49,12 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    SeedFu.seed
+    DatabaseRewinder.clean_all
+  end
+
+  config.before(:suite) do
+    fixture_paths = "#{Rails.root}/db/fixtures/test"
+    SeedFu.seed(fixture_paths)
   end
 
 # The settings below are suggested to provide a good initial experience

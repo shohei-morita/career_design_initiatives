@@ -5,7 +5,7 @@
 <br><br>
 
 <input type="checkbox" id="check1" class="accordion-hidden">
-<label for="check1" class="accordion-open">公開中求人</label>
+<label for="check1" class="accordion-open first-accordion">公開中求人</label>
 <label for="check1" class="accordion-close">
   <% if @open_job_information.any? %>
     <% @open_job_information.each do |job_information| %>
@@ -21,7 +21,7 @@
 </label>
 
 <input type="checkbox" id="check2" class="accordion-hidden">
-<label for="check2" class="accordion-open">準備中求人</label>
+<label for="check2" class="accordion-open second-accordion">準備中求人</label>
 <label for="check2" class="accordion-close">
   <% if @draft_job_information.any? %>
     <% @draft_job_information.each do |job_information| %>
