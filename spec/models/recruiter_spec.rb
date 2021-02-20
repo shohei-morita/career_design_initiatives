@@ -89,11 +89,4 @@ RSpec.describe Recruiter, type: :model do
 
     expect(@recruiter.errors[:tel]).to include('はハイフンなしの10桁から11桁で入力してください')
   end
-
-  it 'faxがフォーマットから逸脱している場合、無効である' do
-    @recruiter.fax = '022'
-    @recruiter.invalid?
-
-    expect(@recruiter.errors[:fax]).to include('はハイフンなしの10桁から11桁で入力してください')
-  end
 end

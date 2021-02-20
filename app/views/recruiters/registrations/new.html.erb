@@ -1,10 +1,17 @@
 <div class="wrapper student-wrapper container">
+  <%= form_for(resource, as: resource_name, url: confirm_application_path) do |f| %>
+  <% if resource.errors.any? %>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <h3 class="heading">アカウント申請</h3>
 
-  <%= form_for(resource, as: resource_name, url: confirm_application_path) do |f| %>
-    <%= render "recruiters/shared/error_messages", resource: resource %>
-
     <%= f.fields_for :company do |f| %>
+    <h4 class="heading-sm">企業情報</h4>
     <div class="field form-group">
       <strong><%= f.label :name %></strong>
       <%= f.text_field :name, class: "form-control normal-form" %>
@@ -12,7 +19,7 @@
 
     <div class="field form-group">
       <strong><%= f.label :foundation_year %></strong>
-      <%= raw sprintf(f.date_select(:foundation_year, prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s', class: "form-control"), '年') %><br />
+      <%= raw sprintf(f.date_select(:foundation_year, {prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s'}, class: "form-control normal-form"), '年') %><br />
     </div>
 
     <div class="field form-group">
@@ -36,6 +43,7 @@
     </div>
     <% end %>
 
+    <h4 class="heading-sm">担当者情報</h4>
     <div class="field form-group">
       <strong><%= f.label :department %></strong>
       <%= f.text_field :department, autofocus: true, autocomplete: "family_name", class: "form-control normal-form" %>

@@ -84,8 +84,4 @@ class Student < ApplicationRecord
       super && !suspended?
     end
   end
-
-  def inactive_message
-    suspended? ? super : 'アカウントが凍結されています'
-  end
 end
