@@ -22,13 +22,13 @@ class Recruiter < ApplicationRecord
     self.given_name_kana = normalize_as_furigana(given_name_kana)
   end
 
-  VALID_TEL_NUMBER_REGEX = /\A(((0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1}|[5789]0[-(]?\d{4})[-)]?)|\d{1,4}-?)\d{4}|0120[-(]?\d{3}[-)]?\d{3})\z/.freeze
+  VALID_TEL_NUMBER_REGEX =  /\A\d{10}$|^\d{11}\z/
 
   validates :family_name, presence: true
   validates :given_name, presence: true
   validates :department, presence: true
   validates :tel, presence: true, format: { with: VALID_TEL_NUMBER_REGEX,
-                                            message: 'は数字のみもしくはハイフン（ー）を含んだ形式で入力してください' }
+                                            message: 'はハイフンなしの10桁から11桁で入力してください' }
   validates :family_name_kana, presence: true,
                                format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'は「カタカナ」もしくは「ひらがな」で入力してください' }
   validates :given_name_kana, presence: true,

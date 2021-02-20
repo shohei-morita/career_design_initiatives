@@ -7,7 +7,7 @@ class JobInformation < ApplicationRecord
   has_many :workstyles, through: :job_information_conditions, source: :condition
   has_many :workplaces, through: :job_information_conditions, source: :condition
 
-  has_many :scout_job_infos, dependent: :destroy
+  has_many :scout_job_information, dependent: :destroy
   has_many :scouts, through: :scout_job_infos
 
   enum status: { 準備中: 0, 公開中: 1 }

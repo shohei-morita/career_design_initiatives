@@ -37,8 +37,7 @@
   <p><%= resource.fax %></p>
 
 <div class="actions">
-  <%= f.submit "申請" %>
+  <%= f.submit "申請" %><br>
+  <%= f.submit "Back", name: "back" %>
 </div>
 <% end %>
-
-<%= link_to "Back", :back %>
