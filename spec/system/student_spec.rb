@@ -16,11 +16,11 @@ RSpec.describe 'student機能', type: :system do
 
     context '必要情報を入力の上、アカウント登録ボタンを押した場合' do
       it 'アカウント登録後のページに遷移する' do
-        fill_in 'Email', with: 'test_student@test.com'
-        select '2021', from: 'Graduation year'
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'password'
-        click_on 'アカウント登録'
+        fill_in 'student[email]', with: 'test_student@test.com'
+        select '2021', from: 'student[graduation_year]'
+        fill_in 'student[password]', with: 'password'
+        fill_in 'student[password_confirmation]', with: 'password'
+        click_on '登録'
 
         expect(page).to have_content('ようこそ')
       end
@@ -38,8 +38,8 @@ RSpec.describe 'student機能', type: :system do
     context 'ログイン情報を入力の上、ログインボタンを押した場合' do
       it 'ログイン後ページに遷移する' do
         visit new_student_session_path
-        fill_in 'Email', with: student.email
-        fill_in 'Password', with: student.password
+        fill_in 'student[email]', with: student.email
+        fill_in 'student[password]', with: student.password
         click_button 'ログイン'
 
         expect(page).to have_content('ようこそ')
@@ -80,16 +80,26 @@ RSpec.describe 'student機能', type: :system do
         login_as student
         visit edit_student_registration_path
 
-        attach_file 'Avatar', "#{Rails.root}/tmp/test_image.png"
-        fill_in 'Email', with: 'test02@test.email'
-        fill_in 'Tel', with: '090-9999-1111'
-        fill_in 'Family name', with: 'さんぷる1'
-        fill_in 'Given name', with: 'はなこ'
-        fill_in 'Family name kana', with: 'サンプルイチ'
-        fill_in 'Given name kana', with: 'ハナコ'
-        fill_in 'Nickname', with: 'サンプルの女帝'
-        select_date('2002,4,2', from: 'Birth date')
-        select '女性', from: 'Gender'
+        attach_file 'student[avatar]', "#{Rails.root}/tmp/test_image.png"
+        fill_in 'student[email]', with: 'test02@test.email'
+        fill_in 'student[tel]', with: '09099991111'
+        fill_in 'student[family_name]', with: 'さんぷる1'
+        fill_in 'student[given_name]', with: 'はなこ'
+        fill_in 'student[family_name_kana]', with: 'サンプルイチ'
+        fill_in 'student[given_name_kana]', with: 'ハナコ'
+        fill_in 'student[nickname]', with: 'サンプルの女帝'
+        fill_in 'student[birth_date]', with: '002002-04-02'
+        fill_in 'student[address]', with: '富山県富山市'
+        select '女性', from: 'student[gender]'
+        find('.first-accordion').click
+        check '金融・保険'
+        find('.second-accordion').click
+        check '経営・経営企画・事業企画系'
+        find('.third-accordion').click
+        check 'テレワーク可'
+        check '家族手当あり'
+        find('.fourth-accordion').click
+        check '北海道'
 
         click_on '更新'
 
@@ -101,8 +111,13 @@ RSpec.describe 'student機能', type: :system do
         expect(page).to have_content('ハナコ')
         expect(page).to have_content('サンプルの女帝')
         expect(page).to have_content('2002-04-02')
-        expect(page).to have_content('090-9999-1111')
+        expect(page).to have_content('09099991111')
         expect(page).to have_content('女性')
+        expect(page).to have_content('金融・保険')
+        expect(page).to have_content('経営・経営企画・事業企画系')
+        expect(page).to have_content('テレワーク可')
+        expect(page).to have_content('家族手当あり')
+        expect(page).to have_content('北海道')
       end
     end
   end

@@ -13,10 +13,11 @@ RSpec.describe 'job_information機能', type: :system do
     context '求人情報の登録・管理画面にアクセスした場合' do
       it '登録求人一覧が確認できる' do
         find('.first-accordion').click
-        expect(page).to have_content('公開中の求人はありません')
+        expect(page).to have_content('job_', count: 5)
 
         find('.second-accordion').click
-        expect(page).to have_content('job_', count: 5)
+        expect(page).to have_content('準備中の求人はありません')
+
       end
 
       it '新規求人登録を選択して、求人情報を登録できる' do
@@ -51,7 +52,7 @@ RSpec.describe 'job_information機能', type: :system do
 
       it '詳細を押して、編集ができる' do
 
-        find('.second-accordion').click
+        find('.first-accordion').click
         click_link '詳細', match: :first
         click_link '編集'
 
@@ -74,7 +75,7 @@ RSpec.describe 'job_information機能', type: :system do
       end
 
       it '任意の求人を削除できる' do
-        find('.second-accordion').click
+        find('.first-accordion').click
         click_link '削除', match: :first
 
         expect do
