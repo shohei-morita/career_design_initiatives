@@ -39,7 +39,7 @@ Ruby 2.6.5 Rails 5.2.4
   - [ ] ログイン機能
     - [ ] メールアドレス、パスワードによる認証
   - [ ] アカウント管理機能
-    - [ ] 企業ユーザーの登録申請の許可・否認ができる
+    - [ ] 企業ユーザーの登録申請の許可ができる
     - [ ] 生徒ユーザー・企業ユーザーの検索ができる
     - [ ] 生徒ユーザー・企業ユーザーのアカウント停止・削除ができる
 
@@ -67,10 +67,8 @@ https://drive.google.com/file/d/1vE5SjDO9ImjCRJaG7UJjJUVoLW8g9XJX/view?usp=shari
 
 ## 使用予定Gem
 - devise
-- rails_admin
 - ransack
 - jp_prefecture
 - kaminari
 - letter_opener_web
-- carrierwave
-- mini_magick
+- rinku
