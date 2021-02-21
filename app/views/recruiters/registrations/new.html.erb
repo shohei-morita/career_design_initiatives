@@ -1,94 +1,96 @@
-<div class="wrapper student-wrapper container">
-  <%= form_for(resource, as: resource_name, url: confirm_application_path) do |f| %>
-  <% if resource.errors.any? %>
-    <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <h3 class="heading">アカウント申請</h3>
-
-    <%= f.fields_for :company do |f| %>
-    <h4 class="heading-sm">企業情報</h4>
-    <div class="field form-group">
-      <strong><%= f.label :name %></strong>
-      <%= f.text_field :name, class: "form-control normal-form" %>
-    </div>
-
-    <div class="field form-group">
-      <strong><%= f.label :foundation_year %></strong>
-      <%= raw sprintf(f.date_select(:foundation_year, {prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s'}, class: "form-control normal-form"), '年') %><br />
-    </div>
-
-    <div class="field form-group">
-      <strong><%= f.label :capital %></strong>
-      <%= f.text_field :capital, class: "form-control normal-form" %>
-    </div>
-
-    <div class="field form-group">
-      <strong><%= f.label :president_name %></strong>
-      <%= f.text_field :president_name, class: "form-control normal-form" %>
-    </div>
-
-    <div class="field form-group">
-      <strong><%= f.label :number_of_employees %></strong>
-      <%= f.text_field :number_of_employees, class: "form-control normal-form" %>
-    </div>
-
-    <div class="field">
-      <strong><%= f.label :url %></strong>
-      <%= f.text_field :url, class: "form-control normal-form" %>
-    </div>
+<div class="recuriter-sign-in-margin">
+  <div class="wrapper student-wrapper container">
+    <%= form_for(resource, as: resource_name, url: confirm_application_path) do |f| %>
+    <% if resource.errors.any? %>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
 
-    <h4 class="heading-sm">担当者情報</h4>
-    <div class="field form-group">
-      <strong><%= f.label :department %></strong>
-      <%= f.text_field :department, autofocus: true, autocomplete: "family_name", class: "form-control normal-form" %>
-    </div>
+    <h3 class="heading">アカウント申請</h3>
 
-    <div class="field form-group">
-      <strong><%= f.label :title %></strong>
-      <%= f.text_field :title, autofocus: true, autocomplete: "family_name", class: "form-control normal-form" %>
-    </div>
-
-    <div class="form-group">
-      <strong><%= f.label :"氏名" %></strong>
-      <div class="form-inline">
-        <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "form-control inline-form form-before" %>
-        <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name", class: "form-control inline-form form-after"  %>
+      <%= f.fields_for :company do |f| %>
+      <h4 class="heading-sm">企業情報</h4>
+      <div class="field form-group">
+        <strong><%= f.label :name %></strong>
+        <%= f.text_field :name, class: "form-control normal-form" %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <strong><%= f.label :"カナ氏名" %></strong>
-      <div class="form-inline">
-        <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "form-control inline-form form-before", placeholder: "カタカナかひらがなで入力"  %>
-        <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana", class: "form-control inline-form form-after", placeholder: "カタカナかひらがなで入力"   %>
+      <div class="field form-group">
+        <strong><%= f.label :foundation_year %></strong>
+        <%= raw sprintf(f.date_select(:foundation_year, {prompt:"--", start_year:Time.now.year, end_year:1800, discard_month:true, discard_day:true, date_separator:'%s'}, class: "form-control normal-form"), '年') %><br />
       </div>
-    </div>
 
-    <div class="form-group">
-      <strong><%= f.label :email %></strong>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control normal-form"  %>
-    </div>
+      <div class="field form-group">
+        <strong><%= f.label :capital %></strong>
+        <%= f.text_field :capital, class: "form-control normal-form" %>
+      </div>
 
-    <div class="form-group">
-      <strong><%= f.label :tel %></strong>
-      <%= f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "ハイフンなし 例:0009994444", class: "form-control normal-form"  %>
-    </div>
+      <div class="field form-group">
+        <strong><%= f.label :president_name %></strong>
+        <%= f.text_field :president_name, class: "form-control normal-form" %>
+      </div>
 
-    <div class="form-group">
-      <strong><%= f.label :fax %></strong>
-      <%= f.text_field :fax, autofocus: true, autocomplete: "fax", placeholder: "ハイフンなし 例:0009994444", class: "form-control normal-form"  %>
-    </div>
+      <div class="field form-group">
+        <strong><%= f.label :number_of_employees %></strong>
+        <%= f.text_field :number_of_employees, class: "form-control normal-form" %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "申請", class: "rounded-btn" %>
-    </div>
+      <div class="field">
+        <strong><%= f.label :url %></strong>
+        <%= f.text_field :url, class: "form-control normal-form" %>
+      </div>
+      <% end %>
 
-    <%= render "recruiters/shared/links" %>
-  <% end %>
+      <h4 class="heading-sm">担当者情報</h4>
+      <div class="field form-group">
+        <strong><%= f.label :department %></strong>
+        <%= f.text_field :department, autofocus: true, autocomplete: "family_name", class: "form-control normal-form" %>
+      </div>
+
+      <div class="field form-group">
+        <strong><%= f.label :title %></strong>
+        <%= f.text_field :title, autofocus: true, autocomplete: "family_name", class: "form-control normal-form" %>
+      </div>
+
+      <div class="form-group">
+        <strong><%= f.label :"氏名" %></strong>
+        <div class="form-inline">
+          <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "form-control inline-form form-before" %>
+          <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name", class: "form-control inline-form form-after"  %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <strong><%= f.label :"カナ氏名" %></strong>
+        <div class="form-inline">
+          <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "form-control inline-form form-before", placeholder: "カタカナかひらがなで入力"  %>
+          <%= f.text_field :given_name_kana, autofocus: true, autocomplete: "given_name_kana", class: "form-control inline-form form-after", placeholder: "カタカナかひらがなで入力"   %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <strong><%= f.label :email %></strong>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control normal-form"  %>
+      </div>
+
+      <div class="form-group">
+        <strong><%= f.label :tel %></strong>
+        <%= f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "ハイフンなし 例:0009994444", class: "form-control normal-form"  %>
+      </div>
+
+      <div class="form-group">
+        <strong><%= f.label :fax %></strong>
+        <%= f.text_field :fax, autofocus: true, autocomplete: "fax", placeholder: "ハイフンなし 例:0009994444", class: "form-control normal-form"  %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "申請", class: "rounded-btn" %>
+      </div>
+
+      <%= render "recruiters/shared/links" %>
+    <% end %>
+  </div>
 </div>
