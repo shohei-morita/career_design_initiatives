@@ -56,15 +56,15 @@ class Student < ApplicationRecord
   end
 
   def thumbnail
-    avatar.variant(resize: '150x150').processed
+    self.avatar.variant(resize: '150x150').processed
   end
 
   def profile_image
-    avatar.variant(resize: '200x200').processed
+    self.avatar.variant(resize: '200x200').processed
   end
 
   def header_image
-    avatar.variant(resize: '200x200').processed
+    self.avatar.variant(resize: '200x200').processed
   end
 
   def update_without_current_password(params, *options)

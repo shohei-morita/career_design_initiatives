@@ -1,84 +1,86 @@
-<div class="wrapper container">
-  <h3 class="heading">この内容でアカウントを申請しますか？</h3>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "recruiters/shared/error_messages", resource: resource %>
+<div class="recruiter-confirm-margin">
+  <div class="wrapper container">
+    <h3 class="heading">この内容でアカウントを申請しますか？</h3>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "recruiters/shared/error_messages", resource: resource %>
 
-    <%= f.fields_for :company do |f| %>
-      <%= f.hidden_field :name %>
-      <%= f.hidden_field :foundation_year %>
-      <%= f.hidden_field :capital %>
-      <%= f.hidden_field :president_name %>
-      <%= f.hidden_field :number_of_employees %>
-      <%= f.hidden_field :url %>
-    <table class="table job-table">
-      <tr>
-        <th>企業名</th>
-        <td><%= resource.company.name %></td>
-      </tr>
-      <tr>
-        <th>設立年</th>
-        <td><%= l(resource.company.foundation_year, format: :very_short) %></td>
-      </tr>
-      <tr>
-        <th>社長名</th>
-        <td><%= resource.company.president_name %></td>
-      </tr>
-      <tr>
-        <th>資本金</th>
-        <td><%= resource.company.capital %></td>
-      </tr>
-      <tr>
-        <th>従業員数</th>
-        <td><%= resource.company.number_of_employees %></td>
-      </tr>
-      <tr>
-        <th>企業HP</th>
-        <td><%= resource.company.url %></td>
-      </tr>
+      <%= f.fields_for :company do |f| %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :foundation_year %>
+        <%= f.hidden_field :capital %>
+        <%= f.hidden_field :president_name %>
+        <%= f.hidden_field :number_of_employees %>
+        <%= f.hidden_field :url %>
+      <table class="table job-table">
+        <tr>
+          <th>企業名</th>
+          <td><%= resource.company.name %></td>
+        </tr>
+        <tr>
+          <th>設立年</th>
+          <td><%= l(resource.company.foundation_year, format: :very_short) %></td>
+        </tr>
+        <tr>
+          <th>社長名</th>
+          <td><%= resource.company.president_name %></td>
+        </tr>
+        <tr>
+          <th>資本金</th>
+          <td><%= resource.company.capital %></td>
+        </tr>
+        <tr>
+          <th>従業員数</th>
+          <td><%= resource.company.number_of_employees %></td>
+        </tr>
+        <tr>
+          <th>企業HP</th>
+          <td><%= resource.company.url %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <th>担当者所属</th>
+          <td><%= resource.department %></td>
+        </tr>
+        <tr>
+          <th>担当者役職</th>
+          <td><%= resource.title %></td>
+        </tr>
+        <tr>
+          <th>担当者氏名</th>
+          <td><%= resource.family_name %> <%= resource.given_name %></td>
+        </tr>
+        <tr>
+          <th>担当者カナ氏名</th>
+          <td><%= resource.family_name_kana %> <%= resource.given_name_kana %></td>
+        </tr>
+        <tr>
+          <th>担当者メールアドレス</th>
+          <td><%= resource.email %></td>
+        </tr>
+        <tr>
+          <th>担当者電話番号</th>
+          <td><%= resource.tel %></td>
+        </tr>
+        <tr>
+          <th>担当者FAX番号</th>
+          <td><%= resource.fax %></td>
+        </tr>
+      </table>
+
+      <%= f.hidden_field :department %>
+      <%= f.hidden_field :title %>
+      <%= f.hidden_field :family_name %>
+      <%= f.hidden_field :given_name %>
+      <%= f.hidden_field :family_name_kana %>
+      <%= f.hidden_field :given_name_kana %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :tel %>
+      <%= f.hidden_field :fax %>
+
+    <div class="actions">
+      <%= f.submit "申請", class: "rounded-btn job-info-btn" %><br>
+      <%= f.submit "Back", name: "back", class: "job-info-btn" %>
+    </div>
     <% end %>
-      <tr>
-        <th>担当者所属</th>
-        <td><%= resource.department %></td>
-      </tr>
-      <tr>
-        <th>担当者役職</th>
-        <td><%= resource.title %></td>
-      </tr>
-      <tr>
-        <th>担当者氏名</th>
-        <td><%= resource.family_name %> <%= resource.given_name %></td>
-      </tr>
-      <tr>
-        <th>担当者カナ氏名</th>
-        <td><%= resource.family_name_kana %> <%= resource.given_name_kana %></td>
-      </tr>
-      <tr>
-        <th>担当者メールアドレス</th>
-        <td><%= resource.email %></td>
-      </tr>
-      <tr>
-        <th>担当者電話番号</th>
-        <td><%= resource.tel %></td>
-      </tr>
-      <tr>
-        <th>担当者FAX番号</th>
-        <td><%= resource.fax %></td>
-      </tr>
-    </table>
-
-    <%= f.hidden_field :department %>
-    <%= f.hidden_field :title %>
-    <%= f.hidden_field :family_name %>
-    <%= f.hidden_field :given_name %>
-    <%= f.hidden_field :family_name_kana %>
-    <%= f.hidden_field :given_name_kana %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :tel %>
-    <%= f.hidden_field :fax %>
-
-  <div class="actions">
-    <%= f.submit "申請", class: "rounded-btn job-info-btn" %><br>
-    <%= f.submit "Back", name: "back", class: "job-info-btn" %>
   </div>
-  <% end %>
 </div>
