@@ -8,8 +8,12 @@
         <td><%= @recruiter.company.name %></td>
       </tr>
       <tr>
+        <th>設立年</th>
+        <td><%= l(@recruiter.company.foundation_year, format: :very_short) %></td>
+      </tr>
+      <tr>
         <th>資本金</th>
-        <td><%= @recruiter.company.foundation_year %></td>
+        <td><%= @recruiter.company.capital %></td>
       </tr>
       <tr>
         <th>代表者名</th>
