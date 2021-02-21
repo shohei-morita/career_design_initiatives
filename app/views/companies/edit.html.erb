@@ -1,64 +1,66 @@
-<div class="wrapper recruiter-wrapper container">
-  <%= form_with(model: [@recruiter, @company], local: true) do |f| %>
-  <% if @company.errors.any? %>
-    <ul>
-      <% @company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <h3 class="heading">企業情報編集</h3>
-
-  <table class="table">
-    <tr>
-      <th>企業名</th>
-      <td><%= current_recruiter.company.name %></td>
-    </tr>
-    <tr>
-      <th>設立年</th>
-      <td><%= current_recruiter.company.foundation_year %></td>
-    </tr>
-    <tr>
-      <th>資本金</th>
-      <td><%= current_recruiter.company.capital %></td>
-    </tr>
-    <tr>
-      <th>代表者</th>
-      <td><%= current_recruiter.company.president_name %></td>
-    </tr>
-  </table>
-
-  <div class="form-group">
-    <strong><%= f.label :number_of_employees %></strong>
-    <%= f.text_field :number_of_employees, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <strong><%= f.label :business_outline %></strong>
-    <%= f.text_area :business_outline, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <strong><%= f.label :revenue %></strong>
-    <%= f.text_area :revenue, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <strong><%= f.label :url %></strong>
-    <%= f.text_field :url, class: "form-control" %>
-  </div>
-
-  <input type="checkbox" id="check1" class="accordion-hidden">
-  <label for="check1" class="accordion-open first-accordion">業界選択</label>
-  <label for="check1" class="accordion-close">
-    <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
-      <%= b.label { b.check_box + b.text } %>
+<div class="company-profile-margin">
+  <div class="wrapper recruiter-wrapper container">
+    <%= form_with(model: [@recruiter, @company], local: true) do |f| %>
+    <% if @company.errors.any? %>
+      <ul>
+        <% @company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </label>
+    <h3 class="heading">企業情報編集</h3>
 
-    <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
+    <table class="table">
+      <tr>
+        <th>企業名</th>
+        <td><%= current_recruiter.company.name %></td>
+      </tr>
+      <tr>
+        <th>設立年</th>
+        <td><%= l(current_recruiter.company.foundation_year, format: :very_short) %></td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td><%= current_recruiter.company.capital %></td>
+      </tr>
+      <tr>
+        <th>代表者</th>
+        <td><%= current_recruiter.company.president_name %></td>
+      </tr>
+    </table>
 
-    <%= f.submit '更新', class: "rounded-btn job-info-btn" %>
+    <div class="form-group">
+      <strong><%= f.label :number_of_employees %></strong>
+      <%= f.text_field :number_of_employees, class: "form-control" %>
+    </div>
 
-  <% end %>
+    <div class="form-group">
+      <strong><%= f.label :business_outline %></strong>
+      <%= f.text_area :business_outline, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :revenue %></strong>
+      <%= f.text_area :revenue, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <strong><%= f.label :url %></strong>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+
+    <input type="checkbox" id="check1" class="accordion-hidden">
+    <label for="check1" class="accordion-open first-accordion">業界選択</label>
+    <label for="check1" class="accordion-close">
+      <%= f.collection_check_boxes(:condition_ids, Industry.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+      <% end %>
+    </label>
+
+      <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
+
+      <%= f.submit '更新', class: "rounded-btn job-info-btn" %>
+
+    <% end %>
+  </div>
 </div>

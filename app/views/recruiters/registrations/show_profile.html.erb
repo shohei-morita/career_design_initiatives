@@ -1,41 +1,43 @@
 <%= render partial: 'partials/company_global_nav' %>
 
-<div class="wrapper recruiter-wrapper container">
-  <h3 class="heading">担当者情報</h3>
+<div class="recruiter-profile-margin">
+  <div class="wrapper recruiter-wrapper container">
+    <h3 class="heading">担当者情報</h3>
 
-  <table class="table job-table">
-    <tr>
-      <th>所属</th>
-      <td><%= current_recruiter.department %></td>
-    </tr>
-    <tr>
-      <th>役職</th>
-      <td><%= current_recruiter.title %></td>
-    </tr>
-    <tr>
-      <th>氏名</th>
-      <td><%= current_recruiter.family_name %>  <%= current_recruiter.given_name %></td>
-    </tr>
-    <tr>
-      <th>カナ氏名</th>
-      <td><%= current_recruiter.family_name_kana %>  <%= current_recruiter.given_name_kana %></td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td><%= current_recruiter.email %></td>
-    </tr>
-    <tr>
-      <th>tel</th>
-      <td><%= current_recruiter.tel %></td>
-    </tr>
-    <tr>
-      <th>fax</th>
-      <td><%= current_recruiter.fax %></td>
-    </tr>
-  </table>
+    <table class="table job-table">
+      <tr>
+        <th>所属</th>
+        <td><%= current_recruiter.department %></td>
+      </tr>
+      <tr>
+        <th>役職</th>
+        <td><%= current_recruiter.title %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= current_recruiter.family_name %>  <%= current_recruiter.given_name %></td>
+      </tr>
+      <tr>
+        <th>カナ氏名</th>
+        <td><%= current_recruiter.family_name_kana %>  <%= current_recruiter.given_name_kana %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= current_recruiter.email %></td>
+      </tr>
+      <tr>
+        <th>tel</th>
+        <td><%= current_recruiter.tel %></td>
+      </tr>
+      <tr>
+        <th>fax</th>
+        <td><%= current_recruiter.fax %></td>
+      </tr>
+    </table>
 
 
-  <%= link_to '編集', edit_profile_path(current_recruiter.id), class: "rounded-btn job-info-btn" %><br>
+    <%= link_to '編集', edit_profile_path(current_recruiter.id), class: "rounded-btn job-info-btn" %><br>
 
-  <%= link_to "各種設定に戻る", settings_recruiters_path %>
+    <%= link_to "各種設定に戻る", settings_recruiters_path %>
+  </div>
 </div>

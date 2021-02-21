@@ -1,60 +1,62 @@
-<div class="wrapper student-show-wrapper text-center container">
-  <h3 class="heading">生徒基本情報</h3>
-  <%= form_with(model: [ :admin, @student ], url: update_student_admin_recruiter_path, method: :patch, local: true) do |f| %>
-  <table class="table student-table">
-    <tr>
-      <th>プロフィール画像</th>
-      <td>
-        <% if @student.avatar.attached? %>
-          <%= image_tag @student.profile_image, class: "profile-image" %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>氏名</th>
-      <td><%= @student.family_name.nil? && @student.given_name.nil? ? '氏名未登録' : @student.family_name << '  ' << @student.given_name %></td>
-    </tr>
-    <tr>
-      <th>カナ氏名</th>
-      <td><%= @student.family_name_kana.nil? && @student.given_name_kana.nil? ? 'カナ氏名未登録' : @student.family_name_kana << '  ' << @student.given_name_kana %></td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td><%= @student.email %></td>
-    </tr>
-    <tr>
-      <th>ニックネーム</th>
-      <td><%= @student.nickname.nil? ? 'ニックネーム未登録' : @student.nickname %></td>
-    </tr>
-    <tr>
-      <th>生年月日</th>
-      <td><%= @student.birth_date.nil? ? '生年月日未登録' : @student.birth_date %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= @student.tel.nil? ? '電話番号未登録' : @student.tel %></td>
-    </tr>
-    <tr>
-      <th>性別</th>
-      <td><%= @student.gender.nil? ? '性別未登録' : @student.gender %></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= @student.address.nil? ? '住所未登録' : @student.address %></td>
-    </tr>
-    <tr>
-      <th>アカウント状況</th>
-      <td>
-        <%= @student.suspended ? '凍結' : 'アクティブ' %>
-        <% if @student.suspended == false %>
-          <%= f.submit "Ban!", name: "suspended",  Class: "btn-danger"%>
-        <% else %>
-          <%= f.submit "Release!", name: "release",  Class: "btn-info"%>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+<div class="admin-margin">
+  <div class="wrapper student-show-wrapper container">
+    <h3 class="heading">生徒基本情報</h3>
+    <%= form_with(model: [ :admin, @student ], url: update_student_admin_recruiter_path, method: :patch, local: true) do |f| %>
+    <table class="table student-table">
+      <tr>
+        <th>プロフィール画像</th>
+        <td>
+          <% if @student.avatar.attached? %>
+            <%= image_tag @student.profile_image, class: "profile-image" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @student.family_name.nil? && @student.given_name.nil? ? '氏名未登録' : @student.family_name << '  ' << @student.given_name %></td>
+      </tr>
+      <tr>
+        <th>カナ氏名</th>
+        <td><%= @student.family_name_kana.nil? && @student.given_name_kana.nil? ? 'カナ氏名未登録' : @student.family_name_kana << '  ' << @student.given_name_kana %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= @student.email %></td>
+      </tr>
+      <tr>
+        <th>ニックネーム</th>
+        <td><%= @student.nickname.nil? ? 'ニックネーム未登録' : @student.nickname %></td>
+      </tr>
+      <tr>
+        <th>生年月日</th>
+        <td><%= @student.birth_date.nil? ? '生年月日未登録' : @student.birth_date %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @student.tel.nil? ? '電話番号未登録' : @student.tel %></td>
+      </tr>
+      <tr>
+        <th>性別</th>
+        <td><%= @student.gender.nil? ? '性別未登録' : @student.gender %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @student.address.nil? ? '住所未登録' : @student.address %></td>
+      </tr>
+      <tr>
+        <th>アカウント状況</th>
+        <td>
+          <%= @student.suspended ? '凍結' : 'アクティブ' %>
+          <% if @student.suspended == false %>
+            <%= f.submit "Ban!", name: "suspended",  Class: "btn-danger"%>
+          <% else %>
+            <%= f.submit "Release!", name: "release",  Class: "btn-info"%>
+          <% end %>
+        </td>
+      </tr>
+    </table>
 
-  <%= link_to '検索結果に戻る', :back %>
+    <%= link_to '検索結果に戻る', :back %>
+  </div>
+  <% end %>
 </div>
-<% end %>

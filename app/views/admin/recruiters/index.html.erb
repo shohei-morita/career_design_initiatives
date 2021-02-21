@@ -1,29 +1,32 @@
-<div class="wrapper show-wrapper container">
-  <h3 class="heading">企業検索</h3>
-  <table class="table table-striped">
-    <tr>
-      <th>企業名</th>
-      <th>所属</th>
-      <th>役職</th>
-      <th>氏名</th>
-      <th>email</th>
-      <th>承認状況</th>
-      <th>アカウント状況</th>
-      <th colspan="2"></th>
-    </tr>
-    <% @result_recruiters.where.not(admin: true).each do |recruiter| %>
-    <tr>
-      <td><%= recruiter.company.name %></td>
-      <td><%= recruiter.department %></td>
-      <td><%= recruiter.title %></td>
-      <td><%= recruiter.family_name %> <%= recruiter.given_name %></td>
-      <td><%= recruiter.email %></td>
-      <td><%= recruiter.approved? ? '承認' : '未承認' %></td>
-      <td><%= recruiter.suspended? ? '凍結' : 'アクティブ' %></td>
-      <td><%= link_to "確認", edit_admin_recruiter_path(recruiter) %></td>
-      <td><%= link_to "削除", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-    </tr>
-    <% end %>
-  </table>
+<div class="admin-margin">
+  <div class="wrapper show-wrapper container">
+    <h3 class="heading">企業検索</h3>
+    <%= render 'search_company_for_admin' %>
+    <table class="table table-striped">
+      <tr>
+        <th>企業名</th>
+        <th>所属</th>
+        <th>役職</th>
+        <th>氏名</th>
+        <th>email</th>
+        <th>承認状況</th>
+        <th>アカウント状況</th>
+        <th colspan="2"></th>
+      </tr>
+      <% @result_recruiters.where.not(admin: true).each do |recruiter| %>
+      <tr>
+        <td><%= recruiter.company.name %></td>
+        <td><%= recruiter.department %></td>
+        <td><%= recruiter.title %></td>
+        <td><%= recruiter.family_name %> <%= recruiter.given_name %></td>
+        <td><%= recruiter.email %></td>
+        <td><%= recruiter.approved? ? '承認' : '未承認' %></td>
+        <td><%= recruiter.suspended? ? '凍結' : 'アクティブ' %></td>
+        <td><%= link_to "確認", edit_admin_recruiter_path(recruiter) %></td>
+        <td><%= link_to "削除", admin_recruiter_path(recruiter.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+      <% end %>
+    </table>
 
-<%= paginate @recruiter_pages %>
+  <%= paginate @recruiter_pages %>
+</div>

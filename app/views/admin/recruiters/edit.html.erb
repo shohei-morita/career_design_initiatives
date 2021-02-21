@@ -1,82 +1,84 @@
-<div class="wrapper container">
-  <h3 class="heading">企業概要</h3>
-  <%= form_with(model: [ :admin, @recruiter ], method: :patch, local: true) do |f| %>
-  <table class="table student-table">
-    <tr>
-      <th>企業名</th>
-      <td><%= @recruiter.company.name %></td>
-    </tr>
-    <tr>
-      <th>資本金</th>
-      <td><%= @recruiter.company.foundation_year %></td>
-    </tr>
-    <tr>
-      <th>代表者名</th>
-      <td><%= @recruiter.company.president_name %></td>
-    </tr>
-    <tr>
-      <th>従業員数</th>
-      <td><%= @recruiter.company.number_of_employees %></td>
-    </tr>
-    <tr>
-      <th>業績</th>
-      <td><%= @recruiter.company.revenue %></td>
-    </tr>
-    <tr>
-      <th>企業HP</th>
-      <td><%== Rinku.auto_link(@recruiter.company.url, :all, 'target="_blank"') %></td>
-    </tr>
-    <tr>
-      <th>事業概要</th>
-      <td><%= simple_format(@recruiter.company.business_outline) %></td>
-    </tr>
-    <tr>
-      <th>担当者氏名</th>
-      <td><%= @recruiter.family_name << '  ' << @recruiter.given_name %></td>
-    </tr>
-    <tr>
-      <th>担当者カナ氏名</th>
-      <td><%= @recruiter.family_name_kana << '  ' << @recruiter.given_name_kana %></td>
-    </tr>
-    <tr>
-      <th>担当者所属</th>
-      <td><%= @recruiter.department %></td>
-    </tr>
-    <tr>
-      <th>担当者役職</th>
-      <td><%= @recruiter.title %></td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td><%= @recruiter.email %></td>
-    </tr>
-    <tr>
-      <th>tel</th>
-      <td><%= @recruiter.tel %></td>
-    </tr>
-    <tr>
-      <th>fax</th>
-      <td><%= @recruiter.fax %></td>
-    </tr>
-    <tr>
-      <th>アカウント状況</th>
-      <td>
-        <%= @recruiter.suspended ? '凍結' : 'アクティブ' %>
-        <% if @recruiter.suspended == false %>
-          <%= f.submit "Ban!", name: "suspended",  Class: "btn-danger"%>
-        <% else %>
-          <%= f.submit "Release!", name: "release",  Class: "btn-info"%>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>承認状況</th>
-      <td>
-        <%= @recruiter.approved? ? '承認' : '未承認' %>
-        <%= f.submit "承認", name: "approved",  Class: "btn-info" unless @recruiter.approved == true %>
-      </td>
-    </tr>
-  </table>
-  <% end %>
-  <%= link_to '検索結果に戻る', :back %>
+<div class="admin-margin">
+  <div class="wrapper container">
+    <h3 class="heading">企業概要</h3>
+    <%= form_with(model: [ :admin, @recruiter ], method: :patch, local: true) do |f| %>
+    <table class="table student-table">
+      <tr>
+        <th>企業名</th>
+        <td><%= @recruiter.company.name %></td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td><%= @recruiter.company.foundation_year %></td>
+      </tr>
+      <tr>
+        <th>代表者名</th>
+        <td><%= @recruiter.company.president_name %></td>
+      </tr>
+      <tr>
+        <th>従業員数</th>
+        <td><%= @recruiter.company.number_of_employees %></td>
+      </tr>
+      <tr>
+        <th>業績</th>
+        <td><%= @recruiter.company.revenue %></td>
+      </tr>
+      <tr>
+        <th>企業HP</th>
+        <td><%== Rinku.auto_link(@recruiter.company.url, :all, 'target="_blank"') %></td>
+      </tr>
+      <tr>
+        <th>事業概要</th>
+        <td><%= simple_format(@recruiter.company.business_outline) %></td>
+      </tr>
+      <tr>
+        <th>担当者氏名</th>
+        <td><%= @recruiter.family_name << '  ' << @recruiter.given_name %></td>
+      </tr>
+      <tr>
+        <th>担当者カナ氏名</th>
+        <td><%= @recruiter.family_name_kana << '  ' << @recruiter.given_name_kana %></td>
+      </tr>
+      <tr>
+        <th>担当者所属</th>
+        <td><%= @recruiter.department %></td>
+      </tr>
+      <tr>
+        <th>担当者役職</th>
+        <td><%= @recruiter.title %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= @recruiter.email %></td>
+      </tr>
+      <tr>
+        <th>tel</th>
+        <td><%= @recruiter.tel %></td>
+      </tr>
+      <tr>
+        <th>fax</th>
+        <td><%= @recruiter.fax %></td>
+      </tr>
+      <tr>
+        <th>アカウント状況</th>
+        <td>
+          <%= @recruiter.suspended ? '凍結' : 'アクティブ' %>
+          <% if @recruiter.suspended == false %>
+            <%= f.submit "Ban!", name: "suspended",  Class: "btn-danger"%>
+          <% else %>
+            <%= f.submit "Release!", name: "release",  Class: "btn-info"%>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>承認状況</th>
+        <td>
+          <%= @recruiter.approved? ? '承認' : '未承認' %>
+          <%= f.submit "承認", name: "approved",  Class: "btn-info" unless @recruiter.approved == true %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+    <%= link_to '検索結果に戻る', :back %>
+  </div>
 </div>
