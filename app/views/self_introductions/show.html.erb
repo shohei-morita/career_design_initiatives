@@ -40,10 +40,10 @@
     </tr>
   </table>
   <% if request.path_info == student_apealing_point_path(current_student.id) %>
-    <%= link_to '編集', edit_student_apealing_point_path(current_student.id), class: "rounded-btn student-btn-position" %>
+    <%= link_to '編集', edit_student_apealing_point_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
   <% elsif request.path_info == student_apealing_image_path(current_student.id) %>
-    <%= link_to '編集', edit_student_apealing_image_path(current_student.id), class: "rounded-btn student-btn-position"  %>
+    <%= link_to '編集', edit_student_apealing_image_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id  %>
   <% else %>
-    <%= link_to '編集', edit_student_apealing_video_path(current_student.id), class: "rounded-btn student-btn-position"  %>
+    <%= link_to '編集', edit_student_apealing_video_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id  %>
   <% end %>
 </div>

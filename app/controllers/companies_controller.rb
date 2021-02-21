@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
   before_action :authenticate_recruiter!, only: %i[edit update]
   before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :set_company
+  before_action :same_recruiter, only: %i[edit]
 
   def show; end
 
@@ -18,7 +19,7 @@ class CompaniesController < ApplicationController
   private
 
   def set_company
-    @recruiter = Recruiter.find(params[:recruiter_id])
+    @recruiter = Recruiter.find_by(id: params[:recruiter_id])
     @company = @recruiter.company
   end
 

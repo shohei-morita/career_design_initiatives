@@ -1,6 +1,7 @@
 class QualificationsController < ApplicationController
   before_action :authenticate_student!
   before_action :set_student
+  before_action :same_student, only: %i[new show edit]
 
   def new
     @qualification = Qualification.new
@@ -36,7 +37,7 @@ class QualificationsController < ApplicationController
   private
 
   def set_student
-    @student = Student.find(params[:student_id])
+    @student = Student.find_by(id: params[:student_id])
   end
 
   def qualification_params

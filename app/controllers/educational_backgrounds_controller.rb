@@ -1,6 +1,7 @@
 class EducationalBackgroundsController < ApplicationController
   before_action :authenticate_student!
   before_action :set_student
+  before_action :same_student, only: %i[new show edit]
 
   def new
     @educational_background = EducationalBackground.new
@@ -36,7 +37,7 @@ class EducationalBackgroundsController < ApplicationController
   private
 
   def set_student
-    @student = Student.find(params[:student_id])
+    @student = Student.find_by(id: params[:student_id])
   end
 
   def educational_background_params

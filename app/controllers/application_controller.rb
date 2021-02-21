@@ -1,6 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+
+  def same_student
+    unless @student.try(:id) == current_student.id
+      redirect_to home_students_path, notice: "他人のページにはアクセスできません"
+    end
+  end
+
+  def same_recruiter
+    unless @recruiter.id == current_recruiter.id
+      redirect_to home_recruiters_path, notice: "他社のページにはアクセスできません"
+    end
+  end
+
   protected
   def authenticate_student_and_recruiter
     if not student_signed_in? || recruiter_signed_in?

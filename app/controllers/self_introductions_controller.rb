@@ -1,7 +1,8 @@
 class SelfIntroductionsController < ApplicationController
-  before_action :set_student, only: %i[show edit update]
   before_action :authenticate_student!
+  before_action :set_student, only: %i[show edit update]
   before_action :self_introduction_path
+  before_action :same_student, only: %i[new show edit]
 
   def new
     @student = Student.find(params[:student_id])
@@ -21,6 +22,9 @@ class SelfIntroductionsController < ApplicationController
 
   def show
     @self_introduction = @student.send(set_type)
+    unless @student.id == current_student.id
+      redirect_to home_students_path, notice: "他人のページにはアクセスできません"
+    end
   end
 
   def edit
@@ -39,7 +43,7 @@ class SelfIntroductionsController < ApplicationController
   private
 
   def set_student
-    @student = Student.find(params[:student_id])
+    @student = Student.find_by(id: params[:student_id])
   end
 
   def type

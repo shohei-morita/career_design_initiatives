@@ -50,8 +50,8 @@
     </table>
 
 
-    <%= link_to '編集', edit_recruiter_company_path(current_recruiter.id), class: "rounded-btn job-info-btn" %><br>
+    <%= link_to '編集', edit_recruiter_company_path(current_recruiter.id), class: "rounded-btn job-info-btn" if current_recruiter.company.id == @company.id %><br>
 
-    <%= link_to "各種設定に戻る", settings_recruiters_path %>
+    <%= link_to "各種設定に戻る", settings_recruiters_path if recruiter_signed_in? %>
   </div>
 </div>

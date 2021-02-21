@@ -1,9 +1,8 @@
 class ScoutMessagesController < ApplicationController
+  before_action :authenticate_student_and_recruiter
   before_action do
     @scout = Scout.find(params[:scout_id])
   end
-
-  before_action :authenticate_student_and_recruiter
 
   def index
     unless @scout.student_id == current_student.try(:id) || @scout.recruiter_id == current_recruiter.try(:id)

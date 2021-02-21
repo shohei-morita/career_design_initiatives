@@ -43,4 +43,4 @@
     <% end %>
   </table>
 
-<%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn student-btn-position" %>
+<%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>

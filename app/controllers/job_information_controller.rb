@@ -1,14 +1,17 @@
 class JobInformationController < ApplicationController
-  before_action :set_recruiter
   before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :authenticate_recruiter!, only: %i[index new create edit update destroy]
+  before_action :set_recruiter
+  before_action :same_recruiter, only: %i[new edit]
 
   def index
+    same_recruiter
     @draft_job_information = current_recruiter.company.job_information.where(status: 0)
     @open_job_information = current_recruiter.company.job_information.where(status: 1)
   end
 
   def new
+    same_recruiter
     @job_information = JobInformation.new
   end
 
@@ -53,7 +56,7 @@ class JobInformationController < ApplicationController
   private
 
   def set_recruiter
-    @recruiter = Recruiter.find(params[:recruiter_id])
+    @recruiter = Recruiter.find_by(id: params[:recruiter_id])
   end
 
   def job_information_params

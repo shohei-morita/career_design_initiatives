@@ -1,8 +1,9 @@
 class StudentsController < ApplicationController
-  before_action :set_params, only: %i[show company_show]
-  before_action :scout_info, only: %i[index company_show]
   before_action :authenticate_recruiter!, only: %i[index company_show]
   before_action :authenticate_student!, only: %i[hom profile pr show]
+  before_action :set_params, only: %i[show company_show]
+  before_action :scout_info, only: %i[index company_show]
+  before_action :same_student, only: %i[show]
 
   PER = 10
 
@@ -18,7 +19,9 @@ class StudentsController < ApplicationController
 
   def pr; end
 
-  def show; end
+  def show
+    same_student
+  end
 
   def company_show
     @target_list = current_recruiter.target_lists.find_by(student_id: @student.id)
@@ -27,7 +30,7 @@ class StudentsController < ApplicationController
   private
 
   def set_params
-    @student = Student.find(params[:id])
+    @student = Student.find_by(id: params[:id])
   end
 
   def scout_info
