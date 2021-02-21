@@ -1,56 +1,58 @@
-<div class="wrapper student-wrapper container">
-  <%= form_with(model: [student, self_introduction], url: self_introduction_path, local: true) do |f| %>
-  <% if self_introduction.errors.any? %>
-    <ul>
-      <% self_introduction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <% if request.path_info.include?('apealing_point') && request.path_info.include?('edit')%>
-    <h3 class="heading">自己PR編集</h3><br>
-  <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
-    <h3 class="heading">自己PR画像編集</h3><br>
-  <% elsif request.path_info.include?('apealing_video') && request.path_info.include?('edit') %>
-    <h3 class="heading">自己PR動画編集</h3><br>
-  <% elsif request.path_info.include?('apealing_point') && request.path_info.include?('new')%>
-    <h3 class="heading">自己PR登録</h3><br>
-  <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
-    <h3 class="heading">自己PR画像登録</h3><br>
-  <% else %>
-    <h3 class="heading">自己PR動画登録</h3><br>
-  <% end %>
-
-  <div class="form-group">
-    <strong><%= f.label :title %></strong>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-
-  <% if self_introduction.type == 'ApealingImage' %>
-  <div class="form-group">
-    <strong><%= f.label :image %></strong>
-    <%= f.file_field :image, class: "form-control-file" %>
-  </div>
-  <% end %>
-
-    <% if self_introduction.type == 'ApealingVideo' %>
-    <div class="form-group">
-      <strong><%= f.label :video %></strong>
-      <%= f.file_field :video, class: "form-control-file" %>
-    </div>
+<div class="self-introduction-margin">
+  <div class="wrapper student-wrapper container">
+    <%= form_with(model: [student, self_introduction], url: self_introduction_path, local: true) do |f| %>
+    <% if self_introduction.errors.any? %>
+      <ul>
+        <% self_introduction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
 
-    <div class="form-group">
-      <strong><%= f.label :content %></strong>
-      <%= f.text_area :content, size: "20x10", class: "form-control" %>
-    </div>
-    <% f.hidden_field :student_id, value: current_student.id %>
-
-    <% if request.path_info.include?('edit') %>
-      <%= f.submit '更新', class: "rounded-btn self_introduction-btn" %>
+    <% if request.path_info.include?('apealing_point') && request.path_info.include?('edit')%>
+      <h3 class="heading">自己PR編集</h3><br>
+    <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
+      <h3 class="heading">自己PR画像編集</h3><br>
+    <% elsif request.path_info.include?('apealing_video') && request.path_info.include?('edit') %>
+      <h3 class="heading">自己PR動画編集</h3><br>
+    <% elsif request.path_info.include?('apealing_point') && request.path_info.include?('new')%>
+      <h3 class="heading">自己PR登録</h3><br>
+    <% elsif request.path_info.include?('apealing_image') && request.path_info.include?('edit')%>
+      <h3 class="heading">自己PR画像登録</h3><br>
     <% else %>
-      <%= f.submit '登録', class: "rounded-btn self_introduction-btn" %>
+      <h3 class="heading">自己PR動画登録</h3><br>
     <% end %>
-  <% end %>
+
+    <div class="form-group">
+      <strong><%= f.label :title %></strong>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <% if self_introduction.type == 'ApealingImage' %>
+    <div class="form-group">
+      <strong><%= f.label :image %></strong>
+      <%= f.file_field :image, class: "form-control-file" %>
+    </div>
+    <% end %>
+
+      <% if self_introduction.type == 'ApealingVideo' %>
+      <div class="form-group">
+        <strong><%= f.label :video %></strong>
+        <%= f.file_field :video, class: "form-control-file" %>
+      </div>
+      <% end %>
+
+      <div class="form-group">
+        <strong><%= f.label :content %></strong>
+        <%= f.text_area :content, size: "20x10", class: "form-control" %>
+      </div>
+      <% f.hidden_field :student_id, value: current_student.id %>
+
+      <% if request.path_info.include?('edit') %>
+        <%= f.submit '更新', class: "rounded-btn self_introduction-btn" %>
+      <% else %>
+        <%= f.submit '登録', class: "rounded-btn self_introduction-btn" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

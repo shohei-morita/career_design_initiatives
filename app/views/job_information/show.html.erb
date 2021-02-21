@@ -1,64 +1,66 @@
-<div class="wrapper recruiter-wrapper container">
-  <h3 class="heading"><%= @job_information.title %></h3>
-  <table class="table job-table">
-    <tr>
-      <th>求人詳細</th>
-      <td><%= simple_format(@job_information.content) %></td>
-    </tr>
-    <tr>
-      <th>仕事の魅力</th>
-      <td><%= simple_format(@job_information.appealing_point) %></td>
-    </tr>
-    <tr>
-      <th>給与詳細</th>
-      <td><%= simple_format(@job_information.pay) %></td>
-    </tr>
-    <tr>
-      <th>勤務時間</th>
-      <td><%= simple_format(@job_information.working_hour) %></td>
-    </tr>
-    <tr>
-      <th>休日・休暇</th>
-      <td><%= simple_format(@job_information.day_off) %></td>
-    </tr>
-    <tr>
-      <th>福利構成</th>
-      <td><%= simple_format(@job_information.benefit) %></td>
-    </tr>
-    <tr>
-      <th>選考プロセス</th>
-      <td><%= simple_format(@job_information.selection) %></td>
-    </tr>
-    <tr>
-      <th>職種</th>
-      <td>
-        <% @job_information.conditions.where(type: 'Occupation').each do |occupation| %>
-          <%=  occupation.name %> /
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>働き方</th>
-      <td>
-        <% @job_information.conditions.where(type: 'Workstyle').each do |workstyle| %>
-          <%=  workstyle.name %> /
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>勤務地</th>
-      <td>
-        <% @job_information.conditions.where(type: 'Workplace').each do |workplace| %>
-          <%=  workplace.name %> /
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>勤務地詳細</th>
-      <td><%= simple_format(@job_information.selection) %></td>
-    </tr>
-  </table>
+<div class="recruiter-job-information-margin">
+  <div class="wrapper recruiter-wrapper container">
+    <h3 class="heading"><%= @job_information.title %></h3>
+    <table class="table job-table">
+      <tr>
+        <th>求人詳細</th>
+        <td><%= simple_format(@job_information.content) %></td>
+      </tr>
+      <tr>
+        <th>仕事の魅力</th>
+        <td><%= simple_format(@job_information.appealing_point) %></td>
+      </tr>
+      <tr>
+        <th>給与詳細</th>
+        <td><%= simple_format(@job_information.pay) %></td>
+      </tr>
+      <tr>
+        <th>勤務時間</th>
+        <td><%= simple_format(@job_information.working_hour) %></td>
+      </tr>
+      <tr>
+        <th>休日・休暇</th>
+        <td><%= simple_format(@job_information.day_off) %></td>
+      </tr>
+      <tr>
+        <th>福利構成</th>
+        <td><%= simple_format(@job_information.benefit) %></td>
+      </tr>
+      <tr>
+        <th>選考プロセス</th>
+        <td><%= simple_format(@job_information.selection) %></td>
+      </tr>
+      <tr>
+        <th>職種</th>
+        <td>
+          <% @job_information.conditions.where(type: 'Occupation').each do |occupation| %>
+            <%=  occupation.name %> /
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>働き方</th>
+        <td>
+          <% @job_information.conditions.where(type: 'Workstyle').each do |workstyle| %>
+            <%=  workstyle.name %> /
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>勤務地</th>
+        <td>
+          <% @job_information.conditions.where(type: 'Workplace').each do |workplace| %>
+            <%=  workplace.name %> /
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>勤務地詳細</th>
+        <td><%= simple_format(@job_information.selection) %></td>
+      </tr>
+    </table>
 
-  <%= link_to '編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id), class: "rounded-btn job-info-btn" if recruiter_signed_in? %><br>
-  <%= link_to '戻る', :back, class: "rounded-btn job-info-btn" %>
+    <%= link_to '編集', edit_recruiter_job_information_path(current_recruiter.id, @job_information.id), class: "rounded-btn job-info-btn" if recruiter_signed_in? %><br>
+    <%= link_to '戻る', :back, class: "rounded-btn job-info-btn" %>
+  </div>
 </div>

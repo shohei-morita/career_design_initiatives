@@ -1,5 +1,5 @@
-<div class="wrapper educational_background-show-wrapper text-center container">
-  <h3>資格情報</h3>
+<div class="wrapper educational_background-show-wrapper container">
+  <h3 class="heading">資格情報</h3>
 
   <table class="table student-table">
     <% if @qualification.qualification_1st.present? %>
@@ -43,4 +43,4 @@
     <% end %>
   </table>
 
-<%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn" %>
+<%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn student-btn-position" %>

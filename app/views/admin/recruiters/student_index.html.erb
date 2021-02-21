@@ -1,28 +1,30 @@
-<div class="wrapper show-wrapper container">
-  <h3 class="heading">生徒検索</h3>
+<div class="admin-margin">
+  <div class="wrapper show-wrapper container">
+    <h3 class="heading">生徒検索</h3>
 
-  <%= render 'search_student_for_admin' %>
+    <%= render 'search_student_for_admin' %>
 
-  <div class="search-form-wrapper">
-    <table class="table table-striped">
-      <tr>
-        <th>ID</th>
-        <th>氏名</th>
-        <th>email</th>
-        <th>高校</th>
-        <th></th>
-      </tr>
-      <% @result_students.each do |student| %>
-      <tr>
-        <td><%= student.id %></td>
-        <td><%= student.family_name %> <%= student.given_name %></td>
-        <td><%= student.email %></td>
-        <td><%= student.educational_background.school_name %></td>
-        <td><%= link_to '確認', edit_student_admin_recruiter_path(student) %></td>
-      </tr>
-      <% end %>
-    </table>
+    <div class="search-form-wrapper">
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>氏名</th>
+          <th>email</th>
+          <th>高校</th>
+          <th></th>
+        </tr>
+        <% @result_students.each do |student| %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.family_name %> <%= student.given_name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.educational_background.school_name %></td>
+          <td><%= link_to '確認', edit_student_admin_recruiter_path(student) %></td>
+        </tr>
+        <% end %>
+      </table>
 
-    <%= paginate @student_pages %>
+      <%= paginate @student_pages %>
+    </div>
   </div>
 </div>
