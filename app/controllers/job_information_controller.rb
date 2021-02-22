@@ -2,7 +2,7 @@ class JobInformationController < ApplicationController
   before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :authenticate_recruiter!, only: %i[index new create edit update destroy]
   before_action :set_recruiter
-  before_action :same_recruiter, only: %i[new edit]
+  before_action :same_recruiter, only: %i[edit]
 
   def index
     same_recruiter
