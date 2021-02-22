@@ -20,10 +20,10 @@ Rails.application.routes.draw do
     put 'recruiters/registrations/:id/update_profile', to: 'recruiters/registrations#update_profile', as: :update_profile
   end
 
-  resources :recruiters do
+  resources :recruiters, only: %i(index) do
     collection do
-      get :home
       get :settings
+      get :search_student
     end
     resource :company, only: %i(show edit update)
     resources :job_information
@@ -47,7 +47,6 @@ Rails.application.routes.draw do
 
   resources :students, only: %i(index show) do
     collection do
-      get :home
       get :profile
       get :pr
     end

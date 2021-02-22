@@ -4,13 +4,13 @@ class ApplicationController < ActionController::Base
 
   def same_student
     unless @student.try(:id) == current_student.id
-      redirect_to home_students_path, notice: "他人のページにはアクセスできません"
+      redirect_to students_path, notice: "他人のページにはアクセスできません"
     end
   end
 
   def same_recruiter
     unless @recruiter.id == current_recruiter.id
-      redirect_to home_recruiters_path, notice: "他社のページにはアクセスできません"
+      redirect_to recruiters_path, notice: "他社のページにはアクセスできません"
     end
   end
 
@@ -46,14 +46,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_student
-      home_students_path
+      students_path
     elsif current_recruiter.admin? == false
-      home_recruiters_path
+      recruiters_path
     elsif current_recruiter.admin? == true
       home_admin_recruiters_path
     else
       flash[:notice] = "新規登録が完了しました！"
-      home_students_path
+      students_path
     end
   end
 end
