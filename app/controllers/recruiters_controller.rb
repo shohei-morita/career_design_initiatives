@@ -4,7 +4,7 @@ class RecruitersController < ApplicationController
 
   PER = 10
 
-  def home
+  def index
     @scouts = current_recruiter.scouts.all
   end
 
