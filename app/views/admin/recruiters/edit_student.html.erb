@@ -54,6 +54,12 @@
           <% end %>
         </td>
       </tr>
+      <tr>
+        <th>パスワード再発行</th>
+        <td>
+          <%= f.submit "再発行する", name: "reissue",  Class: "btn-info" %>
+        </td>
+      </tr>
     </table>
 
     <%= link_to '検索結果に戻る', :back %>

@@ -18,7 +18,7 @@
           <td><%= student.id %></td>
           <td><%= student.family_name %> <%= student.given_name %></td>
           <td><%= student.email %></td>
-          <td><%= student.educational_background.school_name %></td>
+          <td><%= student.educational_background.nil? ? '高校の登録なし' : student.educational_background.school_name %></td>
           <td><%= link_to '確認', edit_student_admin_recruiter_path(student) %></td>
         </tr>
         <% end %>

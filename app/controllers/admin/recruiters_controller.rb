@@ -42,7 +42,7 @@ module Admin
       elsif params[:reissue]
         @password = Devise.friendly_token.first(8)
         @recruiter.password = @password
-        RegistrationMailer.reissue(@recruiter, @password).deliver
+        RegistrationMailer.reissue_recruiter(@recruiter, @password).deliver
         @recruiter.save
         redirect_to edit_admin_recruiter_path(@recruiter.id)
       else
@@ -67,6 +67,12 @@ module Admin
         redirect_to edit_student_admin_recruiter_path(@student.id)
       elsif params[:release]
         @student.suspended = false
+        @student.save
+        redirect_to edit_student_admin_recruiter_path(@student.id)
+      elsif params[:reissue]
+        @password = Devise.friendly_token.first(8)
+        @student.password = @password
+        RegistrationMailer.reissue_student(@student, @password).deliver
         @student.save
         redirect_to edit_student_admin_recruiter_path(@student.id)
       else
