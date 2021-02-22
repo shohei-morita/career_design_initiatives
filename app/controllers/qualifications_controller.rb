@@ -1,7 +1,7 @@
 class QualificationsController < ApplicationController
   before_action :authenticate_student!
   before_action :set_student
-  before_action :same_student, only: %i[new show edit]
+  before_action :same_student, only: %i[show edit]
 
   def new
     @qualification = Qualification.new

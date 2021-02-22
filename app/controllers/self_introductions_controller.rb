@@ -1,16 +1,14 @@
 class SelfIntroductionsController < ApplicationController
   before_action :authenticate_student!
-  before_action :set_student, only: %i[show edit update]
+  before_action :set_student, only: %i[new create show edit update]
   before_action :self_introduction_path
   before_action :same_student, only: %i[new show edit]
 
   def new
-    @student = Student.find(params[:student_id])
     @self_introduction = @student.send("build_#{set_type}")
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @self_introduction = @student.send("build_#{set_type}", self_introduction_params)
 
     if @self_introduction.save

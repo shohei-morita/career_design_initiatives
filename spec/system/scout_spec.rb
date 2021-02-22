@@ -7,7 +7,7 @@ RSpec.describe 'scout機能', type: :system do
 
     before do
       login_as approved_recruiter
-      visit students_path
+      visit search_student_recruiters_path
     end
 
     context '生徒検索画面にアクセスした場合' do

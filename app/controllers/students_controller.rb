@@ -1,19 +1,11 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_recruiter!, only: %i[index company_show]
-  before_action :authenticate_student!, only: %i[hom profile pr show]
+  before_action :authenticate_recruiter!, only: %i[company_show]
+  before_action :authenticate_student!, only: %i[index profile pr show]
   before_action :set_params, only: %i[show company_show]
-  before_action :scout_info, only: %i[index company_show]
+  before_action :scout_info, only: %i[company_show]
   before_action :same_student, only: %i[show]
 
-  PER = 10
-
-  def index
-    @search = Student.ransack(params[:q])
-    @result_students = @search.result(distinct: true)
-    @student_pages = @result_students.page(params[:page]).per(PER)
-  end
-
-  def home; end
+  def index; end
 
   def profile; end
 
