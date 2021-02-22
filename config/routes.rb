@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     collection do
       get :home
       get :settings
+      get :search_student
     end
     resource :company, only: %i(show edit update)
     resources :job_information
@@ -45,7 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :students, only: %i(index show) do
+  resources :students, only: %i(show) do
     collection do
       get :home
       get :profile
