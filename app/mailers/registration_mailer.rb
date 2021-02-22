@@ -12,4 +12,13 @@ class RegistrationMailer < ApplicationMailer
       to: recruiter.email
     )
   end
+
+  def reissue(recruiter, password)
+    @recruiter = recruiter
+    @password = password
+    mail(
+      subject: 'パスワードを再発行しました',
+      to: recruiter.email
+    )
+  end
 end

@@ -81,6 +81,14 @@
           <%= f.submit "承認", name: "approved",  Class: "btn-info" unless @recruiter.approved == true %>
         </td>
       </tr>
+      <% if @recruiter.approved == true %>
+      <tr>
+        <th>パスワード再発行</th>
+        <td>
+          <%= f.submit "再発行する", name: "reissue",  Class: "btn-info" %>
+        </td>
+      </tr>
+      <% end %>
     </table>
     <% end %>
     <%= link_to '検索結果に戻る', :back %>

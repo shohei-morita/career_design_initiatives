@@ -39,6 +39,12 @@ module Admin
         @recruiter.suspended = false
         @recruiter.save
         redirect_to edit_admin_recruiter_path(@recruiter.id)
+      elsif params[:reissue]
+        @password = Devise.friendly_token.first(8)
+        @recruiter.password = @password
+        RegistrationMailer.reissue(@recruiter, @password).deliver
+        @recruiter.save
+        redirect_to edit_admin_recruiter_path(@recruiter.id)
       else
         render :edit
       end
