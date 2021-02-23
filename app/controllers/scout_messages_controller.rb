@@ -41,6 +41,7 @@ class ScoutMessagesController < ApplicationController
   def create
     @scout_messages = @scout.scout_messages.order(created_at: 'ASC')
     @recruiter = @scout.recruiter
+    @job_information = @scout.job_information.all
 
     @scout_message = @scout.scout_messages.build(scout_message_params)
     if @scout_message.save

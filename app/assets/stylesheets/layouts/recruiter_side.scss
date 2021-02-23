@@ -210,8 +210,12 @@ input:checked + .tab_class + .content_class {
   margin-top: 120px;
 }
 
+.recruiter-job-information-index-margin {
+  margin-top: -100px;
+}
+
 .recruiter-job-information-margin {
-  margin-top: 130px;
+  margin-top: 120px;
 }
 
 .search-margin {
@@ -224,4 +228,12 @@ input:checked + .tab_class + .content_class {
 
 .recruiter-confirm-margin {
   margin-top: 150px;
+}
+
+.target-list-margin {
+  margin-top: 120px;
+}
+
+.top-company-margin{
+  margin-top: 165px;
 }

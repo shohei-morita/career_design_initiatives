@@ -16,8 +16,8 @@ class TargetListsController < ApplicationController
   def create
     target = current_recruiter.target_lists.create(student_id: params[:student_id])
     case params[:key]
-    when 'index'
-      redirect_to students_path
+    when 'search_student'
+      redirect_to search_student_recruiters_path
     when 'company_show'
       redirect_to company_show_student_path(target.student.id)
     else
@@ -28,11 +28,11 @@ class TargetListsController < ApplicationController
   def destroy
     target = current_recruiter.target_lists.find_by(id: params[:id])
     if target.nil?
-      redirect_to students_path
+      redirect_to search_student_recruiters_path
     elsif target.destroy
       case params[:key]
-      when 'index'
-        redirect_to students_path
+      when 'search_student'
+        redirect_to search_student_recruiters_path
       when 'company_show'
         redirect_to company_show_student_path(target.student.id)
       else
