@@ -2,7 +2,7 @@ class AwardsController < ApplicationController
   before_action :authenticate_student!, only: %i[index new create edit update destroy]
   before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :set_student
-  before_action :same_student, only: %i[index new show edit]
+  before_action :same_student, only: %i[index new edit]
 
   def index
     @awards = current_student.awards.all.order(year: 'ASC')
@@ -22,7 +22,8 @@ class AwardsController < ApplicationController
   end
 
   def show
-    @award = Award.find(params[:id])
+    same_student if student_signed_in?
+    @award = @student.awards.find(params[:id])
   end
 
   def edit

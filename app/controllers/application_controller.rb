@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
 
 
   def same_student
-    unless @student.try(:id) == current_student.id
+    unless @student.try(:id) == current_student.try(:id)
       redirect_to students_path, notice: "他人のページにはアクセスできません"
     end
   end
 
   def same_recruiter
-    unless @recruiter.id == current_recruiter.id
+    unless @recruiter.id == current_recruiter.try(:id)
       redirect_to recruiters_path, notice: "他社のページにはアクセスできません"
     end
   end

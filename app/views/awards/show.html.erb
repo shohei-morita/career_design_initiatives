@@ -15,7 +15,7 @@
     </tr>
   </table>
   <% if student_signed_in? %>
-    <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn student-btn-position", if @student.id == current_student.id %>
+    <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
   <% end %>
   <%= link_to '戻る', :back, class: "rounded-btn student-btn-position" %>
 </div>

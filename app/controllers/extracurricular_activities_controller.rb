@@ -2,7 +2,7 @@ class ExtracurricularActivitiesController < ApplicationController
   before_action :authenticate_student!, only: %i[index new create edit update destroy]
   before_action :authenticate_student_and_recruiter, only: %i[show]
   before_action :set_student
-  before_action :same_student, only: %i[index new show edit]
+  before_action :same_student, only: %i[index new edit]
 
   def index
     @extracurricular_activities = current_student.extracurricular_activities.all.order(beginning_year: 'ASC')
@@ -22,7 +22,8 @@ class ExtracurricularActivitiesController < ApplicationController
   end
 
   def show
-    @extracurricular_activity = ExtracurricularActivity.find(params[:id])
+    same_student if student_signed_in?
+    @extracurricular_activity = @student.extracurricular_activities.find(params[:id])
   end
 
   def edit
