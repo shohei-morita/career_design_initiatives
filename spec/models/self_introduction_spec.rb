@@ -148,7 +148,7 @@ RSpec.describe SelfIntroduction, type: :model do
       expect(@apealing_video.errors[:video]).to include('を250MB以下のサイズにしてください。')
     end
 
-    it 'videoのファイル形式が(jpeg jpg png)以外の場合、無効である' do
+    it 'videoのファイル形式がmp4以外の場合、無効である' do
       @apealing_video.video = fixture_file_upload("#{Rails.root}/tmp/false_filetype.MOV")
       @apealing_video.valid?
 
