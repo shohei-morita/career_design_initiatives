@@ -1,46 +1,42 @@
-<div class="scout-margin">
-  <div class="wrapper recruiter-wrapper container">
-    <h3 class="heading"><%= recruiter_signed_in? ? 'メッセージ一覧' : 'スカウト一覧' %></h3>
-    <table class="table scout-index-table">
-      <% if student_signed_in? %>
-      <thead>
-        <tr>
-          <th>企業名</th>
-          <th>件名</th>
-          <th>日時</th>
-          <th></th>
-        </tr>
+<h3 class="heading"><%= recruiter_signed_in? ? 'メッセージ一覧' : 'スカウト一覧' %></h3>
+<table class="table scout-index-table">
+  <% if student_signed_in? %>
+  <thead>
+    <tr>
+      <th>企業名</th>
+      <th>件名</th>
+      <th>日時</th>
+      <th></th>
+    </tr>
+  <% elsif recruiter_signed_in? %>
+    <tr>
+      <th>生徒</th>
+      <th>件名</th>
+      <th>日時</th>
+      <th colspan="2"></th>
+    </tr>
+  <% end %>
+  </thead>
+  <% if @scouts.present? %>
+  <tbody>
+    <% @scouts.each do |scout| %>
+    <% if student_signed_in? %>
+      <tr>
+        <td><%= scout.recruiter.company.name %></td>
+        <td><%= scout.title %></td>
+        <td><%= scout.message_time %></td>
+        <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm"  %></td>
+      </tr>
       <% elsif recruiter_signed_in? %>
-        <tr>
-          <th>生徒</th>
-          <th>件名</th>
-          <th>日時</th>
-          <th colspan="2"></th>
-        </tr>
+      <tr>
+        <td><%= scout.student.nickname %>さん</td>
+        <td><%= scout.title %></td>
+        <td><%= scout.message_time %></td>
+        <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm" %></td>
+        <td>未読:<%= recruiter_signed_in? ? scout.scout_messages.where(read_unread: false, student_id: scout.student.id).count : scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter_id).count %>件</td>
+      </tr>
       <% end %>
-      </thead>
-      <% if @scouts.present? %>
-      <tbody>
-        <% @scouts.each do |scout| %>
-        <% if student_signed_in? %>
-          <tr>
-            <td><%= scout.recruiter.company.name %></td>
-            <td><%= scout.title %></td>
-            <td><%= scout.message_time %></td>
-            <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm"  %></td>
-          </tr>
-          <% elsif recruiter_signed_in? %>
-          <tr>
-            <td><%= scout.student.nickname %>さん</td>
-            <td><%= scout.title %></td>
-            <td><%= scout.message_time %></td>
-            <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm" %></td>
-            <td>未読:<%= recruiter_signed_in? ? scout.scout_messages.where(read_unread: false, student_id: scout.student.id).count : scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter_id).count %>件</td>
-          </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-      <% end %>
-    </table>
-  </div>
-</div>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>

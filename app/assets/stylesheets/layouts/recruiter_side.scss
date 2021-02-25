@@ -1,239 +1,26 @@
-/* 申請受付 */
-.application {
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    color: #5d627b;
-    background: white;
-    border-top: solid 5px #5d627b;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-    font-size: 1.5em;
-}
-.application p {
-    margin: 0;
-    padding: 0;
-}
 
-/* リクルーター基本関連情報編集画面の見た目 */
-.recruiter-wrapper {
-  width: 70%;
-}
-
-.search-form-wrapper, {
-  width: 90%;
-}
-
-/* タブメニュー */
-.area {
-  width: 100%;
-  margin: auto;
-  flex-wrap: wrap;
-  display: flex;
-}
-
-.tab_class {
-  width: calc(100%/2.5);
-  height: 50px;
-  background-color: darkgrey;
-  line-height: 50px;
-  font-size: 15px;
-  text-align: center;
-  display: block;
-  float: left;
-  order: -1;
-}
-
-input[name="tab_name"] {
-  display: none;
-}
-
-input:checked + .tab_class {
-  background-color: #EC5177;
-  color: aliceblue;
-}
-
-.content_class {
-  display: none;
-  width: 100%;
-}
-
-input:checked + .tab_class + .content_class {
-  display: block;
-}
-
-/* 求人リストの並び */
-.job-list li {
+/*丸型のボタンパーツ(小さい)*/
+.open-btn,
+.close-btn {
   display: inline-block;
-}
-
-.recruiter-wrapper {
-  margin-left: 50px;
-  width: 90%;
-  border-collapse: collapse;
-}
-
-.job-info-btn {
-  margin-left: 40%;
-}
-
-.job-index {
-  font-size: 1.2rem;
-  padding-right: 20px;
-}
-
-/*求人情報テーブルの見た目(縦型)*/
-.job-table {
-  margin-left: 100px;
-  width: 70%;
-  border-collapse: collapse;
-}
-
-.job-table tr {
-  border-bottom: solid 2px white;
-}
-
-.job-table tr:last-child {
-  border-bottom: none;
-}
-
-.job-table th{
-  position: relative;
-  text-align: left;
-  width: 30%;
-  background-color: #E94A67;
-  color: white;
+  width: 300px;
+  max-width: 100%;
+  padding: 1px 1px;
+  background-color: grey;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1rem;
   text-align: center;
-  padding: 10px 0;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 10px;
 }
 
-.job-table th:after{
-  display: block;
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  top:calc(50% - 10px);
-  right:-10px;
-  border-left: 10px solid #E94A67;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-}
-
-.job-table td{
-  width: 0%;
-  text-align: left;
-  background-color: #eee;
-  padding: 10px 15px;
-}
-
-/*検索フォーム*/
-.search-table th,
-.search-table td {
-  border: none;
-}
-
-/*検索結果表示*/
-.search-result-table {
-  border-collapse: collapse;
-  box-shadow: 4px 4px 4px grey;
-}
-
-.search-result-table th,
-.search-result-table td {
-  border: none;
-}
-
-.search-result-table .block1,
-.search-result-table .block3 {
-  background: #EEE9E8;
-}
-
-.search-result-table .block2 {
-  background: #C9C2C1;
-}
-
-.search-result-table .thumbnail {
-  width: 10%;
-}
-
-.search-result-table .intro {
-  width: 80%;
-}
-
-.search-result-table .action {
-  width: 10%;
-  text-align: center;
-  vertical-align: center;
-}
-
-.settings-list li {
-  list-style: none;
-  margin-bottom: 15px;
-}
-
-
-.search-result-table .action_menu {
-  text-align: center;
-  vertical-align: center;
-}
-
-.password-form {
-  width: 70%;
-  margin-left: 15%;
-}
-
-.table-horizon-top {
-  margin-right: 10px;
-}
-
-.admin-top-list li {
-  list-style: none;
-  font-size: 1.5em;
-}
-
-.recruiter-home-margin {
-  margin-top: -100px;
-}
-
-.recuriter-sign-in-margin{
-  margin-top: 130px;
-}
-
-.recruiter-profile-margin {
-  margin-top: 100px;
-}
-
-.recruiter-edit-margin {
-  margin-top: 120px;
-}
-
-.company-profile-margin {
-  margin-top: 120px;
-}
-
-.recruiter-job-information-index-margin {
-  margin-top: -100px;
-}
-
-.recruiter-job-information-margin {
-  margin-top: 120px;
-}
-
-.search-margin {
-  margin-top: 50px;
-}
-
-.admin-margin {
-  margin-top: 150px;
-}
-
-.recruiter-confirm-margin {
-  margin-top: 150px;
-}
-
-.target-list-margin {
-  margin-top: 120px;
-}
-
-.top-company-margin{
-  margin-top: 165px;
+.open-btn:focus,
+.open-btn:hover {
+  background-color: grey;
+  border-color: currentColor;
+  color: #e25c00;
 }

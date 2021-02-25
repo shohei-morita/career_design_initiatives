@@ -10,23 +10,24 @@
   </head>
 
   <body class="body">
-    <div class="container-fluid center-block">
-      <% if recruiter_signed_in? && current_recruiter.admin == false %>
-        <%= render partial: 'partials/company_global_nav'%>
-      <% elsif recruiter_signed_in? && current_recruiter.admin == true %>
-        <%= render partial: 'partials/admin_company_global_nav'%>
-      <% elsif student_signed_in? %>
-        <%= render partial: 'partials/global_nav'%>
-      <% elsif request.path_info.include?('top/company') == true || request.path_info.include?('recruiters/sign_in') == true || request.path_info.include?('recruiters/sign_up') == true || request.path_info.include?('top/applicaiton_completion')%>
-        <%= render partial: 'partials/top_company_global_nav'  %>
-      <% else %>
-        <%= render partial: 'partials/top_global_nav' %>
-      <% end %>
+    <% if recruiter_signed_in? && current_recruiter.admin == false %>
+      <%= render partial: 'partials/company_global_nav'%>
+    <% elsif recruiter_signed_in? && current_recruiter.admin == true %>
+      <%= render partial: 'partials/admin_company_global_nav'%>
+    <% elsif student_signed_in? %>
+      <%= render partial: 'partials/global_nav'%>
+    <% elsif request.path_info.include?('top/company') == true || request.path_info.include?('recruiters/sign_in') == true || request.path_info.include?('recruiters/sign_up') == true || request.path_info.include?('top/applicaiton_completion')%>
+      <%= render partial: 'partials/top_company_global_nav'  %>
+    <% else %>
+      <%= render partial: 'partials/top_global_nav' %>
+    <% end %>
+    <div class="container head-margin">
       <% unless request.path_info.include?('scout') %>
       <% flash.each do |message_type, message| %>
         <div><%= message %></div>
       <% end %>
       <% end %>
       <%= yield %>
+    </div>
   </body>
 </html>
