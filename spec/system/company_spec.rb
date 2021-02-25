@@ -28,14 +28,14 @@ RSpec.describe 'company機能', type: :system do
 
         fill_in 'company[number_of_employees]', with: '450人(2022年度)'
         fill_in 'company[revenue]', with: '500億円(2022年度)'
-        fill_in 'company[url]', with: 'www.url.co.jp'
+        fill_in 'company[url]', with: 'https://www.url.com/'
         fill_in 'company[business_outline]', with: '廃業間近です'
 
         click_button '更新'
 
         expect(page).to have_content('450人(2022年度)')
         expect(page).to have_content('500億円(2022年度)')
-        expect(page).to have_content('www.url.co.jp')
+        expect(page).to have_content('https://www.url.com/')
         expect(page).to have_content('廃業間近です')
       end
     end

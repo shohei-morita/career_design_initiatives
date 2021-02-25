@@ -12,4 +12,5 @@ class Company < ApplicationRecord
   validates :number_of_employees, presence: true, length: { maximum: 500 }
   validates :business_outline, length: { maximum: 1000 }
   validates :revenue, length: { maximum: 500 }
+  validates :url, url: { message: 'は正しい形式で入力してください' }
 end

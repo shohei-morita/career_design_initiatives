@@ -64,4 +64,18 @@ RSpec.describe Company, type: :model do
 
     expect(@company.errors[:revenue]).to include('は500文字以内で入力してください')
   end
+
+  it 'urlが空欄の場合、無効である' do
+    @company.url = nil
+    @company.valid?
+
+    expect(@company.errors[:url]).to include('は正しい形式で入力してください')
+  end
+
+  it 'urlの形式が不正の場合、無効である' do
+    @company.url = "www"
+    @company.valid?
+
+    expect(@company.errors[:url]).to include('は正しい形式で入力してください')
+  end
 end
