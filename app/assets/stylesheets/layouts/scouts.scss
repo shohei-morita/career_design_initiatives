@@ -1,18 +1,30 @@
-.scout-index-table {
-  width: 80%;
-  margin-left: 10%;
-}
+/* スカウト一覧画面 */
 .scout-index-table th {
-  width: 20%;
   background-color: #E94A67;
   color: #fff;
 }
 .scout-index-table td {
-  width: 80%;
   background-color: #F7FCFE;
 }
 
+.scout-index-table tr:hover td {
+  background-color: #d9efff;
+}
+
 .scout-index-table li {
+  list-style: none;
+}
+
+/* スカウト本文テーブル */
+.scout-main-index-table th {
+  background-color: #E94A67;
+  color: #fff;
+}
+.scout-main-index-table td {
+  background-color: #F7FCFE;
+}
+
+.scout-main-index-table li {
   list-style: none;
 }
 
@@ -23,9 +35,6 @@
 
 /* メッセージやりとり */
 .messages {
-  width: 80%;
-  margin-left: 10%;
-  padding: 16px;
   background: #F7FCFE;
   border-radius: 15px;
   line-height: 1.5;
@@ -37,6 +46,7 @@
   padding-bottom: 1px;
   font-size: 0.9em;
   background-color: lightgrey;
+  text-align: right;
 }
 
 .tr-student td {
@@ -45,9 +55,5 @@
   font-size: 0.9em;
   background-color: #E94A67;
   color: #fff;
-}
-
-.message-size {
-  width: 80%;
-  margin-left: 10%;
+  text-align: left;
 }

@@ -1,11 +1,17 @@
-<div class="student-home-margin">
-  <div class="wrapper container">
-    <% if current_student.nickname.present? %>
-    <h3><%= current_student.nickname %>さん、ようこそ</h3>
-      <% else %>
-    <h3>ID<%= current_student.id %>さん、ようこそ</h3>
-    <% end %>
+<% if current_student.nickname.present? %>
+<h3>
+  <span class="student-image">
+    <%= image_tag current_student.header_image %>
+  </span>
+  <%= current_student.nickname %>さん、ようこそ
+</h3>
+  <% else %>
+<h3>
+  <span class="student-image">
+    <%= image_tag current_student.header_image %>
+  </span>
+    ID<%= current_student.id %>さん、ようこそ
+</h3>
+<% end %>
 
-    <%= render partial: 'partials/notification_nav' %>
-  </div>
-</div>
+<%= render partial: 'partials/notification_nav' %>

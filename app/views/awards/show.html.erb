@@ -1,21 +1,20 @@
-<div class="wrapper student-wrapper container">
-  <h3 class="heading">表彰詳細</h3>
-  <table class="table student-table">
-    <tr>
-      <th>表彰名</th>
-      <td><%= @award.title %></td>
-    </tr>
-    <tr>
-      <th>受賞年</th>
-      <td><%= l(@award.year, format: :very_short) %></td>
-    </tr>
-    <tr>
-      <th>概要</th>
-      <td><%= @award.summary.nil? ? '概要の登録はありません' : simple_format(@award.summary) %></td>
-    </tr>
-  </table>
-  <% if student_signed_in? %>
-    <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
-  <% end %>
-  <%= link_to '戻る', :back, class: "rounded-btn student-btn-position" %>
+<h3 class="heading">表彰詳細</h3>
+<table class="table student-table">
+  <tr>
+    <th>表彰名</th>
+    <td><%= @award.title %></td>
+  </tr>
+  <tr>
+    <th>受賞年</th>
+    <td><%= l(@award.year, format: :very_short) %></td>
+  </tr>
+  <tr>
+    <th>概要</th>
+    <td><%= @award.summary.nil? ? '概要の登録はありません' : simple_format(@award.summary) %></td>
+  </tr>
+</table>
+<% if student_signed_in? %>
+<div class="btn-area">
+  <%= link_to '編集', edit_student_award_path(current_student.id, @award.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
 </div>
+<% end %>

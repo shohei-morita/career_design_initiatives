@@ -6,14 +6,14 @@
       <th>企業名</th>
       <th>件名</th>
       <th>日時</th>
-      <th></th>
+      <th>未読</th>
     </tr>
   <% elsif recruiter_signed_in? %>
     <tr>
       <th>生徒</th>
       <th>件名</th>
       <th>日時</th>
-      <th colspan="2"></th>
+      <th>未読</th>
     </tr>
   <% end %>
   </thead>
@@ -21,22 +21,30 @@
   <tbody>
     <% @scouts.each do |scout| %>
     <% if student_signed_in? %>
-      <tr>
+      <tr data-href="<%= scout_scout_messages_path(scout.id) %>">
         <td><%= scout.recruiter.company.name %></td>
         <td><%= scout.title %></td>
         <td><%= scout.message_time %></td>
-        <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm"  %></td>
-      </tr>
+        <td><%= student_signed_in? ? scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter.id).count : scout.scout_messages.where(read_unread: false, student_id: scout.student_id).count %>件</td>
+     </tr>
       <% elsif recruiter_signed_in? %>
-      <tr>
+      <tr data-href="<%= scout_scout_messages_path(scout.id) %>">
         <td><%= scout.student.nickname %>さん</td>
         <td><%= scout.title %></td>
         <td><%= scout.message_time %></td>
-        <td><%= link_to '詳細', scout_scout_messages_path(scout.id), class:"rounded-btn-sm" %></td>
-        <td>未読:<%= recruiter_signed_in? ? scout.scout_messages.where(read_unread: false, student_id: scout.student.id).count : scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter_id).count %>件</td>
+        <td><%= recruiter_signed_in? ? scout.scout_messages.where(read_unread: false, student_id: scout.student.id).count : scout.scout_messages.where(read_unread: false, recruiter_id: scout.recruiter_id).count %>件</td>
       </tr>
       <% end %>
     <% end %>
   </tbody>
   <% end %>
 </table>
+
+<script>
+  $('tr[data-href]').addClass('clickable')
+    .click(function (e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');
+      };
+    });
+</script>

@@ -21,6 +21,6 @@ class JobInformation < ApplicationRecord
   validates :benefit, presence: true, length: { maximum: 200 }
   validates :day_off, presence: true, length: { maximum: 150 }
   validates :selection, presence: true, length: { maximum: 500 }
-  validates :workplace_detail, length: { maximum: 200 }
+  validates :workplace_detail, length: { maximum: 200 }, allow_blank: true
   validates :status, presence: true
 end

@@ -1,7 +1,5 @@
-<div class="wrapper text-center container">
-  <ul class="settings-list">
-    <li><%= link_to 'パスワード変更', edit_password_path(current_recruiter.id), class: "li-btn" %></li>
-    <li><%= link_to '担当者情報', show_profile_path(current_recruiter.id), class: "li-btn" %></li>
-    <li><%= link_to '企業情報', recruiter_company_path(current_recruiter.id), class: "li-btn" %></li>
-  </ul>
-</div>
+<ul class="text-center">
+  <li><%= link_to 'パスワード変更', edit_password_path(current_recruiter.id), class: "li-btn" %></li>
+  <li><%= link_to '担当者情報', show_profile_path(current_recruiter.id), class: "li-btn" %></li>
+  <li><%= link_to '企業情報', recruiter_company_path(current_recruiter.id), class: "li-btn" %></li>
+</ul>

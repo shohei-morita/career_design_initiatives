@@ -1,57 +1,52 @@
-<div class="company-profile-margin">
-  <div class="wrapper recruiter-wrapper container">
-    <h3 class="heading">企業情報</h3>
+<h3 class="heading">企業情報</h3>
 
-    <table class="table job-table">
-      <tr>
-        <th>企業名</th>
-        <td><%= @company.name %></td>
-      </tr>
-      <tr>
-        <th>設立年</th>
-        <td><%= l(@company.foundation_year, format: :very_short) %></td>
-      </tr>
-      <tr>
-        <th>資本金</th>
-        <td><%= @company.capital %></td>
-      </tr>
-      <tr>
-        <th>代表者名</th>
-        <td><%= @company.president_name %></td>
-      </tr>
-      <tr>
-        <th>従業員数</th>
-        <td><%= @company.number_of_employees %></td>
-      </tr>
-      <tr>
-        <th>事業概要</th>
-        <td><%= simple_format(@company.business_outline) %></td>
-      </tr>
-      <tr>
-        <th>売上</th>
-        <td><%= simple_format(@company.revenue) %></td>
-      </tr>
-      <tr>
-        <th>企業HP</th>
-        <td><%== Rinku.auto_link(@company.url, :all, 'target="_blank"')%></td>
-      </tr>
-      <tr>
-        <th>業界</th>
-        <td>
-          <% if @company.conditions.where(type: 'Industry').nil? %>
-            業界の登録はありません
-          <% else %>
-            <% @company.conditions.where(type: 'Industry').each do |industry| %>
-              <%=  industry.name %> /
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    </table>
+<table class="table job-table">
+  <tr>
+    <th>企業名</th>
+    <td><%= @company.name %></td>
+  </tr>
+  <tr>
+    <th>設立年</th>
+    <td><%= l(@company.foundation_year, format: :very_short) %></td>
+  </tr>
+  <tr>
+    <th>資本金</th>
+    <td><%= @company.capital %></td>
+  </tr>
+  <tr>
+    <th>代表者名</th>
+    <td><%= @company.president_name %></td>
+  </tr>
+  <tr>
+    <th>従業員数</th>
+    <td><%= @company.number_of_employees %></td>
+  </tr>
+  <tr>
+    <th>事業概要</th>
+    <td><%= simple_format(@company.business_outline) %></td>
+  </tr>
+  <tr>
+    <th>売上</th>
+    <td><%= simple_format(@company.revenue) %></td>
+  </tr>
+  <tr>
+    <th>企業HP</th>
+    <td><%== Rinku.auto_link(@company.url, :all, 'target="_blank"')%></td>
+  </tr>
+  <tr>
+    <th>業界</th>
+    <td>
+      <% if @company.conditions.where(type: 'Industry').nil? %>
+        業界の登録はありません
+      <% else %>
+        <% @company.conditions.where(type: 'Industry').each do |industry| %>
+          <%=  industry.name %> /
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 
-
-    <%= link_to '編集', edit_recruiter_company_path(current_recruiter.id), class: "rounded-btn job-info-btn" if current_recruiter.company.id == @company.id %><br>
-
-    <%= link_to "各種設定に戻る", settings_recruiters_path if recruiter_signed_in? %>
-  </div>
+<div class="btn-area">
+  <%= link_to '編集', edit_recruiter_company_path(current_recruiter.id), class: "rounded-btn job-info-btn" if current_recruiter.company.id == @company.id %><br>
 </div>

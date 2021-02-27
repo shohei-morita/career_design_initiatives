@@ -1,4 +1,3 @@
-<div class="wrapper educational_background-show-wrapper container">
   <h3 class="heading">資格情報</h3>
 
   <table class="table student-table">
@@ -42,5 +41,6 @@
         <td><%= @qualification.note %></td>
     <% end %>
   </table>
-
-<%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
+  <div class="btn-area">
+    <%= link_to '編集', edit_student_qualification_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
+  </div>

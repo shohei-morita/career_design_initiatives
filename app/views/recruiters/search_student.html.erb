@@ -7,7 +7,7 @@
   <tr>
     <td class="block1 thumbnail"><%= image_tag student.thumbnail %></td>
     <td class="block1 intros">
-      <%= student.nickname.nil? ? "#ID{student.id}さん" : "ニックネーム / #{student.nickname}さん" %><br>
+      <%= student.nickname.nil? ? "ID#{student.id}さん" : "ニックネーム / #{student.nickname}さん" %><br>
       <%= student.gender.nil? ? '性別 / 登録なし' : "性別 / #{student.gender}" %><br>
       <%= student.educational_background.nil? ? '高校 / 登録なし' : "高校 / #{student.educational_background.school_name}" %><br>
       <%= student.educational_background.nil? ? '高校所在地 / 登録なし' : "高校所在地 / #{JpPrefecture::Prefecture.find(student.educational_background.location).name}" %>

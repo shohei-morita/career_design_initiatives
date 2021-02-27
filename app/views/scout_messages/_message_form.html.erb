@@ -1,29 +1,27 @@
-<div class="container">
-  <% @scout_messages.limit(@scout_messages.count - 1).offset(1).each do |message| %>
-    <% if message.content.present? && message.student_id.present? %>
-      <table class="table messages">
-        <tr class="content">
-          <td><%= safe_join(message.content.split("\n"), tag(:br)) %></td>
-        </tr>
-        <tr class="tr-student">
-          <td>
-            <%= @scout.student.nickname.nil? ? "ID:#{@scout.student.id}" : @scout.student.nickname %>
-            <span><%= message.message_time %></span>
-          </td>
-        </tr>
-      </table>
-      <% else %>
-      <table class="table messages">
-        <tr class="content">
-          <td><%= safe_join(message.content.split("\n"), tag(:br)) %></td>
-        </tr>
-        <tr class="tr-recruiter">
-          <td>
-            <%= message.scout.recruiter.company.name %>
-            <span><%= message.message_time %></span>
-          </td>
-        </tr>
-      </table>
-    <% end %>
+<% @scout_messages.limit(@scout_messages.count - 1).offset(1).each do |message| %>
+  <% if message.content.present? && message.student_id.present? %>
+    <table class="table messages">
+      <tr class="content">
+        <td><%= safe_join(message.content.split("\n"), tag(:br)) %></td>
+      </tr>
+      <tr class="tr-student">
+        <td>
+          <%= @scout.student.nickname.nil? ? "ID:#{@scout.student.id}" : @scout.student.nickname %>
+          <span><%= message.message_time %></span>
+        </td>
+      </tr>
+    </table>
+    <% else %>
+    <table class="table messages">
+      <tr class="content">
+        <td><%= safe_join(message.content.split("\n"), tag(:br)) %></td>
+      </tr>
+      <tr class="tr-recruiter">
+        <td>
+          <%= message.scout.recruiter.company.name %>
+          <span><%= message.message_time %></span>
+        </td>
+      </tr>
+    </table>
   <% end %>
-</div>
+<% end %>

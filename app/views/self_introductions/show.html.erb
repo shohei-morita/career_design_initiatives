@@ -1,44 +1,45 @@
-<div class="wrapper student-wrapper container">
-  <% if request.path_info == student_apealing_point_path(current_student.id) %>
-    <h3 class="heading">自己PR詳細</h3>
-  <% elsif request.path_info == student_apealing_image_path(current_student.id) %>
-    <h3 class="heading">自己PR画像詳細</h3>
-  <% else %>
-    <h3 class="heading">自己PR動画詳細</h3>
+<% if request.path_info == student_apealing_point_path(current_student.id) %>
+  <h3 class="heading">自己PR詳細</h3>
+<% elsif request.path_info == student_apealing_image_path(current_student.id) %>
+  <h3 class="heading">自己PR画像詳細</h3>
+<% else %>
+  <h3 class="heading">自己PR動画詳細</h3>
+<% end %>
+
+<table class="table student-table">
+  <tr>
+    <th>タイトル</th>
+    <td><%= @self_introduction.title %></td>
+  </tr>
+
+  <% if @self_introduction.type == "ApealingImage" %>
+  <tr>
+    <th>画像</th>
+    <td>
+      <% if @self_introduction.image.attached? %>
+        <%= image_tag @self_introduction.profile_image_size_for_student %>
+      <% end %>
+    </td>
+  </tr>
   <% end %>
 
-  <table class="table student-table">
-    <tr>
-      <th>タイトル</th>
-      <td><%= @self_introduction.title %></td>
-    </tr>
-
-    <% if @self_introduction.type == "ApealingImage" %>
-    <tr>
-      <th>画像</th>
-      <td>
-        <% if @self_introduction.image.attached? %>
-          <%= image_tag @self_introduction.profile_image_size_for_student %>
-        <% end %>
-      </td>
-    </tr>
+  <% if @self_introduction.type == "ApealingVideo" %>
+  <tr>
+    <th>動画</th>
+    <td>
+    <% if @self_introduction.video.attached? %>
+      <video src="<%= rails_blob_path(@self_introduction.video) %>" type="video/mp4" controls preload="auto" width="350" height="200"></video>
     <% end %>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>本文</th>
+    <td><%= simple_format(@self_introduction.content) %></td>
+  </tr>
+</table>
 
-    <% if @self_introduction.type == "ApealingVideo" %>
-    <tr>
-      <th>動画</th>
-      <td>
-      <% if @self_introduction.video.attached? %>
-        <video src="<%= rails_blob_path(@self_introduction.video) %>" type="video/mp4" controls preload="auto" width="350" height="200"></video>
-      <% end %>
-      </td>
-    </tr>
-    <% end %>
-    <tr>
-      <th>本文</th>
-      <td><%= simple_format(@self_introduction.content) %></td>
-    </tr>
-  </table>
+<div class="btn-area">
   <% if request.path_info == student_apealing_point_path(current_student.id) %>
     <%= link_to '編集', edit_student_apealing_point_path(current_student.id), class: "rounded-btn student-btn-position" if @student.id == current_student.id %>
   <% elsif request.path_info == student_apealing_image_path(current_student.id) %>

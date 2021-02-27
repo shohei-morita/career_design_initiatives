@@ -1,5 +1,3 @@
-<div class="recruiter-job-information-margin">
-<div class="recruiter-wrapper container">
   <%= form_with(model: [recruiter, job_information], url: choose_new_or_edit, local: true) do |f| %>
   <% if job_information.errors.any? %>
     <ul>
@@ -16,48 +14,57 @@
   <% end %>
 
   <div class="form-group">
-    <strong><%= f.label :title %></strong>
-    <%= f.text_field :title, class: "form-control" %>
+    <strong><%= f.label :title %>（入力必須）</strong>
+    <%= f.text_field :title, class: "form-control", id: "comment1", placeholder: '例：【やる気のある人歓迎！】完全実力主義の営業職' %>
+    <p class="pull-right"><span class="count1">0</span>/ 50</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :content %></strong>
-    <%= f.text_area :content, size: "20x10", class: "form-control text-form" %>
+    <strong><%= f.label :content %>（入力必須）</strong>
+    <%= f.text_area :content, size: "20x10", class: "form-control text-form", id: "comment2"  %>
+    <p class="pull-right"><span class="count2">0</span>/ 1000</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :appealing_point %></strong>
-    <%= f.text_area :appealing_point, class: "form-control text-form" %>
+    <strong><%= f.label :appealing_point %>（入力必須）</strong>
+    <%= f.text_area :appealing_point, class: "form-control text-form", id: "comment3" %>
+    <p class="pull-right"><span class="count3">0</span>/ 500</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :pay %></strong>
-    <%= f.text_area :pay, class: "form-control text-form" %>
+    <strong><%= f.label :pay %>（入力必須）</strong>
+    <%= f.text_area :pay, class: "form-control text-form", id: "comment4", placeholder: "基本給200,000円 賞与年2回など" %>
+    <p class="pull-right"><span class="count4">0</span>/ 100</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :working_status %></strong>
-    <%= f.text_area :working_status, class: "form-control text-form" %>
+    <strong><%= f.label :working_status %>（入力必須）</strong>
+    <%= f.text_area :working_status, class: "form-control text-form", id: "comment5", placeholder: "正社員 契約社員など" %>
+    <p class="pull-right"><span class="count5">0</span>/ 100</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :working_hour %></strong>
-    <%= f.text_area :working_hour, class: "form-control text-form" %>
+    <strong><%= f.label :working_hour %>（入力必須）</strong>
+    <%= f.text_area :working_hour, class: "form-control text-form", id: "comment6", placeholder: "9:00〜18:00（内：休憩１時間）など" %>
+    <p class="pull-right"><span class="count6">0</span>/ 100</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :benefit%></strong>
-    <%= f.text_area :benefit, class: "form-control text-form" %>
+    <strong><%= f.label :benefit%>（入力必須）</strong>
+    <%= f.text_area :benefit, class: "form-control text-form", id: "comment7", placeholder: "カフェテリアプラン、昼食支給など" %>
+    <p class="pull-right"><span class="count7">0</span>/ 200</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :day_off %></strong>
-    <%= f.text_area :day_off, class: "form-control text-form" %>
+    <strong><%= f.label :day_off %>（入力必須）</strong>
+    <%= f.text_area :day_off, class: "form-control text-form", id: "comment8", placeholder: "年間休日120日、完全週休2日制、慶長休暇、結婚休暇など" %>
+    <p class="pull-right"><span class="count8">0</span>/ 150</P>
   </div>
 
   <div class="form-group">
-    <strong><%= f.label :selection %></strong>
-    <%= f.text_area :selection, class: "form-control text-form" %>
+    <strong><%= f.label :selection %>（入力必須）</strong>
+    <%= f.text_area :selection, class: "form-control text-form", id: "comment9", placeholder: "書類選考→一次面接→適性検査→最終面接→内定など" %>
+    <p class="pull-right"><span class="count9">0</span>/ 500</P>
   </div>
 
   <div class="accofrdion">
@@ -84,17 +91,28 @@
     </label>
   </div>
   <div class="form-group">
-    <strong><%= f.label :workplace_detail %></strong>
-    <%= f.text_area :workplace_detail, class: "form-control trext-form" %>
+    <strong><%= f.label :workplace_detail %>（任意）</strong>
+    <%= f.text_area :workplace_detail, class: "form-control trext-form", id: "comment10", placeholder: "勤務地に関する補足事項があれば記入" %>
+    <p class="pull-right"><span class="count10">0</span>/ 200</P>
   </div>
 
   <div class="form-group">
     <strong><%= f.label :status %></strong>
     <%= f.select :status, JobInformation.statuses.keys.to_a, {prompt: "ステータスを選択してください"} , { class: "form-control" }%>
   </div>
-
     <% f.hidden_field :recruiter_id, value: current_recruiter.id %>
+  <div class="btn-area">
     <%= f.submit '保存', class: "rounded-btn job-info-btn" %>
+  </div>
   <% end %>
-</div>
-</div>
+
+  <script>
+    $(function(){
+        $('#comment1,#comment2,#comment3,#comment4,#comment5,#comment6,#comment7,#comment8,#comment9,#comment10').bind('keyup',function() {
+            for ( num=1; num<=10; num++ ) {
+                var thisValueLength = $('#comment' + num).val().length;
+                $(".count" + num).html(thisValueLength);
+            }
+        });
+    });
+  </script>
