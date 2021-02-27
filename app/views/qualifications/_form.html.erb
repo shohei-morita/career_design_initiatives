@@ -1,5 +1,4 @@
-<div class="student-qualification-margin">
-  <div class="wrapper student-wrapper container">
+
     <%= form_with(model: [student, qualification], url: student_qualification_path, local: true) do |f| %>
     <% if qualification.errors.any? %>
       <ul>
@@ -17,40 +16,57 @@
 
     <div class="form-group">
       <strong><%= f.label :qualification_1st %></strong>
-      <%= f.text_field :qualification_1st, class: "form-control" %>
+      <%= f.text_field :qualification_1st, class: "form-control", id: "comment1" %>
+      <p class="pull-right"><span class="count1">0</span>/ 50</P>
     </div>
 
     <div class="form-group">
       <strong><%= f.label :qualification_2nd %></strong>
-      <%= f.text_field :qualification_2nd, class: "form-control" %>
+      <%= f.text_field :qualification_2nd, class: "form-control", id: "comment2" %>
+      <p class="pull-right"><span class="count2">0</span>/ 50</P>
     </div>
 
     <div class="form-group">
       <strong><%= f.label :qualification_3rd %></strong>
-      <%= f.text_field :qualification_3rd, class: "form-control" %>
+      <%= f.text_field :qualification_3rd, class: "form-control", id: "comment3" %>
+      <p class="pull-right"><span class="count3">0</span>/ 50</P>
     </div>
 
     <div class="form-group">
       <strong><%= f.label :qualification_4th %></strong>
-      <%= f.text_field :qualification_4th, class: "form-control"  %>
+      <%= f.text_field :qualification_4th, class: "form-control", id: "comment4"  %>
+      <p class="pull-right"><span class="count4">0</span>/ 50</P>
     </div>
 
     <div class="form-group">
       <strong><%= f.label :qualification_5th %></strong>
-      <%= f.text_field :qualification_5th, class: "form-control"  %>
+      <%= f.text_field :qualification_5th, class: "form-control", id: "comment5"  %>
+      <p class="pull-right"><span class="count5">0</span>/ 50</P>
     </div>
 
     <div class="form-group">
       <strong><%= f.label :note %></strong>
-      <%= f.text_area :note, size: "20x10", class: "form-control" %>
+      <%= f.text_area :note, size: "20x10", class: "form-control", id: "comment6" %>
+      <p class="pull-right"><span class="count6">0</span>/ 500</P>
     </div>
       <% f.hidden_field :student_id, value: current_student.id %>
 
       <% if request.path_info.include?('edit') %>
+      <div class="btn-area">
         <%= f.submit '更新', class: "rounded-btn student-btn-position" %>
       <% else %>
         <%= f.submit '登録', class: "rounded-btn student-btn-position"  %>
+      </div>
       <% end %>
     <% end %>
-  </div>
-</div>
+
+    <script>
+      $(function(){
+          $('#comment1,#comment2,#comment3,#comment4,#comment5,#comment6').bind('keyup',function() {
+              for ( num=1; num<=6; num++ ) {
+                  var thisValueLength = $('#comment' + num).val().length;
+                  $(".count" + num).html(thisValueLength);
+              }
+          });
+      });
+    </script>

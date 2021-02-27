@@ -1,4 +1,4 @@
-<div class="wrapper pr-wrapper text-center container">
+<div class="text-center">
   <ul>
     <% if current_student.apealing_point.nil? %>
       <li><%= link_to '自己PR登録', new_student_apealing_point_path(current_student.id), class: "li-btn" %></li>

@@ -1,5 +1,3 @@
-<div class="recuriter-sign-in-margin">
-  <div class="wrapper student-wrapper container">
     <%= form_for(resource, as: resource_name, url: confirm_application_path) do |f| %>
     <% if resource.errors.any? %>
       <ul>
@@ -86,11 +84,8 @@
         <%= f.text_field :fax, autofocus: true, autocomplete: "fax", placeholder: "ハイフンなし 例:0009994444", class: "form-control normal-form"  %>
       </div>
 
-      <div class="actions">
+      <div class="btn-area">
         <%= f.submit "申請", class: "rounded-btn" %>
       </div>
 
-      <%= render "recruiters/shared/links" %>
     <% end %>
-  </div>
-</div>

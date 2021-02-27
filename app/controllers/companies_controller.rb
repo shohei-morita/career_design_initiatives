@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
     if @recruiter.company.update(company_params)
       redirect_to recruiter_company_path(current_recruiter.id)
     else
-      reder :edit
+      render :edit
     end
   end
 

@@ -1,27 +1,23 @@
-<div class="recruiter-home-margin">
-  <div class="wrapper recruiter-wrapper">
-    <h3 class="heading"><%= current_recruiter.company.name %>のアカウント</h3>
-    <table class="table table-horizon">
-      <tr>
-        <th>スカウト残数</th>
-        <th>送信数</th>
-        <th>開封数</th>
-        <th>開封率</th>
-      </tr>
-      <tr>
-        <td><%= 50 - @scouts.all.count %></td>
-        <td><%= sends = @scouts.all.count %></td>
-        <td><%= read = @scouts.where(read_unread: true).count %></td>
-        <td>
-          <% if @scouts.all.count > 0 %>
-            <%= ((read / sends.to_f) * 100).round(1) %>%
-          <% else %>
-            ー
-          <% end %>
-        </td>
-      </tr>
-    </table>
+<h3 class="heading"><%= current_recruiter.company.name %>のスカウト送信状況</h3>
+<table class="table table-horizon">
+  <tr>
+    <th>スカウト残数</th>
+    <th>送信数</th>
+    <th>開封数</th>
+    <th>開封率</th>
+  </tr>
+  <tr>
+    <td><%= 50 - @scouts.all.count %></td>
+    <td><%= sends = @scouts.all.count %></td>
+    <td><%= read = @scouts.where(read_unread: true).count %></td>
+    <td>
+      <% if @scouts.all.count > 0 %>
+        <%= ((read / sends.to_f) * 100).round(1) %>%
+      <% else %>
+        ー
+      <% end %>
+    </td>
+  </tr>
+</table><br>
 
-    <%= render partial: 'partials/notification_nav' %>
-  </div>
-</div>
+<%= render partial: 'partials/notification_nav' %>

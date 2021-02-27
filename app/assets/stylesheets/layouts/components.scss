@@ -1,0 +1,415 @@
+/* 申請受付 */
+.application {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    font-size: 1.5em;
+}
+.application p {
+    margin: 0;
+    padding: 0;
+}
+
+/* タブメニュー */
+.area {
+  width: 100%;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.tab_class {
+  width: calc(100%/2.5);
+  height: 50px;
+  background-color: darkgrey;
+  line-height: 50px;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+}
+
+input[name="tab_name"] {
+  display: none;
+}
+
+input:checked + .tab_class {
+  background-color: #EC5177;
+  color: aliceblue;
+}
+
+.content_class {
+  display: none;
+  width: 100%;
+}
+
+input:checked + .tab_class + .content_class {
+  display: block;
+}
+
+/*求人情報テーブルの見た目(縦型)*/
+.job-table {
+  margin-left: 100px;
+  width: 70%;
+  border-collapse: collapse;
+}
+
+.job-table tr {
+  border-bottom: solid 2px white;
+}
+
+.job-table tr:last-child {
+  border-bottom: none;
+}
+
+.job-table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #E94A67;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.job-table th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #E94A67;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.job-table td{
+  width: 0%;
+  text-align: left;
+  background-color: #eee;
+  padding: 10px 15px;
+}
+
+/*検索フォーム*/
+.search-table th,
+.search-table td {
+  border: none;
+}
+
+/*検索結果表示*/
+.search-result-table {
+  border-collapse: collapse;
+  box-shadow: 4px 4px 4px grey;
+}
+
+.search-result-table th,
+.search-result-table td {
+  border: none;
+}
+
+.search-result-table .block1,
+.search-result-table .block3 {
+  background: #EEE9E8;
+}
+
+.search-result-table .block2 {
+  background: #C9C2C1;
+}
+
+.search-result-table .thumbnail {
+  width: 10%;
+}
+
+.search-result-table .intro {
+  width: 80%;
+}
+
+.search-result-table .action {
+  width: 10%;
+  text-align: center;
+  vertical-align: center;
+}
+
+.search-result-table .action_menu {
+  text-align: center;
+  vertical-align: center;
+}
+
+/* 生徒基本情報テーブルの見た目(縦型) */
+.student-table {
+  margin-left: 100px;
+  width: 70%;
+  border-collapse: collapse;
+}
+
+.student-table tr {
+  border-bottom: solid 2px white;
+}
+
+.student-table tr:last-child {
+  border-bottom: none;
+}
+
+.student-table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #E94A67;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.student-table th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #E94A67;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.student-table td{
+  width: 0%;
+  text-align: left;
+  background-color: #eee;
+  padding: 10px 15px;
+}
+
+/* 企業向け生徒テーブル */
+.company-show-student-table {
+  width: 70%;
+  border-collapse: collapse;
+}
+
+.company-show-student-table tr {
+  border-bottom: solid 2px white;
+}
+
+.company-show-student-table tr:last-child {
+  border-bottom: none;
+}
+
+.company-show-student-table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #E94A67;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.company-show-student-table th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #E94A67;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.company-show-student-table td{
+  width: 0%;
+  text-align: left;
+  background-color: #eee;
+  padding: 10px 15px;
+}
+
+
+//生徒基本情報テーブルの見た目（横型）
+.table-horizon {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-horizon tr {
+  border-bottom: solid 2px white;
+}
+
+.table-horizon tr:last-child {
+  border-bottom: none;
+}
+
+.table-horizon th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #E94A67;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.table-horizon td{
+  width: 0%;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px 15px;
+}
+
+/* プレースホルダーのフォント */
+::placeholder {
+  font-size: 0.8rem;
+}
+
+/* リストボタン */
+.li-btn {
+  display: inline-block;
+  width: 300px;
+  max-width: 100%;
+  padding: 15px 10px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 20px;
+}
+
+.li-btn:focus,
+.li-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+/*丸型のボタンパーツ*/
+.rounded-btn {
+  display: inline-block;
+  width: 100px;
+  max-width: 100%;
+  padding: 5px 5px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 10px;
+}
+
+.rounded-btn:focus,
+.rounded-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+/*丸型のボタンパーツ(小さい)*/
+.rounded-btn-sm {
+  display: inline-block;
+  width: 50px;
+  max-width: 100%;
+  padding: 1px 1px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+}
+
+.rounded-btn-sm:focus,
+.rounded-btn-sm:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+//丸型の検索結果の各アクションボタンパーツ
+.rounded-action-btn {
+  display: inline-block;
+  width: 100px;
+  max-width: 100%;
+  padding: 5px 5px;
+  background-color: #D42C49;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  font-size: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  transition: .25s;
+  color: #FFFEF6;
+  margin-bottom: 10px;
+}
+
+.rounded-action-btn:focus,
+.rounded-action-btn:hover {
+  background-color: #B80D28;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+/* 見出し */
+.heading {
+  padding-bottom: 10px;
+  border-bottom: 4px solid #e25c00;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+/* 小見出し */
+.heading-sm {
+  margin-top: 15px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #e25c00;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* アコーディオンメニュー */
+.accordion-hidden{
+  display: none;
+}
+
+.accordion-open {
+  display: block;
+  padding: 10px;
+  background: #D42C49;
+  cursor: pointer;
+  margin: 5px 0;
+  font-weight: 700;
+  color: white;
+}
+
+.accordion-close {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.accordion-hidden:checked + .accordion-open + .accordion-close {
+  height: auto;
+  opacity: 1;
+  padding: 10px;
+  background: #FFC9D2;
+  font-weight: 700;
+}

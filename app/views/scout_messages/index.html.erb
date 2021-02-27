@@ -1,56 +1,66 @@
-<div class="scout-message-margin">
-<div class="wrapper recruiter-wrapper container">
-  <h3 class="heading"><%= recruiter_signed_in? ? "#{@scout.student.nickname.nil? ? "ID#{@scout.student.id}さんへのスカウト" : "#{@scout.student.nickname}さんへのスカウト"}" : "#{@scout.recruiter.company.name}からのスカウト" %></h3>
-
-  <div class="">
-    <table class="table scout-index-table">
-      <tr>
-        <th>件名</th>
-        <td><%= @scout.title %></td>
-      </tr>
-      <tr>
-        <th>本文</th>
-        <td><%= simple_format(@scout_messages.first.content) %></td>
-      </tr>
-      <tr>
-        <th>添付求人</th>
-        <td>
-          <% @job_information.each do |job_information| %>
-          <li>
-            <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
-          </li>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>送信企業</th>
-        <td><%= link_to "#{@scout.recruiter.company.name}", recruiter_company_path(@scout.recruiter.id) %></td>
-      </tr>
-    </table>
+<h3 class="heading"><%= recruiter_signed_in? ? "#{@scout.student.nickname.nil? ? "ID#{@scout.student.id}さんへのスカウト" : "#{@scout.student.nickname}さんへのスカウト"}" : "#{@scout.recruiter.company.name}からのスカウト" %></h3>
 
 
-    <% if @over_ten %>
-
-      <%= link_to '以前のメッセージ', '?m=all' %>
-    <% end %>
-
-    <%= render 'message_form'%>
-
-    <%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
-      <% if @scout_message.errors.any? %>
-        <ul>
-          <% @scout_message.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+<table class="table scout-main-index-table">
+  <tr>
+    <th>件名</th>
+    <td><%= @scout.title %></td>
+  </tr>
+  <tr>
+    <th>本文</th>
+    <td><%= simple_format(@scout_messages.first.content) %></td>
+  </tr>
+  <tr>
+    <th>添付求人</th>
+    <td>
+      <% @job_information.each do |job_information| %>
+      <li>
+        <%= link_to "#{job_information.title}", recruiter_job_information_path(recruiter_id: @recruiter.id, id: job_information.id)  %>
+      </li>
       <% end %>
-      <div class="form-group message-size">
-        <strong><%= f.label :メッセージ %></strong>
-        <%= f.text_area :content, class: "form-control" %>
-      <div><br>
-      <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
-      <%= f.hidden_field :student_id, value: current_student.id if student_signed_in? %>
-    <%= f.submit '送信', class: "rounded-btn job-info-btn" %>
-    <% end %>
-  </div>
+    </td>
+  </tr>
+  <tr>
+    <th>送信企業</th>
+    <td><%= link_to "#{@scout.recruiter.company.name}", recruiter_company_path(@scout.recruiter.id) %></td>
+  </tr>
+</table>
+
+
+<% if @over_ten %>
+
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<%= render 'message_form'%>
+
+<%= form_with(model: [@scout, @scout_message], local: true) do |f| %>
+  <% if @scout_message.errors.any? %>
+    <ul>
+      <% @scout_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group message-size">
+    <strong><%= f.label :メッセージ %></strong>
+    <%= f.text_area :content, class: "form-control", id: "comment1" %>
+    <p class="pull-right"><span class="count1">0</span>/ 1000</P>
+  </div><br>
+  <%= f.hidden_field :recruiter_id, value: current_recruiter.id if recruiter_signed_in? %>
+  <%= f.hidden_field :student_id, value: current_student.id if student_signed_in? %>
+<div class="btn-area">
+  <%= f.submit '送信', class: "rounded-btn job-info-btn" %>
 </div>
+<% end %>
+
+<script>
+  $(function(){
+      $('#comment1').bind('keyup',function() {
+          for ( num=1; num<=1; num++ ) {
+              var thisValueLength = $('#comment' + num).val().length;
+              $(".count" + num).html(thisValueLength);
+          }
+      });
+  });
+</script>
